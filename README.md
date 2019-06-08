@@ -6,7 +6,7 @@ This package is the place for  models of music-theoretical concepts (e.g. scales
 
 ## Installation
 
-The easiest way to install scamp_extensions is by running the command 
+The easiest way to install *scamp_extensions* is by running the command 
 
 ```
 pip3 install git+https://github.com/MarcTheSpark/scamp_extensions
