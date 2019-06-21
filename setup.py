@@ -13,6 +13,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/MarcTheSpark/scamp_extensions",
     packages=setuptools.find_packages(),
+    package_data={
+        'scamp_extensions': ['supercollider/*.scd', 'supercollider/*.yaml', 'supercollider/scampExtensions/*']   
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
