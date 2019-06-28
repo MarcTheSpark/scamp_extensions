@@ -104,3 +104,21 @@ def add_sc_extensions():
         return instrument
 
     Ensemble.new_supercollider_part = _new_supercollider_part
+
+    def _get_sc_instance(self):
+        if SCPlaybackImplementation in self.shared_resources \
+                and "sclang_instance" in self.shared_resources[SCPlaybackImplementation]:
+            return self.shared_resources[SCPlaybackImplementation]["sclang_instance"]
+        else:
+            return None
+
+    Ensemble.get_sclang_instance = _get_sc_instance
+
+    def _start_recording_sc_output(self, path, num_channels=2):
+        self.get_sclang_instance().send_message("/recording/start", [path, num_channels])
+
+    def _stop_recording_sc_output(self):
+        self.get_sclang_instance().send_message("/recording/stop", 0)
+
+    Ensemble.start_recording_sc_output = _start_recording_sc_output
+    Ensemble.stop_recording_sc_output = _stop_recording_sc_output

@@ -57,6 +57,20 @@ ScampUtils {
         }, path);
 	}
 
+	*startRecordingListener {
+	    OSCFunc({ arg msg, time, addr, recvPort;
+            var path = msg[1], channels = msg[2];
+            Server.default.prepareForRecord(path.asString, channels);
+            {
+                Server.default.sync;
+                Server.default.record;
+            }.fork;
+        }, "/recording/start");
+        OSCFunc({ arg msg, time, addr, recvPort;
+            Server.default.stopRecording;
+        }, "/recording/stop");
+	}
+
 	*startQuitListener { |path, responseAddress|
 	    OSCFunc({ arg msg, time, addr, recvPort;
             0.exit;
