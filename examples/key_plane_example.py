@@ -1,4 +1,4 @@
-from scamp_extensions.key_plane import KeyPlane
+from scamp_extensions.interaction import KeyPlane
 
 
 def callback(coordinates, press_or_release, modifiers):
