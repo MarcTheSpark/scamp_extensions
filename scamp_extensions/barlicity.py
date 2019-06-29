@@ -463,7 +463,7 @@ def _get_num_pulses_in_meter(rhythmic_strata):
     return reduce(lambda x, y: sum_list_or_number(x) * sum_list_or_number(y), rhythmic_strata)
 
 
-def _get_subdivided_stata(rhythmic_strata_1, bar_tempo_1, rhythmic_strata_2, bar_tempo_2):
+def _get_subdivided_strata(rhythmic_strata_1, bar_tempo_1, rhythmic_strata_2, bar_tempo_2):
     # this function gets the two meters to the same shared fundamental pulse
     pulses_in_meter_1 = _get_num_pulses_in_meter(rhythmic_strata_1)
     pulses_in_meter_2 = _get_num_pulses_in_meter(rhythmic_strata_2)
@@ -506,15 +506,3 @@ def calculate_metric_similarity(rhythmic_strata_away, bar_tempo_away, rhythmic_s
     cross_coherence = calculate_metric_coherence(rhythmic_strata_away, bar_tempo_away, 
                                                  rhythmic_strata_home, bar_tempo_home, standard_barlow)
     return cross_coherence / auto_coherence
-
-
-# ------------------------------------------------- Other ---------------------------------------------------
-
-# from Terhardt. Chosen for ease of inverse calculation
-def freq_to_bark(f):
-    return 13.3 * math.atan(0.75*f/1000.0)
-
-
-# the inverse formula
-def bark_to_freq(b):
-    return math.tan(b/13.3)*1000.0/0.75
