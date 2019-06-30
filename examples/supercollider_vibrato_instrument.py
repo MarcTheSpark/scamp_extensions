@@ -21,7 +21,7 @@ vib = s.new_supercollider_part("vibrato", r"""
     }, [\ir, 0.1, 0.1, 0.1, 0.1, \kr])
 """)
 
-s.start_recording()
+s.start_transcribing()
 # This line actually tells SuperCollider to do an audio recording
 s.start_recording_sc_output("vibby.wav")
 
@@ -34,5 +34,5 @@ while s.time() < 15:
          "vibFreq_param": [30, 0]}
     )
 
-s.stop_recording().to_score("4/4").show_xml()
+s.stop_transcribing().to_score("4/4").show_xml()
 s.stop_recording_sc_output()
