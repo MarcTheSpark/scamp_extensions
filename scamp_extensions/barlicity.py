@@ -2,7 +2,7 @@
 Implementation of Clarence Barlow's concepts of:
     - Indigestibility
     - Harmonicity (including harmonicity-based scale rationalization)
-    - Rhythmic Indispensibility
+    - Rhythmic indispensability
     - Metric Coherence
     
 All of these are described in his book, "Musiquantics"
@@ -340,7 +340,7 @@ def rationalize_scale(cents_values, nominal_tolerance, min_harmonicity, num_cand
 # ALSO: if we use Nominal tolerance 40, the 9/5 is included and we get it as well
 # print rationalize_scale([0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200], 40, 0.04, 2)
 
-# ---------------------------------------------- Indispensibility -----------------------------------------------
+# ---------------------------------------------- indispensability -----------------------------------------------
 
 
 def decompose_to_twos_and_threes(n):
@@ -378,12 +378,12 @@ def _first_order_backward_beat_priorities(length):
         # in our example, this results in beat_groups = [[0, 1], [2, 3, 4, 5, 6], [7, 8, 9]]
 
         # OK, now we move the beats to a list in order from most indispensable to least
-        order_of_indispensibility = []
+        order_of_indispensability = []
 
         # first take the first of each group (these are the beats)
         for beat_group in beat_groups:
-            order_of_indispensibility.append(beat_group.pop(0))
-        # example: order_of_indispensibility = [0, 2, 7]
+            order_of_indispensability.append(beat_group.pop(0))
+        # example: order_of_indispensability = [0, 2, 7]
 
         # then gradually pick all the beats
         # beat groups that are the longest get whittled away first, until they
@@ -395,10 +395,10 @@ def _first_order_backward_beat_priorities(length):
         while largest_beat_group_length > 0:
             for beat_group in beat_groups:
                 if len(beat_group) == largest_beat_group_length:
-                    order_of_indispensibility.append(beat_group.pop(0))
+                    order_of_indispensability.append(beat_group.pop(0))
             largest_beat_group_length = max([len(x) for x in beat_groups])
 
-        return order_of_indispensibility
+        return order_of_indispensability
     else:
         return range(length)
 
@@ -425,17 +425,17 @@ def _get_backward_beat_priorities(*args):
     return overall_beat_priorities
 
 
-def get_indispensibility_array(rhythmic_strata, normalize=False):
+def get_indispensability_array(rhythmic_strata, normalize=False):
     backward_beat_priorities = _get_backward_beat_priorities(*rhythmic_strata)
     length = len(backward_beat_priorities)
-    backward_indispensibility_array = [length-1-backward_beat_priorities.index(i) for i in range(length)]
-    indispensibility_array = rotate(backward_indispensibility_array, 1)
-    indispensibility_array.reverse()
+    backward_indispensability_array = [length-1-backward_beat_priorities.index(i) for i in range(length)]
+    indispensability_array = rotate(backward_indispensability_array, 1)
+    indispensability_array.reverse()
     if normalize:
-        max_val = max(indispensibility_array)
-        return [float(x)/max_val for x in indispensibility_array]
+        max_val = max(indispensability_array)
+        return [float(x)/max_val for x in indispensability_array]
     else:
-        return indispensibility_array
+        return indispensability_array
 
 
 def standardize_strata(rhythmic_strata):
@@ -449,8 +449,8 @@ def standardize_strata(rhythmic_strata):
     return strata
 
 
-def get_standard_indispensibility_array(rhythmic_strata, normalize=False):
-    return get_indispensibility_array(standardize_strata(rhythmic_strata), normalize)
+def get_standard_indispensability_array(rhythmic_strata, normalize=False):
+    return get_indispensability_array(standardize_strata(rhythmic_strata), normalize)
 
 
 # -------------------------------------------- Metric Coherence -----------------------------------------------
@@ -477,11 +477,11 @@ def _get_subdivided_strata(rhythmic_strata_1, bar_tempo_1, rhythmic_strata_2, ba
     return subdivided_strata_1, subdivided_strata_2
 
 
-def _get_comparable_indispensibility_arrays(subdivided_strata_1, subdivided_strata_2, standard_barlow=True):
-    indispensabilities_1 = get_standard_indispensibility_array(subdivided_strata_1, normalize=True) if standard_barlow \
-        else get_indispensibility_array(subdivided_strata_1, normalize=True)
-    indispensabilities_2 = get_standard_indispensibility_array(subdivided_strata_2, normalize=True) if standard_barlow \
-        else get_indispensibility_array(subdivided_strata_2, normalize=True)
+def _get_comparable_indispensability_arrays(subdivided_strata_1, subdivided_strata_2, standard_barlow=True):
+    indispensabilities_1 = get_standard_indispensability_array(subdivided_strata_1, normalize=True) if standard_barlow \
+        else get_indispensability_array(subdivided_strata_1, normalize=True)
+    indispensabilities_2 = get_standard_indispensability_array(subdivided_strata_2, normalize=True) if standard_barlow \
+        else get_indispensability_array(subdivided_strata_2, normalize=True)
     joint_pattern_length = lcm(len(indispensabilities_1), len(indispensabilities_2))
     return indispensabilities_1 * (joint_pattern_length / len(indispensabilities_1)), \
            indispensabilities_2 * (joint_pattern_length / len(indispensabilities_2))
@@ -490,7 +490,7 @@ def _get_comparable_indispensibility_arrays(subdivided_strata_1, subdivided_stra
 def calculate_metric_coherence(rhythmic_strata_1, bar_tempo_1, rhythmic_strata_2, bar_tempo_2, standard_barlow=True):
     subdivided_strata_1, subdivided_strata_2 = _get_subdivided_strata(rhythmic_strata_1, bar_tempo_1, 
                                                                       rhythmic_strata_2, bar_tempo_2)
-    indisp_array_1, indisp_array_2 = _get_comparable_indispensibility_arrays(subdivided_strata_1,
+    indisp_array_1, indisp_array_2 = _get_comparable_indispensability_arrays(subdivided_strata_1,
                                                                              subdivided_strata_2, standard_barlow)
     multiplied_squares = [(x * y) ** 2 for x, y in zip(indisp_array_1, indisp_array_2)]
     average_product_squared = sum(multiplied_squares) / len(multiplied_squares)

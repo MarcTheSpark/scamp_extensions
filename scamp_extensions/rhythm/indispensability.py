@@ -1,5 +1,5 @@
 """
-Re-implementation and extension of Clarence Barlow's concept of rhythmic indispensibility such that it works for
+Re-implementation and extension of Clarence Barlow's concept of rhythmic indispensability such that it works for
 additive meters (even nested additive meters).
 """
 
@@ -174,12 +174,12 @@ class MeterArithmeticGroup:
 
 def flatten_beat_groups(beat_groups, upbeats_before_group_length=True):
     """
-    Returns a flattened version of beat groups, unraveling the outer layer according to rules of indispensibility
+    Returns a flattened version of beat groups, unraveling the outer layer according to rules of indispensability
     repeated application of this function to nested beat groups leads to a 1-d ordered list of beat priorities
 
     :param beat_groups: list of nested beat group
     :param upbeats_before_group_length: This is best explained with an example. Consider a 5 = 2 + 3 beat pattern.
-        The Barlow approach to indispensibility would give indispensabilities [4, 0, 3, 1, 2]. The idea would be
+        The Barlow approach to indispensability would give indispensabilities [4, 0, 3, 1, 2]. The idea would be
         downbeat first, then start of the group of 3, then upbeat to downbeat, and then the fourth eighth note because
         it's the upbeat to that upbeat, and because he would say the eighth note right after the downbeat should be the
         most dispensable. However, another way of looking at it would be to say that once we get to [4, _, 3, _, 2],
@@ -200,7 +200,7 @@ def flatten_beat_groups(beat_groups, upbeats_before_group_length=True):
             if len(sub_group) > 0:
                 out.append(sub_group.pop(0))
 
-    # then by the longest chain, and secondarily by order (big beat indispensibility)
+    # then by the longest chain, and secondarily by order (big beat indispensability)
     while True:
         max_subgroup_length = max(len(sub_group) for sub_group in beat_groups)
         if max_subgroup_length == 0:
@@ -296,26 +296,26 @@ class MetricLayer:
             nested_beat_groups = flatten_beat_groups(nested_beat_groups, upbeats_before_group_length)
         return nested_beat_groups
 
-    def get_indispensibility_array(self, upbeats_before_group_length=True, normalize=False):
+    def get_indispensability_array(self, upbeats_before_group_length=True, normalize=False):
         """
-        Resolve the nested structure to a single one-dimensional indispensibility array.
+        Resolve the nested structure to a single one-dimensional indispensability array.
 
         :param upbeats_before_group_length: see description in flatten_beat_groups above. Affects the result when there
             are groups of uneven length at some level of metric structure. To achieve the standard Barlowian result,
             set this to False. I think it works better as True, though.
         :param normalize: if True, indispensabilities range from 0 to 1. If false, they count up from 0.
-        :return: an indispensibility array
+        :return: an indispensability array
         """
         backward_beat_priorities = list(self.get_backward_beat_priorities(upbeats_before_group_length))
         length = len(backward_beat_priorities)
-        backward_indispensibility_array = [length - 1 - backward_beat_priorities.index(i) for i in range(length)]
-        indispensibility_array = rotate(backward_indispensibility_array, 1)
-        indispensibility_array.reverse()
+        backward_indispensability_array = [length - 1 - backward_beat_priorities.index(i) for i in range(length)]
+        indispensability_array = rotate(backward_indispensability_array, 1)
+        indispensability_array.reverse()
         if normalize:
-            max_val = max(indispensibility_array)
-            return [float(x) / max_val for x in indispensibility_array]
+            max_val = max(indispensability_array)
+            return [float(x) / max_val for x in indispensability_array]
         else:
-            return indispensibility_array
+            return indispensability_array
 
     def extend(self, other_metric_layer, in_place=True):
         """
@@ -368,26 +368,26 @@ class MetricLayer:
         return "MetricLayer({})".format(", ".join(str(x) for x in self.groups))
 
 
-def indispensibility_array_from_expression(meter_arithmetic_expression: str, normalize=False,
+def indispensability_array_from_expression(meter_arithmetic_expression: str, normalize=False,
                                            split_large_numbers=False, upbeats_before_group_length=True):
     return MeterArithmeticGroup.parse(meter_arithmetic_expression) \
         .to_metric_layer(split_large_numbers) \
-        .get_indispensibility_array(normalize=normalize, upbeats_before_group_length=upbeats_before_group_length)
+        .get_indispensability_array(normalize=normalize, upbeats_before_group_length=upbeats_before_group_length)
 
 
-def indispensibility_array_from_strata(*rhythmic_strata, normalize=False,
+def indispensability_array_from_strata(*rhythmic_strata, normalize=False,
                                        split_large_numbers=False, upbeats_before_group_length=True):
     expression = "*".join(
         ("("+"+".join(str(y) for y in x)+")" if hasattr(x, "__len__") else str(x)) for x in rhythmic_strata
     )
-    return indispensibility_array_from_expression(
+    return indispensability_array_from_expression(
         expression, normalize=normalize, split_large_numbers=split_large_numbers,
         upbeats_before_group_length=upbeats_before_group_length
     )
 
 
-def barlow_style_indispensibility_array(*rhythmic_strata, normalize=False):
+def barlow_style_indispensability_array(*rhythmic_strata, normalize=False):
     assert all(isinstance(x, int) for x in rhythmic_strata), \
-        "Standard Barlow indispensibility arrays must be based on from integer strata."
-    return indispensibility_array_from_expression("*".join(str(x) for x in rhythmic_strata), normalize=normalize,
+        "Standard Barlow indispensability arrays must be based on from integer strata."
+    return indispensability_array_from_expression("*".join(str(x) for x in rhythmic_strata), normalize=normalize,
                                                   split_large_numbers=True, upbeats_before_group_length=False)
