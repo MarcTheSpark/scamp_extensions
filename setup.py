@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.1.0",
     author="Marc Evanstein",
     author_email="marc@marcevanstein.com",
-    description="Extensions to SCAMP (Suite for Composing Algorithmic Music in Python)",
+    description="Extensions to SCAMP (Suite for Computer-Assisted Music in Python)",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/MarcTheSpark/scamp_extensions",
