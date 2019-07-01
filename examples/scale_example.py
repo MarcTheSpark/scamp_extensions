@@ -1,16 +1,16 @@
 from scamp import *
-from scamp_extensions.pitch import Scale
+from scamp_extensions.pitch import Scale, ScaleType
 
 s = Session()
 clarinet = s.new_part("clarinet")
 
 scales = [
-    Scale([48, 50, 52, 53, 55, 57, 59, 60], True),  # major
-    Scale([48, 51, 53, 54, 55, 58, 60], True),  # blues
-    Scale([48, 50], True),  # whole tone
-    Scale([48, 50, 51], True),  # octatonic
-    Scale([48, 51.0185, 52.3508, 53.8251, 56.8436, 58.1760,
-           61.1944, 62.6687, 65.6872, 67.0196], True)  # Bohlen-Pierce
+    Scale.from_pitches([48, 51, 53, 54, 55, 58, 60]),  # blues
+    Scale.locrian(58),
+    Scale(ScaleType(26., 104., Fraction(3, 2), (600., Fraction(5, 4)), 2, (204., 2)), 55),
+    Scale.from_pitches([48, 50, 51]),  # octatonic
+    Scale.from_start_pitch_and_cent_or_ratio_intervals(55, ["200.", "5/4", "200., 5/4", "3/2", "7/4", "2"]),
+    Scale.from_scala_file("data/bohlen_12.scl", 48)
 ]
 
 for scale in scales:

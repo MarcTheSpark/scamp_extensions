@@ -1,113 +1,88 @@
 from expenvelope import Envelope
-import itertools
 import math
-from fractions import Fraction
+from numbers import Real
 from scamp.utilities import SavesToJSON
-from ..utils import ratio_to_cents
 import logging
-from typing import Union
-
-
-class PitchInterval:
-
-    def __init__(self, cents: float, ratio: Union[Fraction, int]):
-        self.cents = cents
-        self.ratio = ratio
-
-    @classmethod
-    def parse(cls, representation):
-        if isinstance(representation, str):
-            if "," in representation:
-                cents_string, ratio_string = representation.split(",")
-                return cls(float(cents_string))
-            elif "/" in representation:
-                return cls(0, Fraction(representation))
-            else:
-
-                return cls.parse(eval(representation))
-        elif isinstance(data, (int, float, Fraction)):
-            return data
-        elif hasattr(data, "__len__"):
-            return tuple(ScaleType._interpret_step_data(x) for x in data)
-        else:
-            return float(data)
-
-    def to_cents(self):
-        return self.cents + ratio_to_cents(self.ratio)
-
-    def to_half_steps(self):
-        return self.to_cents() / 100
-
-    def __repr__(self):
-        return "PitchInterval({}, {})".format(self.cents, self.ratio)
+from copy import deepcopy
+from .interval import PitchInterval
 
 
 class ScaleType(SavesToJSON):
 
-    def __init__(self, *scale_degree_intervals):
+    standard_equal_tempered_patterns = {
+        "diatonic": [200., 400., 500., 700., 900., 1100., 1200.],
+        "melodic minor": [200., 300., 500., 700., 900., 1100., 1200.],
+        "harmonic minor": [200., 300., 500., 700., 800., 1100., 1200.]
+    }
+
+    def __init__(self, *intervals):
         """
         A ScaleType represents the intervallic relationships in a scale without specifying a specific starting point.
         This maps closely to what is represented in a Scala .scl file, which is why this object can load from and
-        save to that format. In fact the one difference between the data stored here and that stored in a .scl file is
+        save to that format. In fact, the one difference between the data stored here and that stored in a .scl file is
         that this object allows a scale degree to be defined by both a cents offset and a subsequently applied ratio.
 
-        :param scale_degree_intervals: a sequence of intervals above the starting note. Each element should be either:
-            - a float (representing cents)
-            - an int or a Fraction object (representing a ratio)
-            - a tuple of (cents, ratio)
-            - a string, which will be evaluated as a (cents, ratio) tuple if it has a comma, and will be evaluated as
-            a Fraction if it has a slash. e.g. "3" is a ratio, "37." is cents, "4/3" is a ratio, and "200., 5/4"
-            is a cents displacement followed by a ratio.
+        :param intervals: a sequence of PitchIntervals above the starting note. Alternatively, an element can simply be
+            a type of data that PitchInterval can parse.
         """
-        self.scale_degree_intervals = ScaleType._interpret_step_data(scale_degree_intervals)
-        # check that the data is okay
-        for interval in self.scale_degree_intervals:
-            if not isinstance(interval, (tuple, int, float, Fraction)) or \
-                    (isinstance(interval, tuple) and not len(interval) == 2
-                     and isinstance(interval[1], (int, Fraction))):
-                raise ValueError("Each scale degree must be either a number of cents (float), a frequency ratio (int "
-                                 "or fraction), or a 2-tuple combining a number of cents and a frequency ratio.")
-
-    @staticmethod
-    def _interpret_step_data(data):
-        if isinstance(data, str):
-            if "," in data:
-                return ScaleType._interpret_step_data(data.split(","))
-            elif "/" in data:
-                return Fraction(data)
-            else:
-                return eval(data)
-        elif isinstance(data, (int, float, Fraction)):
-            return data
-        elif hasattr(data, "__len__"):
-            return tuple(ScaleType._interpret_step_data(x) for x in data)
-        else:
-            return float(data)
+        self.intervals = [x if isinstance(x, PitchInterval) else PitchInterval.parse(x) for x in intervals]
 
     def to_half_steps(self):
-        half_steps = []
-        for interval in self.scale_degree_intervals:
-            if hasattr(interval, "__len__"):
-                cents, ratio = interval
-            elif isinstance(interval, (int, Fraction)):
-                cents, ratio = 0., interval
-            else:
-                cents, ratio = interval, 1
-            half_steps.append((cents + ratio_to_cents(ratio)) / 100)
-        return half_steps
+        return [interval.to_half_steps() for interval in self.intervals]
+
+    def rotate(self, steps, in_place=True):
+        intervals = self.intervals if in_place else deepcopy(self.intervals)
+        steps = steps % len(intervals)
+
+        if steps == 0:
+            rotated_intervals = intervals
+        else:
+            shift_first_intervals_up = intervals[steps:] + [x + intervals[-1] for x in intervals[:steps]]
+            rotated_intervals = [x - intervals[steps - 1] for x in shift_first_intervals_up]
+
+        if in_place:
+            self.intervals = rotated_intervals
+            return self
+        else:
+            return ScaleType(*rotated_intervals)
+
+    # ------------------------------------- Class Methods ---------------------------------------
+
+    @classmethod
+    def diatonic(cls, modal_shift: int = 0):
+        return cls(*ScaleType.standard_equal_tempered_patterns["diatonic"]).rotate(modal_shift)
+
+    major = ionian = diatonic
+
+    @classmethod
+    def dorian(cls): return cls.diatonic(1)
+
+    @classmethod
+    def phrygian(cls): return cls.diatonic(2)
+
+    @classmethod
+    def lydian(cls): return cls.diatonic(3)
+
+    @classmethod
+    def mixolydian(cls): return cls.diatonic(4)
+
+    @classmethod
+    def aeolian(cls): return cls.diatonic(5)
+
+    natural_minor = aeolian
+
+    @classmethod
+    def locrian(cls): return cls.diatonic(6)
+
+    # ------------------------------------- Loading / Saving ---------------------------------------
 
     def save_to_scala(self, file_path, description="Mystery scale saved using SCAMP"):
         lines = ["! {}".format(file_path.split("/")[-1]),
                  "!",
                  "{}".format(description),
-                 str(len(self.scale_degree_intervals)),
+                 str(len(self.intervals)),
                  "!"]
-        for interval in self.scale_degree_intervals:
-            if isinstance(interval, tuple):
-                cents, ratio = interval
-                lines.append(str(float((cents + ratio_to_cents(ratio)))))
-            else:
-                lines.append(str(interval))
+        lines.extend(interval.to_scala_string() for interval in self.intervals)
         with open(file_path, "w") as scala_file:
             scala_file.write("\n".join(lines))
 
@@ -141,62 +116,39 @@ class ScaleType(SavesToJSON):
         return cls(*pitch_entries)
 
     def to_json(self):
-        json_list = []
-        for scale_degree in self.scale_degree_intervals:
-            if isinstance(scale_degree, (float, int)):
-                json_list.append(scale_degree)
-            elif isinstance(scale_degree, Fraction):
-                json_list.append(str(scale_degree.numerator) + "/" + str(scale_degree.denominator))
-            elif isinstance(scale_degree, tuple):
-                json_list.append((float(scale_degree[0]),
-                                  str(scale_degree[1].numerator) + "/" + str(scale_degree[1].denominator)
-                                  if isinstance(scale_degree[1], Fraction) else scale_degree[1]))
-            else:
-                # handle any other Real number type
-                json_list.append(float(scale_degree))
-        return json_list
+        return [interval.to_json() for interval in self.intervals]
 
     @classmethod
     def from_json(cls, json_list):
         return cls(*json_list)
 
-    def __str__(self):
-        return "ScaleType({})".format(self.scale_degree_intervals)
-
-# Change Scale class so that it takes a ScaleClass object and a start pitch as well as the cyclic argument
+    def __repr__(self):
+        return "ScaleType({})".format(self.intervals)
 
 
-class Scale:
-    _standard_patterns = {
-        "diatonic": [2, 2, 1, 2, 2, 2, 1],
-        "melodic minor": [2, 1, 2, 2, 2, 2, 1],
-        "harmonic minor": [2, 1, 2, 2, 1, 3, 1]
-    }
+class Scale(SavesToJSON):
 
-    # def __init__(self, seed_pitches, cyclic=True):
-    #     if not (len(seed_pitches) > 1 and all(a < b for a, b in zip(seed_pitches[:-1], seed_pitches[1:]))):
-    #         raise ValueError("Scale seed must be a list of two or more pitches in ascending order")
-    #     self._envelope = Envelope.from_points(*zip(range(len(seed_pitches)), seed_pitches))
-    #     self._inverse_envelope = Envelope.from_points(*zip(seed_pitches, range(len(seed_pitches))))
-    #     self._cycle_length = len(seed_pitches) - 1 if cyclic else None
-    #     self._cycle_interval = seed_pitches[-1] - seed_pitches[0] if cyclic else None
-    #     self._seed_pitches = seed_pitches
-
-    def __init__(self, scale_type, start_pitch, cyclic=True):
-        pass
+    def __init__(self, scale_type: ScaleType, start_pitch: Real, cyclic=True):
+        self.scale_type = scale_type
+        self.start_pitch = start_pitch
+        # convert the scale type to a list of MIDI-valued seed pitches
+        self._seed_pitches = (start_pitch, ) + tuple(start_pitch + x for x in self.scale_type.to_half_steps())
+        self._envelope = Envelope.from_points(*zip(range(len(self._seed_pitches)), self._seed_pitches))
+        self._inverse_envelope = Envelope.from_points(*zip(self._seed_pitches, range(len(self._seed_pitches))))
+        self._cycle_length = len(self._seed_pitches) - 1 if cyclic else None
+        self._cycle_interval = self._seed_pitches[-1] - self._seed_pitches[0] if cyclic else None
 
     @classmethod
     def from_pitches(cls, seed_pitches, cyclic=True):
-        pass
+        return cls(ScaleType(*(100. * (x - seed_pitches[0]) for x in seed_pitches[1:])), seed_pitches[0], cyclic=cyclic)
 
     @classmethod
     def from_scala_file(cls, file_path, start_pitch, cyclic=True):
-        pass
+        return cls(ScaleType.load_from_scala(file_path), start_pitch, cyclic=cyclic)
 
     @classmethod
-    def from_start_pitch_and_intervals(cls, start_pitch, intervals, cyclic=True):
-        pass
-
+    def from_start_pitch_and_cent_or_ratio_intervals(cls, start_pitch, intervals, cyclic=True):
+        return cls(ScaleType(*intervals), start_pitch, cyclic=cyclic)
 
     def degree_to_pitch(self, degree):
         if self._cycle_length is not None:
@@ -223,43 +175,51 @@ class Scale:
     def ceil(self, pitch):
         return self.degree_to_pitch(math.ceil(self.pitch_to_degree(pitch)))
 
-    # ------------------------------------- CLASS METHODS ---------------------------------------
+    # ------------------------------------- Class Methods ---------------------------------------
 
     @classmethod
-    def from_frequency_ratios(cls, start_pitch):
-        pass
+    def diatonic(cls, start_pitch, modal_shift: int = 0, cyclic=True):
+        return cls(ScaleType.diatonic(modal_shift), start_pitch, cyclic=cyclic)
 
-    @staticmethod
-    def _shift_scale_pattern(pattern, shift):
-        if not isinstance(shift, int):
-            raise ValueError("Shift must be an integer.")
-        shift = shift % len(pattern)
-        return pattern[shift:] + pattern[:shift]
+    major = ionian = diatonic
 
     @classmethod
-    def from_start_pitch_and_intervals(cls, start_pitch, intervals, cyclic=True):
-        return Scale([start_pitch] + [start_pitch + x for x in itertools.accumulate(intervals)], cyclic=cyclic)
+    def dorian(cls, start_pitch, cyclic=True): return cls(ScaleType.dorian(), start_pitch, cyclic=cyclic)
 
     @classmethod
-    def diatonic(cls, start_pitch, modal_shift=0):
-        return cls.from_start_pitch_and_intervals(
-            start_pitch, Scale._shift_scale_pattern(Scale._standard_patterns["diatonic"], modal_shift))
-
-    ionian = major = diatonic
+    def phrygian(cls, start_pitch, cyclic=True): return cls(ScaleType.phrygian(), start_pitch, cyclic=cyclic)
 
     @classmethod
-    def dorian(cls, start_pitch): return cls.diatonic(start_pitch, 1)
+    def lydian(cls, start_pitch, cyclic=True): return cls(ScaleType.lydian(), start_pitch, cyclic=cyclic)
 
     @classmethod
-    def harmonic_minor(cls, start_pitch, modal_shift=0):
-        return cls.from_start_pitch_and_intervals(
-            start_pitch, Scale._shift_scale_pattern(Scale._standard_patterns["harmonic minor"], modal_shift))
+    def mixolydian(cls, start_pitch, cyclic=True): return cls(ScaleType. mixolydian(), start_pitch, cyclic=cyclic)
 
     @classmethod
-    def melodic_minor_ascending(cls, start_pitch, modal_shift=0):
-        return cls.from_start_pitch_and_intervals(
-            start_pitch, Scale._shift_scale_pattern(Scale._standard_patterns["melodic minor"], modal_shift))
+    def aeolian(cls, start_pitch, cyclic=True): return cls(ScaleType.aeolian(), start_pitch, cyclic=cyclic)
+
+    natural_minor = aeolian
 
     @classmethod
-    def acoustic(cls, start_pitch, modal_shift=0):
-        return cls.melodic_minor_ascending(start_pitch, modal_shift + 3)
+    def locrian(cls, start_pitch, cyclic=True): return cls(ScaleType.locrian(), start_pitch, cyclic=cyclic)
+
+    # ------------------------------------- Loading / Saving ---------------------------------------
+
+    def to_json(self):
+        return {
+            "scale_type": self.scale_type.to_json(),
+            "start_pitch": self.start_pitch,
+            "cyclic": self._cycle_length is not None
+        }
+
+    @classmethod
+    def from_json(cls, json_object):
+        json_object["scale_type"] = ScaleType.from_json(json_object["scale_type"])
+        return cls(**json_object)
+
+    def __repr__(self):
+        return "Scale({}, {}{})".format(
+            repr(self.scale_type),
+            self.start_pitch,
+            ", cyclic=False" if self._cycle_length is None else ""
+        )
