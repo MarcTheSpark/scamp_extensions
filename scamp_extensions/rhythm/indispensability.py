@@ -21,7 +21,8 @@ def decompose_to_twos_and_threes(n):
     :param n: the int
     :return: a list of 2's and possible one three
     """
-    assert isinstance(n, int)
+    if not isinstance(n, int) and n >= 2:
+        raise ValueError("n must be an integer greater than or equal to 2.")
     out = []
     if n % 2 == 1:
         n -= 3
@@ -87,7 +88,11 @@ class MeterArithmeticGroup:
         :param elements: a list of MeterArithmeticGroups
         :param operation: either "+", "*", or None, in the case of just a number
         """
-        assert operation in ("+", "*") or operation is None and len(elements) == 1 and isinstance(elements[0], int)
+        if operation is None:
+            if not (len(elements) == 1 and isinstance(elements[0], int)):
+                raise ValueError("\"operation\" can only be None if a single integer element is given.")
+        elif operation not in ("+", "*"):
+            raise ValueError("\"operation\" must be one of: (\"+\", \"*\", None).")
         self.elements = elements
         self.operation = operation
 
@@ -100,13 +105,15 @@ class MeterArithmeticGroup:
         :return: a MeterArithmeticGroup
         """
         input_string = input_string.replace(" ", "")
-        assert len(input_string) > 0, "Cannot parse empty input string."
-        assert all(x in "0123456789+*()" for x in input_string), \
-            "Meter arithmetic expression can only contain integers, plus signs, multiplication signs, and parentheses"
-        assert input_string[0] in "(0123456789" and input_string[-1] in ")0123456789", \
-            "Bad input string: leading or trailing operator."
-        assert not any(x in input_string for x in ("++", "+*", "*+", "**")), \
-            "Cannot parse input string: multiple adjacent operators found."
+        if len(input_string) == 0:
+            raise ValueError("Cannot parse empty input string.")
+        if not all(x in "0123456789+*()" for x in input_string):
+            raise ValueError("Meter arithmetic expression can only contain integers, "
+                             "plus signs, multiplication signs, and parentheses")
+        if not (input_string[0] in "(0123456789" and input_string[-1] in ")0123456789"):
+            raise ValueError("Bad input string: leading or trailing operator.")
+        if any(x in input_string for x in ("++", "+*", "*+", "**")):
+            raise ValueError("Cannot parse input string: multiple adjacent operators found.")
         if any(c in input_string for c in ("(", ")", "*", "+")):
             paren_level = 0
             chunks = []
@@ -125,7 +132,8 @@ class MeterArithmeticGroup:
                         continue
                 elif char == ")":
                     paren_level -= 1
-                    assert paren_level >= 0, "Nonsensical parentheses detected."
+                    if paren_level < 0:
+                        raise ValueError("Encountered unmatched closes-parenthesis.")
                     if paren_level == 0:
                         chunks.append(current_chunk)
                         current_chunk = ""
@@ -136,7 +144,8 @@ class MeterArithmeticGroup:
             if len(current_chunk) > 0:
                 chunks.append(current_chunk)
 
-            assert paren_level == 0, "Nonsensical parentheses detected. Probably missing a close-paren."
+            if paren_level > 0:
+                raise ValueError("Encountered unmatched open-parenthesis.")
 
             merged_multiplies = []
             i = 0
@@ -227,8 +236,8 @@ class MetricLayer:
             followed by one 3 if odd. This is the Barlow approach.
         Each one can either be a number or a Metric layer
         """
-        assert all(isinstance(x, (int, MetricLayer))for x in groups), \
-            "Metric layer groups must either be integers or metric groups themselves"
+        if not all(isinstance(x, (int, MetricLayer))for x in groups):
+            raise ValueError("Metric layer groups must either be integers or metric groups themselves")
 
         self.groups = list(groups)
 
@@ -338,24 +347,20 @@ class MetricLayer:
         return MetricLayer(self, other_metric_layer)
 
     def __add__(self, other):
-        assert isinstance(other, (MetricLayer, int))
         return self.join(other)
 
     def __mul__(self, other):
-        assert isinstance(other, (MetricLayer, int))
         if isinstance(other, int):
             return self * MetricLayer(other)
         else:
             return MetricLayer(*(group * other for group in self.groups))
 
     def __rmul__(self, other):
-        assert isinstance(other, int)
         if other == 1:
             return self
         return MetricLayer(*([self] * other))
 
     def __radd__(self, other):
-        assert isinstance(other, (MetricLayer, int))
         if other == 0:
             # This allows the "sum" command in __mul__ above to work
             return self
@@ -387,7 +392,7 @@ def indispensability_array_from_strata(*rhythmic_strata, normalize=False,
 
 
 def barlow_style_indispensability_array(*rhythmic_strata, normalize=False):
-    assert all(isinstance(x, int) for x in rhythmic_strata), \
-        "Standard Barlow indispensability arrays must be based on from integer strata."
+    if not all(isinstance(x, int) for x in rhythmic_strata):
+        raise ValueError("Standard Barlow indispensability arrays must be based on from integer strata.")
     return indispensability_array_from_expression("*".join(str(x) for x in rhythmic_strata), normalize=normalize,
                                                   split_large_numbers=True, upbeats_before_group_length=False)
