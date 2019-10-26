@@ -54,7 +54,7 @@ def prime_factor(n):
     primes = []
     while i * i <= n:
         while n % i == 0:
-            n /= i
+            n //= i
             primes.append(i)
         i += 1
 
