@@ -54,17 +54,20 @@ class SCLangInstance:
         server.shutdown()
         return response
 
+    def new_synth_def(self, synth_def_code: str):
+        self.send_message("/compile/synth_def", [synth_def_code])
+        self.wait_for_response("/done_compiling")
+
 
 class SCPlaybackImplementation(OSCPlaybackImplementation):
 
     def __init__(self, host_instrument, synth_def: str):
         self.host_instrument = host_instrument
-        self._resources = None
         if not self.has_shared_resource("sclang_instance"):
             self.set_shared_resource("sclang_instance", SCLangInstance())
         sclang = self.get_shared_resource("sclang_instance")
 
-        if synth_def.isalpha() or synth_def[0] == "\\" and synth_def[1:].isalpha():
+        if synth_def.isalnum() or synth_def[0] == "\\" and synth_def[1:].isalnum():
             # just the name of the synth_def
             def_name = synth_def.replace("\\", "")
             compile_synth_def = False
@@ -75,8 +78,7 @@ class SCPlaybackImplementation(OSCPlaybackImplementation):
         super().__init__(host_instrument, sclang.port, ip_address="127.0.0.1", message_prefix=def_name)
 
         if compile_synth_def:
-            sclang.send_message("/compile/synth_def", [synth_def])
-            sclang.wait_for_response("/done_compiling")
+            sclang.new_synth_def(synth_def)
 
 
 def add_sc_extensions():
@@ -106,11 +108,16 @@ def add_sc_extensions():
     Ensemble.new_supercollider_part = _new_supercollider_part
 
     def _get_sc_instance(self):
-        if SCPlaybackImplementation in self.shared_resources \
-                and "sclang_instance" in self.shared_resources[SCPlaybackImplementation]:
-            return self.shared_resources[SCPlaybackImplementation]["sclang_instance"]
+        if SCPlaybackImplementation in self.shared_resources:
+            if "sclang_instance" in self.shared_resources[SCPlaybackImplementation]:
+                return self.shared_resources[SCPlaybackImplementation]["sclang_instance"]
+            else:
+                new_sc_instance = SCLangInstance()
+                self.shared_resources[SCPlaybackImplementation]["sclang_instance"] = SCLangInstance()
         else:
-            return None
+            new_sc_instance = SCLangInstance()
+            self.shared_resources[SCPlaybackImplementation] = {"sclang_instance": new_sc_instance}
+        return new_sc_instance
 
     Ensemble.get_sclang_instance = _get_sc_instance
 
