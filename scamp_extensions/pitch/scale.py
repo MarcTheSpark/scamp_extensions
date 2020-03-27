@@ -12,7 +12,9 @@ class ScaleType(SavesToJSON):
     standard_equal_tempered_patterns = {
         "diatonic": [200., 400., 500., 700., 900., 1100., 1200.],
         "melodic minor": [200., 300., 500., 700., 900., 1100., 1200.],
-        "harmonic minor": [200., 300., 500., 700., 800., 1100., 1200.]
+        "harmonic minor": [200., 300., 500., 700., 800., 1100., 1200.],
+        "whole tone": [200., 400., 600., 800., 1000., 1200.],
+        "octatonic": [200., 300., 500., 600., 800., 900., 1100., 1200.]
     }
 
     def __init__(self, *intervals):
@@ -74,6 +76,17 @@ class ScaleType(SavesToJSON):
     @classmethod
     def locrian(cls): return cls.diatonic(6)
 
+    @classmethod
+    def whole_tone(cls):
+        return cls(*ScaleType.standard_equal_tempered_patterns["whole tone"])
+
+    @classmethod
+    def octatonic(cls, whole_step_first=True):
+        if whole_step_first:
+            return cls(*ScaleType.standard_equal_tempered_patterns["octatonic"])
+        else:
+            return cls(*ScaleType.standard_equal_tempered_patterns["octatonic"]).rotate(1)
+
     # ------------------------------------- Loading / Saving ---------------------------------------
 
     def save_to_scala(self, file_path, description="Mystery scale saved using SCAMP"):
@@ -115,11 +128,11 @@ class ScaleType(SavesToJSON):
                                 "That's fine, I guess, but though you should know...")
         return cls(*pitch_entries)
 
-    def to_json(self):
-        return [interval.to_json() for interval in self.intervals]
+    def _to_json(self):
+        return [interval. _to_json() for interval in self.intervals]
 
     @classmethod
-    def from_json(cls, json_list):
+    def _from_json(cls, json_list):
         return cls(*json_list)
 
     def __repr__(self):
@@ -128,41 +141,42 @@ class ScaleType(SavesToJSON):
 
 class Scale(SavesToJSON):
 
-    def __init__(self, scale_type: ScaleType, start_pitch: Real, cyclic=True):
+    def __init__(self, scale_type: ScaleType, start_pitch: Real, cycle=True):
         self.scale_type = scale_type
         self.start_pitch = start_pitch
         # convert the scale type to a list of MIDI-valued seed pitches
         self._seed_pitches = (start_pitch, ) + tuple(start_pitch + x for x in self.scale_type.to_half_steps())
         self._envelope = Envelope.from_points(*zip(range(len(self._seed_pitches)), self._seed_pitches))
         self._inverse_envelope = Envelope.from_points(*zip(self._seed_pitches, range(len(self._seed_pitches))))
-        self._cycle_length = len(self._seed_pitches) - 1 if cyclic else None
-        self._cycle_interval = self._seed_pitches[-1] - self._seed_pitches[0] if cyclic else None
+        self.cycle = cycle
+        self.num_steps = len(self._seed_pitches) - 1
+        self.width = self._seed_pitches[-1] - self._seed_pitches[0] if cycle else None
 
     @classmethod
-    def from_pitches(cls, seed_pitches, cyclic=True):
-        return cls(ScaleType(*(100. * (x - seed_pitches[0]) for x in seed_pitches[1:])), seed_pitches[0], cyclic=cyclic)
+    def from_pitches(cls, seed_pitches, cycle=True):
+        return cls(ScaleType(*(100. * (x - seed_pitches[0]) for x in seed_pitches[1:])), seed_pitches[0], cycle=cycle)
 
     @classmethod
-    def from_scala_file(cls, file_path, start_pitch, cyclic=True):
-        return cls(ScaleType.load_from_scala(file_path), start_pitch, cyclic=cyclic)
+    def from_scala_file(cls, file_path, start_pitch, cycle=True):
+        return cls(ScaleType.load_from_scala(file_path), start_pitch, cycle=cycle)
 
     @classmethod
-    def from_start_pitch_and_cent_or_ratio_intervals(cls, start_pitch, intervals, cyclic=True):
-        return cls(ScaleType(*intervals), start_pitch, cyclic=cyclic)
+    def from_start_pitch_and_cent_or_ratio_intervals(cls, start_pitch, intervals, cycle=True):
+        return cls(ScaleType(*intervals), start_pitch, cycle=cycle)
 
     def degree_to_pitch(self, degree):
-        if self._cycle_length is not None:
-            cycle_displacement = math.floor(degree / self._cycle_length)
-            mod_degree = degree % self._cycle_length
-            return self._envelope.value_at(mod_degree) + cycle_displacement * self._cycle_interval
+        if self.cycle:
+            cycle_displacement = math.floor(degree / self.num_steps)
+            mod_degree = degree % self.num_steps
+            return self._envelope.value_at(mod_degree) + cycle_displacement * self.width
         else:
             return self._envelope.value_at(degree)
 
     def pitch_to_degree(self, pitch):
-        if self._cycle_length is not None:
-            cycle_displacement = math.floor((pitch - self._seed_pitches[0]) / self._cycle_interval)
-            mod_pitch = (pitch - self._seed_pitches[0]) % self._cycle_interval + self._seed_pitches[0]
-            return self._inverse_envelope.value_at(mod_pitch) + cycle_displacement * self._cycle_length
+        if self.cycle:
+            cycle_displacement = math.floor((pitch - self._seed_pitches[0]) / self.width)
+            mod_pitch = (pitch - self._seed_pitches[0]) % self.width + self._seed_pitches[0]
+            return self._inverse_envelope.value_at(mod_pitch) + cycle_displacement * self.num_steps
         else:
             return self._inverse_envelope.value_at(pitch)
 
@@ -178,48 +192,61 @@ class Scale(SavesToJSON):
     # ------------------------------------- Class Methods ---------------------------------------
 
     @classmethod
-    def diatonic(cls, start_pitch, modal_shift: int = 0, cyclic=True):
-        return cls(ScaleType.diatonic(modal_shift), start_pitch, cyclic=cyclic)
+    def diatonic(cls, start_pitch, modal_shift: int = 0, cycle=True):
+        return cls(ScaleType.diatonic(modal_shift), start_pitch, cycle=cycle)
 
     major = ionian = diatonic
 
     @classmethod
-    def dorian(cls, start_pitch, cyclic=True): return cls(ScaleType.dorian(), start_pitch, cyclic=cyclic)
+    def dorian(cls, start_pitch, cycle=True): return cls(ScaleType.dorian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def phrygian(cls, start_pitch, cyclic=True): return cls(ScaleType.phrygian(), start_pitch, cyclic=cyclic)
+    def phrygian(cls, start_pitch, cycle=True): return cls(ScaleType.phrygian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def lydian(cls, start_pitch, cyclic=True): return cls(ScaleType.lydian(), start_pitch, cyclic=cyclic)
+    def lydian(cls, start_pitch, cycle=True): return cls(ScaleType.lydian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def mixolydian(cls, start_pitch, cyclic=True): return cls(ScaleType. mixolydian(), start_pitch, cyclic=cyclic)
+    def mixolydian(cls, start_pitch, cycle=True): return cls(ScaleType. mixolydian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def aeolian(cls, start_pitch, cyclic=True): return cls(ScaleType.aeolian(), start_pitch, cyclic=cyclic)
+    def aeolian(cls, start_pitch, cycle=True): return cls(ScaleType.aeolian(), start_pitch, cycle=cycle)
 
     natural_minor = aeolian
 
     @classmethod
-    def locrian(cls, start_pitch, cyclic=True): return cls(ScaleType.locrian(), start_pitch, cyclic=cyclic)
+    def locrian(cls, start_pitch, cycle=True): return cls(ScaleType.locrian(), start_pitch, cycle=cycle)
+
+    @classmethod
+    def whole_tone(cls, start_pitch, cycle=True): return cls(ScaleType.whole_tone(), start_pitch, cycle=cycle)
+
+    @classmethod
+    def octatonic(cls, start_pitch, cycle=True, whole_step_first=True):
+        return cls(ScaleType.octatonic(whole_step_first=whole_step_first), start_pitch, cycle=cycle)
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
-    def to_json(self):
+    def  _to_json(self):
         return {
-            "scale_type": self.scale_type.to_json(),
+            "scale_type": self.scale_type. _to_json(),
             "start_pitch": self.start_pitch,
-            "cyclic": self._cycle_length is not None
+            "cycle": self.cycle
         }
 
     @classmethod
-    def from_json(cls, json_object):
-        json_object["scale_type"] = ScaleType.from_json(json_object["scale_type"])
+    def _from_json(cls, json_object):
+        json_object["scale_type"] = ScaleType. _from_json(json_object["scale_type"])
         return cls(**json_object)
+
+    # ------------------------------------- Special Methods ---------------------------------------
+
+    def __iter__(self):
+        for step_num in range(self.num_steps + 1):
+            yield self.degree_to_pitch(step_num)
 
     def __repr__(self):
         return "Scale({}, {}{})".format(
             repr(self.scale_type),
             self.start_pitch,
-            ", cyclic=False" if self._cycle_length is None else ""
+            ", cycle={}".format(self.cycle) if self.cycle is not True else ""
         )
