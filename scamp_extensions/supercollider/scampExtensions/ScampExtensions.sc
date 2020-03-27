@@ -1,4 +1,4 @@
-ScampUtils {
+ScampUtilsOnTheFly {
 	classvar notesPlaying;
 	*instrumentFromSynthDef { |synthDef|
 		var synthArgs = synthDef.func.def.argNames.asArray;
@@ -10,7 +10,7 @@ ScampUtils {
 			OSCFunc({ arg msg, time, addr, recvPort;
 				var id = msg[1], pitch = msg[2], volume = msg[3];
 				notesPlaying.put(id, Synth(synthDef.name,
-					[\freq, pitch.midicps, \volume, volume]
+					[\freq, pitch.midicps, \volume, volume, \gate, 1]
 				));
 			}, '/'++synthDef.name++'/start_note');
 			// END NOTE
@@ -49,7 +49,7 @@ ScampUtils {
 	*startSynthCompileListener { |path, responseAddress|
 	    OSCFunc({ arg msg, time, addr, recvPort;
             var synthDef = msg[1].asString.interpret;
-            ScampUtils.instrumentFromSynthDef(synthDef);
+            ScampUtilsOnTheFly.instrumentFromSynthDef(synthDef);
             {
                 Server.default.sync;
                 responseAddress.sendMsg("/done_compiling", 1);

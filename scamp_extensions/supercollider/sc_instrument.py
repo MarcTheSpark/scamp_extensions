@@ -1,6 +1,5 @@
 from scamp.playback_implementations import OSCPlaybackImplementation
-from scamp.instruments import ScampInstrument
-from scamp.ensemble import Ensemble
+from scamp.instruments import ScampInstrument, Ensemble
 from subprocess import Popen
 import socket
 from threading import Event
@@ -62,7 +61,7 @@ class SCLangInstance:
 class SCPlaybackImplementation(OSCPlaybackImplementation):
 
     def __init__(self, host_instrument, synth_def: str):
-        self.host_instrument = host_instrument
+        self._host_instrument = host_instrument
         if not self.has_shared_resource("sclang_instance"):
             self.set_shared_resource("sclang_instance", SCLangInstance())
         sclang = self.get_shared_resource("sclang_instance")
