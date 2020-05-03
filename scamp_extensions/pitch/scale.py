@@ -129,7 +129,7 @@ class ScaleType(SavesToJSON):
         return cls(*pitch_entries)
 
     def _to_json(self):
-        return [interval. _to_json() for interval in self.intervals]
+        return [interval._to_json() for interval in self.intervals]
 
     @classmethod
     def _from_json(cls, json_list):
@@ -235,7 +235,7 @@ class Scale(SavesToJSON):
 
     @classmethod
     def _from_json(cls, json_object):
-        json_object["scale_type"] = ScaleType. _from_json(json_object["scale_type"])
+        json_object["scale_type"] = ScaleType._from_json(json_object["scale_type"])
         return cls(**json_object)
 
     # ------------------------------------- Special Methods ---------------------------------------
