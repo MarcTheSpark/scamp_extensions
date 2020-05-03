@@ -226,9 +226,9 @@ class Scale(SavesToJSON):
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
-    def  _to_json(self):
+    def _to_json(self):
         return {
-            "scale_type": self.scale_type. _to_json(),
+            "scale_type": self.scale_type._to_json(),
             "start_pitch": self.start_pitch,
             "cycle": self.cycle
         }
