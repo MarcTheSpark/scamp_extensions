@@ -31,7 +31,7 @@ class PitchInterval(SavesToJSON):
         :return: a PitchInterval
         """
         if isinstance(representation, dict):
-            return cls. _from_json(representation)
+            return cls._from_json(representation)
         elif isinstance(representation, str):
             if "," in representation:
                 cents_string, ratio_string = representation.split(",")

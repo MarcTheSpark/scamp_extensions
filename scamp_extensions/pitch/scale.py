@@ -77,6 +77,14 @@ class ScaleType(SavesToJSON):
     def locrian(cls): return cls.diatonic(6)
 
     @classmethod
+    def harmonic_minor(cls, modal_shift: int = 0):
+        return cls(*ScaleType.standard_equal_tempered_patterns["harmonic minor"]).rotate(modal_shift)
+
+    @classmethod
+    def melodic_minor(cls, modal_shift: int = 0):
+        return cls(*ScaleType.standard_equal_tempered_patterns["melodic minor"]).rotate(modal_shift)
+
+    @classmethod
     def whole_tone(cls):
         return cls(*ScaleType.standard_equal_tempered_patterns["whole tone"])
 
@@ -144,13 +152,16 @@ class Scale(SavesToJSON):
     def __init__(self, scale_type: ScaleType, start_pitch: Real, cycle=True):
         self.scale_type = scale_type
         self.start_pitch = start_pitch
+        self.cycle = cycle
+        self._initialize_instance_vars()
+
+    def _initialize_instance_vars(self):
         # convert the scale type to a list of MIDI-valued seed pitches
-        self._seed_pitches = (start_pitch, ) + tuple(start_pitch + x for x in self.scale_type.to_half_steps())
+        self._seed_pitches = (self.start_pitch,) + tuple(self.start_pitch + x for x in self.scale_type.to_half_steps())
         self._envelope = Envelope.from_points(*zip(range(len(self._seed_pitches)), self._seed_pitches))
         self._inverse_envelope = Envelope.from_points(*zip(self._seed_pitches, range(len(self._seed_pitches))))
-        self.cycle = cycle
         self.num_steps = len(self._seed_pitches) - 1
-        self.width = self._seed_pitches[-1] - self._seed_pitches[0] if cycle else None
+        self.width = self._seed_pitches[-1] - self._seed_pitches[0] if self.cycle else None
 
     @classmethod
     def from_pitches(cls, seed_pitches, cycle=True):
@@ -189,6 +200,17 @@ class Scale(SavesToJSON):
     def ceil(self, pitch):
         return self.degree_to_pitch(math.ceil(self.pitch_to_degree(pitch)))
 
+    # ------------------------------------- Transformations ---------------------------------------
+
+    def transpose(self, half_steps) -> None:
+        self.start_pitch = self.start_pitch + half_steps
+        self._initialize_instance_vars()
+        
+    def transposed(self, half_steps) -> __qualname__:
+        copy = self.duplicate()
+        copy.transpose(half_steps)
+        return copy
+
     # ------------------------------------- Class Methods ---------------------------------------
 
     @classmethod
@@ -218,6 +240,14 @@ class Scale(SavesToJSON):
     def locrian(cls, start_pitch, cycle=True): return cls(ScaleType.locrian(), start_pitch, cycle=cycle)
 
     @classmethod
+    def harmonic_minor(cls, start_pitch, modal_shift: int = 0, cycle=True):
+        return cls(ScaleType.harmonic_minor(modal_shift), start_pitch, cycle=cycle)
+
+    @classmethod
+    def melodic_minor(cls, start_pitch, modal_shift: int = 0, cycle=True):
+        return cls(ScaleType.melodic_minor(modal_shift), start_pitch, cycle=cycle)
+
+    @classmethod
     def whole_tone(cls, start_pitch, cycle=True): return cls(ScaleType.whole_tone(), start_pitch, cycle=cycle)
 
     @classmethod
@@ -226,7 +256,7 @@ class Scale(SavesToJSON):
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
-    def _to_json(self):
+    def  _to_json(self):
         return {
             "scale_type": self.scale_type._to_json(),
             "start_pitch": self.start_pitch,
