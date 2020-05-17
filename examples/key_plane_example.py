@@ -1,5 +1,4 @@
 from scamp_extensions.interaction import KeyPlane
-from scamp import *
 
 
 def callback(coordinates, press_or_release, modifiers):
@@ -9,5 +8,4 @@ def callback(coordinates, press_or_release, modifiers):
         print("Release at:", coordinates, "with modifiers", modifiers)
 
 
-s = Session()
 KeyPlane(callback, normalize_coordinates=True).start(blocking=True, suppress=True)
