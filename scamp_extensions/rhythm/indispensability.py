@@ -1,31 +1,77 @@
 """
 Re-implementation and extension of Clarence Barlow's concept of rhythmic indispensability such that it works for
-additive meters (even nested additive meters).
+additive meters (even nested additive meters). Since these are my own extensions of Barlow's ideas, they are here
+instead of in :mod:`scamp_extensions.composers.barlicity`.
 """
 
+from numbers import Real
+from typing import List, Union, Sequence
 from .metric_structure import MeterArithmeticGroup
 
 
-def indispensability_array_from_expression(meter_arithmetic_expression: str, normalize=False,
-                                           split_large_numbers=False, upbeats_before_group_length=True):
+def indispensability_array_from_expression(meter_arithmetic_expression: str, normalize: bool = False,
+                                           break_up_large_numbers: bool = False,
+                                           upbeats_before_group_length: bool = True) -> List[Real]:
+    """
+    Generates an array of indispensability values for a meter and subdivision, as expressed by a meter arithmetic
+    expression. Such expressions allow great flexibility in describing metric structure, making possible additive,
+    multiplicative, and hybrid metrical structures.
+
+    :param meter_arithmetic_expression: An string expression representing a metric hierarchy (meter and subdivision
+        structure). For instance, "2 * 3" would create the eighth-note subdivisions of 6/8, and "2 + 3 + 2" would create
+        an additive meter (2+3+2)/8.  "(2 + 3 + 2) * 3" would create a kind of hybrid of these: seven main beats in a
+        2 + 3 + 2 pattern, each of which is subdivided in 3. This might be notated as 6/8+9/8+6/8.
+    :param normalize: if True, indispensabilities range from 0 to 1. If false, they count up from 0.
+    :param break_up_large_numbers: if True, numbers greater than 3 are broken up into a sum of 2's
+        followed by one 3 if odd. This is the Barlow approach.
+    :param upbeats_before_group_length: see description in :func:`metric_structure.flatten_beat_groups`. Affects the
+        result when there are groups of uneven length at some level of metric structure. To achieve the standard
+        Barlowian result, set this to False. I think it works better as True, though.
+    :return: a list of indispensabilities for the pulses of the given meter.
+    """
     return MeterArithmeticGroup.parse(meter_arithmetic_expression) \
-        .to_metric_structure(split_large_numbers) \
+        .to_metric_structure(break_up_large_numbers) \
         .get_indispensability_array(normalize=normalize, upbeats_before_group_length=upbeats_before_group_length)
 
 
-def indispensability_array_from_strata(*rhythmic_strata, normalize=False,
-                                       split_large_numbers=False, upbeats_before_group_length=True):
+def indispensability_array_from_strata(*rhythmic_strata: Union[int, Sequence[int]], normalize: bool = False,
+                                       break_up_large_numbers: bool = False,
+                                       upbeats_before_group_length: bool = True) -> List[Real]:
+    """
+    Alternate implementation of :func:`~scamp_extensions.composers.barlicity.get_indispensability_array`, leveraging
+    the :class:`~scamp_extensions.rhythm.metric_structure.MetricStructure` class to do the calculations.
+
+    :param rhythmic_strata: can be either tuples, representing additive metric layers, or integers, representing simple
+        metric layers.
+    :param normalize: if True, indispensabilities range from 0 to 1. If false, they count up from 0.
+    :param break_up_large_numbers: if True, numbers greater than 3 are broken up into a sum of 2's
+        followed by one 3 if odd. This is the Barlow approach.
+    :param upbeats_before_group_length: see description in :func:`metric_structure.flatten_beat_groups`. Affects the
+        result when there are groups of uneven length at some level of metric structure. To achieve the standard
+        Barlowian result, set this to False. I think it works better as True, though.
+    :return: a list of indispensabilities for the pulses of the given meter.
+    """
     expression = "*".join(
         ("("+"+".join(str(y) for y in x)+")" if hasattr(x, "__len__") else str(x)) for x in rhythmic_strata
     )
     return indispensability_array_from_expression(
-        expression, normalize=normalize, split_large_numbers=split_large_numbers,
+        expression, normalize=normalize, break_up_large_numbers=break_up_large_numbers,
         upbeats_before_group_length=upbeats_before_group_length
     )
 
 
-def barlow_style_indispensability_array(*rhythmic_strata, normalize=False):
+def barlow_style_indispensability_array(*rhythmic_strata: Union[int, Sequence[int]],
+                                        normalize: bool = False) -> List[Real]:
+    """
+    Alternate implementation of :func:`~scamp_extensions.composers.barlicity.get_standard_indispensability_array`,
+    leveraging the :class:`~scamp_extensions.rhythm.metric_structure.MetricStructure` class to do the calculations.
+
+    :param rhythmic_strata: can be either tuples, representing additive metric layers, or integers, representing simple
+        metric layers.
+    :param normalize: if True, indispensabilities range from 0 to 1. If false, they count up from 0.
+    :return: a list of indispensabilities for the pulses of the given meter.
+    """
     if not all(isinstance(x, int) for x in rhythmic_strata):
         raise ValueError("Standard Barlow indispensability arrays must be based on from integer strata.")
     return indispensability_array_from_expression("*".join(str(x) for x in rhythmic_strata), normalize=normalize,
-                                                  split_large_numbers=True, upbeats_before_group_length=False)
+                                                  break_up_large_numbers=True, upbeats_before_group_length=False)

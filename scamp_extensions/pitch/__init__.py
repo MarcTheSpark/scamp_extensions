@@ -1,6 +1,6 @@
 """
-Subpackage containing pitch-related extensions, including abstractions for intervals and scales, as well as utilities
-for unit conversions.
+Subpackage containing pitch-related extensions. These include abstractions for intervals and scales, as well as
+utilities for unit conversions.
 """
 
 from .scale import *

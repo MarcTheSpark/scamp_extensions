@@ -467,7 +467,7 @@ def get_indispensability_array(rhythmic_strata: Sequence[Union[Tuple, int]],
     as increasing monotonically towards the downbeat.
 
     :param rhythmic_strata: List of tuples representing rhythmic strata, or simple numbers
-    :param normalize: if True, scale indispensibilities to go from 0 to 1
+    :param normalize: if True, scale indispensabilities to go from 0 to 1
     :return: a list of ints or floats representing the indispensabilities or normalized indispensabilities, respectively
     """
     backward_beat_priorities = _get_backward_beat_priorities(*rhythmic_strata)
