@@ -6,12 +6,12 @@ instead of in :mod:`scamp_extensions.composers.barlicity`.
 
 from numbers import Real
 from typing import List, Union, Sequence
-from .metric_structure import MeterArithmeticGroup
+from .metric_structure import MeterArithmeticGroup, INT_OR_FLOAT
 
 
 def indispensability_array_from_expression(meter_arithmetic_expression: str, normalize: bool = False,
                                            break_up_large_numbers: bool = False,
-                                           upbeats_before_group_length: bool = True) -> List[Real]:
+                                           upbeats_before_group_length: bool = True) -> List[INT_OR_FLOAT]:
     """
     Generates an array of indispensability values for a meter and subdivision, as expressed by a meter arithmetic
     expression. Such expressions allow great flexibility in describing metric structure, making possible additive,
@@ -36,7 +36,7 @@ def indispensability_array_from_expression(meter_arithmetic_expression: str, nor
 
 def indispensability_array_from_strata(*rhythmic_strata: Union[int, Sequence[int]], normalize: bool = False,
                                        break_up_large_numbers: bool = False,
-                                       upbeats_before_group_length: bool = True) -> List[Real]:
+                                       upbeats_before_group_length: bool = True) -> List[INT_OR_FLOAT]:
     """
     Alternate implementation of :func:`~scamp_extensions.composers.barlicity.get_indispensability_array`, leveraging
     the :class:`~scamp_extensions.rhythm.metric_structure.MetricStructure` class to do the calculations.
@@ -61,7 +61,7 @@ def indispensability_array_from_strata(*rhythmic_strata: Union[int, Sequence[int
 
 
 def barlow_style_indispensability_array(*rhythmic_strata: Union[int, Sequence[int]],
-                                        normalize: bool = False) -> List[Real]:
+                                        normalize: bool = False) -> List[INT_OR_FLOAT]:
     """
     Alternate implementation of :func:`~scamp_extensions.composers.barlicity.get_standard_indispensability_array`,
     leveraging the :class:`~scamp_extensions.rhythm.metric_structure.MetricStructure` class to do the calculations.

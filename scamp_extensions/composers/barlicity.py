@@ -15,14 +15,12 @@ import math
 import itertools
 from fractions import Fraction
 from functools import reduce
+from typing import Sequence, Tuple, Union, TypeVar
 
 # ---------------------------------------------- Utility Functions -------------------------------------------------
 
 
 # decorator that saves function output
-from typing import Sequence, Tuple, Union
-
-
 def _save_answers(func):
     func.answers = {}
 
@@ -458,8 +456,11 @@ def _get_backward_beat_priorities(*args):
     return overall_beat_priorities
 
 
+INT_OR_FLOAT = TypeVar("IntOrFloat", int, float)
+
+
 def get_indispensability_array(rhythmic_strata: Sequence[Union[Tuple, int]],
-                               normalize: bool = False) -> Sequence[float]:
+                               normalize: bool = False) -> Sequence[INT_OR_FLOAT]:
     """
     A slightly more general approach to indispensability than the one proposed by Barlow. In this version, each
     rhythmic layer can be a tuple representing an additive grouping. Thus a 3+2+3 layer would be represented by
@@ -493,7 +494,8 @@ def _standardize_strata(rhythmic_strata: Sequence[int]) -> Sequence[Union[Tuple,
     return strata
 
 
-def get_standard_indispensability_array(rhythmic_strata, normalize=False):
+def get_standard_indispensability_array(rhythmic_strata: Sequence[int],
+                                        normalize: bool = False) -> Sequence[INT_OR_FLOAT]:
     """
     Returns a list of the indispensabilities of different pulses in a meter defined by the rhythmic_strata.
     (See Barlow's "On Musiquantics", http://clarlow.org/wp-content/uploads/2016/10/On-MusiquanticsA4.pdf)
