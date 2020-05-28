@@ -1,64 +1,25 @@
+"""
+Module containing the :class:`SCPlaybackImplementation` class (an extension of
+:class:`~scamp.playback_implementations.OSCPlaybackImplementation`), which can be added to an instance of
+:class:`~scamp.instruments.ScampInstrument`.
+"""
+
 from scamp.playback_implementations import OSCPlaybackImplementation
+from .sc_lang import SCLangInstance
 from scamp.instruments import ScampInstrument, Ensemble
-from subprocess import Popen
-import socket
-from threading import Event
-from pythonosc import dispatcher, osc_server, udp_client
-import threading
-import inspect
-import os
-import atexit
-
-
-module_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-
-
-def _pick_unused_port():
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('localhost', 0))
-    address, port = s.getsockname()
-    s.close()
-    return port
-
-
-class SCLangInstance:
-
-    def __init__(self):
-        self._listening_port = _pick_unused_port()
-        command = ["sclang", "-l", os.path.join(module_dir, "./scamp_sc_config.yaml"),
-                   os.path.join(module_dir, "scInit.scd"), str(self._listening_port)]
-        Popen(command, cwd=module_dir)
-        self.port = self.wait_for_response("/supercollider/port")
-        self._client = udp_client.SimpleUDPClient("127.0.0.1", self.port)
-        atexit.register(lambda: self.send_message("/quit", 0))
-
-    def send_message(self, address, value):
-        self._client.send_message(address, value)
-
-    def wait_for_response(self, address):
-        osc_dispatcher = dispatcher.Dispatcher()
-        response = None
-        response_received = Event()
-
-        def response_handler(_, message):
-            nonlocal response
-            response = message
-            response_received.set()
-
-        osc_dispatcher.map(address, response_handler)
-        server = osc_server.ThreadingOSCUDPServer(('127.0.0.1', self._listening_port), osc_dispatcher)
-        threading.Thread(target=server.serve_forever, daemon=True).start()
-
-        response_received.wait()
-        server.shutdown()
-        return response
-
-    def new_synth_def(self, synth_def_code: str):
-        self.send_message("/compile/synth_def", [synth_def_code])
-        self.wait_for_response("/done_compiling")
 
 
 class SCPlaybackImplementation(OSCPlaybackImplementation):
+
+    """
+    A subclass of :class:`~scamp.playback_implementations.OSCPlaybackImplementation` designed to communicate with
+    a running copy of SCLang (via an :class:`~scamp_extensions.supercollider.sc_lang.SCLangInstance`).
+
+    :param host_instrument: the host instrument for this playback implementation
+    :param synth_def: a string of SCLang code representing the SynthDef to run. This should take at least the
+        the arguments "freq" (to which the pitch is sent), "volume" (to which the not volume is sent), and "gate"
+        (which is used to start and stop the note).
+    """
 
     def __init__(self, host_instrument, synth_def: str):
         self._host_instrument = host_instrument
@@ -81,6 +42,34 @@ class SCPlaybackImplementation(OSCPlaybackImplementation):
 
 
 def add_sc_extensions():
+    """
+    Adds several new functions to the :class:`~scamp.instruments.ScampInstrument` class, as well as to the
+    :class:`~scamp.instruments.Ensemble` (and therefore :class:`~scamp.session.Session`).
+
+    New instance methods of `ScampInstrument`:
+
+    ``add_supercollider_playback(self, synth_def: str)``: takes a string containing a SuperCollider SynthDef, and adds a
+    :class:`SCPlaybackImplementation` to this instrument that uses that SynthDef to synthesize sound. (This starts
+    up instances of sclang and scsynth in the background.)
+
+    ``remove_supercollider_playback(self)``: removes the (most recently added) :class:`SCPlaybackImplementation` from
+    this instrument's playback_implementations.
+
+    New instance methods of `Ensemble` / `Session`:
+
+    ``new_supercollider_part(self, name: str, synth_def: str)``: Similarly to any of the other "new_part" methods, this
+    adds and returns a newly created ScampInstrument that uses an :class:`SCPlaybackImplementation` based on the
+    given synth def string.
+
+    ``get_sclang_instance(self)``: Returns the instance of :class:`SCLangInstance` that this ensemble is using for
+    supercollider playback (or creates one if none is running).
+
+    ``start_recording_sc_output(self, path, num_channels=2)``: Tells SuperCollider to start recording the playback to
+    and audio file at the given path, using the specified number of channels.
+
+    ``stop_recording_sc_output(self)``: Stops recording SuperCollider playback to an audio file.
+
+    """
     def _add_supercollider_playback(self, synth_def):
         SCPlaybackImplementation(self, synth_def)
         return self
