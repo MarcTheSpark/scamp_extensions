@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="scamp_extensions",
-    version="0.1.0",
+    version="0.2",
     author="Marc Evanstein",
     author_email="marc@marcevanstein.com",
     description="Extensions to SCAMP (Suite for Computer-Assisted Music in Python)",
@@ -16,6 +16,7 @@ setuptools.setup(
     package_data={
         'scamp_extensions': ['supercollider/*.scd', 'supercollider/*.yaml', 'supercollider/scampExtensions/*']   
     },
+    install_requires=['scamp >= 0.6.5'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

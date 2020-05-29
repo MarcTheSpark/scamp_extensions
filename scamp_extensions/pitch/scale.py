@@ -8,7 +8,7 @@ starting reference pitch, and also allows for a choice between cyclical and non-
 from fractions import Fraction
 from typing import Sequence
 
-from expenvelope import Envelope, SavesToJSON
+from expenvelope.envelope import Envelope, SavesToJSON
 from .utilities import ratio_to_cents
 import math
 from numbers import Real
