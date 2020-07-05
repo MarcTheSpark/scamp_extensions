@@ -93,13 +93,13 @@ class PitchInterval(SavesToJSON):
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
-    def _to_json(self):
+    def _to_dict(self):
         return {"cents": self.cents, "ratio": [self.ratio.numerator, self.ratio.denominator]}
 
     @classmethod
-    def _from_json(cls, json_object):
-        json_object["ratio"] = Fraction(*json_object["ratio"])
-        return cls(**json_object)
+    def _from_dict(cls, json_dict):
+        json_dict["ratio"] = Fraction(*json_dict["ratio"])
+        return cls(**json_dict)
 
     def __neg__(self):
         return PitchInterval(-self.cents, 1/self.ratio)
@@ -128,6 +128,7 @@ class ScaleType(SavesToJSON):
     """
 
     _standard_equal_tempered_patterns = {
+        "chromatic": [100.],
         "diatonic": [200., 400., 500., 700., 900., 1100., 1200.],
         "melodic minor": [200., 300., 500., 700., 900., 1100., 1200.],
         "harmonic minor": [200., 300., 500., 700., 800., 1100., 1200.],
@@ -171,6 +172,11 @@ class ScaleType(SavesToJSON):
     # ------------------------------------- Class Methods ---------------------------------------
 
     @classmethod
+    def chromatic(cls):
+        """Returns a 12-tone equal tempered chromatic ScaleType."""
+        return cls(*ScaleType._standard_equal_tempered_patterns["chromatic"])
+
+    @classmethod
     def diatonic(cls, modal_shift: int = 0) -> 'ScaleType':
         """
         Returns a diatonic ScaleType with the specified modal shift.
@@ -184,12 +190,12 @@ class ScaleType(SavesToJSON):
     @classmethod
     def major(cls, modal_shift: int = 0) -> 'ScaleType':
         """Alias of :func:`ScaleType.diatonic`."""
-        cls.diatonic(modal_shift)
+        return cls.diatonic(modal_shift)
 
     @classmethod
     def ionian(cls, modal_shift: int = 0) -> 'ScaleType':
         """Alias of :func:`ScaleType.diatonic`."""
-        cls.diatonic(modal_shift)
+        return cls.diatonic(modal_shift)
 
     @classmethod
     def dorian(cls) -> 'ScaleType':
@@ -317,12 +323,14 @@ class ScaleType(SavesToJSON):
                                 "That's fine, I guess, but though you should know...")
         return cls(*pitch_entries)
 
-    def _to_json(self):
-        return [interval._to_json() for interval in self.intervals]
+    def _to_dict(self):
+        return {
+            "intervals": self.intervals
+        }
 
     @classmethod
-    def _from_json(cls, json_list):
-        return cls(*json_list)
+    def _from_dict(cls, json_dict):
+        return cls(*json_dict["intervals"])
 
     def __repr__(self):
         return "ScaleType({})".format(self.intervals)
@@ -481,6 +489,17 @@ class Scale(SavesToJSON):
     # ------------------------------------- Class Methods ---------------------------------------
 
     @classmethod
+    def chromatic(cls, start_pitch: Real = 60, cycle: bool = True) -> 'Scale':
+        """
+        Returns a 12-tone equal tempered chromatic scale starting on the specified pitch.
+
+        :param start_pitch: the pitch this scale starts from (doesn't affect the scale in this case, but affects
+            where we count scale degrees from).
+        :param cycle: whether or not this scale repeats after an octave or is constrained to a single octave.
+        """
+        return cls(ScaleType.chromatic(), start_pitch, cycle=cycle)
+
+    @classmethod
     def diatonic(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
         """
         Returns a diatonic scale starting on the specified pitch, and with the specified modal shift.
@@ -603,17 +622,16 @@ class Scale(SavesToJSON):
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
-    def _to_json(self):
+    def _to_dict(self):
         return {
-            "scale_type": self.scale_type._to_json(),
+            "scale_type": self.scale_type,
             "start_pitch": self._start_pitch,
             "cycle": self._cycle
         }
 
     @classmethod
-    def _from_json(cls, json_object):
-        json_object["scale_type"] = ScaleType._from_json(json_object["scale_type"])
-        return cls(**json_object)
+    def _from_dict(cls, json_dict):
+        return cls(**json_dict)
 
     # ------------------------------------- Special Methods ---------------------------------------
 
