@@ -3,7 +3,7 @@ Subpackage containing utilities for human interface devices and other live inter
 """
 
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
-#  SCAMP (Suite for Computer-Assisted Music in Python)                                           #
+#  This file is part of SCAMP (Suite for Computer-Assisted Music in Python)                      #
 #  Copyright © 2020 Marc Evanstein <marc@marcevanstein.com>.                                     #
 #                                                                                                #
 #  This program is free software: you can redistribute it and/or modify it under the terms of    #
