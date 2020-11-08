@@ -16,6 +16,7 @@
 
 from scamp import *
 from scamp_extensions.pitch import Scale, ScaleType
+from fractions import Fraction
 
 s = Session()
 clarinet = s.new_part("clarinet")

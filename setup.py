@@ -21,7 +21,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="scamp_extensions",
-    version="0.2.1",
+    version="0.2.5",
     author="Marc Evanstein",
     author_email="marc@marcevanstein.com",
     description="Extensions to SCAMP (Suite for Computer-Assisted Music in Python)",
@@ -30,9 +30,10 @@ setuptools.setup(
     url="https://git.sr.ht/~marcevanstein/scamp_extensions",
     packages=setuptools.find_packages(),
     package_data={
-        'scamp_extensions': ['supercollider/*.scd', 'supercollider/*.yaml', 'supercollider/scampExtensions/*']   
+        'scamp_extensions': ['playback/supercollider/*.scd', 'playback/supercollider/*.yaml',
+                             'playback/supercollider/scampExtensions/*']
     },
-    install_requires=['scamp >= 0.6.5'],
+    install_requires=['scamp >= 0.7.9'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

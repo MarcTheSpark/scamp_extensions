@@ -23,6 +23,7 @@ Module containing the :class:`SCPlaybackImplementation` class (an extension of
 from scamp.playback_implementations import OSCPlaybackImplementation
 from .sc_lang import SCLangInstance
 from scamp.instruments import ScampInstrument, Ensemble
+from scamp.utilities import resolve_path
 
 
 class SCPlaybackImplementation(OSCPlaybackImplementation):
@@ -64,8 +65,8 @@ def add_sc_extensions():
 
     New instance methods of `ScampInstrument`:
 
-    ``add_supercollider_playback(self, synth_def: str)``: takes a string containing a SuperCollider SynthDef, and adds a
-    :class:`SCPlaybackImplementation` to this instrument that uses that SynthDef to synthesize sound. (This starts
+    ``add_supercollider_playback(self, synth_def: str)``: takes a string containing a SuperCollider SynthDef, and adds
+    a :class:`SCPlaybackImplementation` to this instrument that uses that SynthDef to synthesize sound. (This starts
     up instances of sclang and scsynth in the background.)
 
     ``remove_supercollider_playback(self)``: removes the (most recently added) :class:`SCPlaybackImplementation` from
@@ -126,7 +127,7 @@ def add_sc_extensions():
     Ensemble.get_sclang_instance = _get_sc_instance
 
     def _start_recording_sc_output(self, path, num_channels=2):
-        self.get_sclang_instance().send_message("/recording/start", [path, num_channels])
+        self.get_sclang_instance().send_message("/recording/start", [resolve_path(path), num_channels])
 
     def _stop_recording_sc_output(self):
         self.get_sclang_instance().send_message("/recording/stop", 0)

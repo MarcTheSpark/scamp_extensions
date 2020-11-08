@@ -23,7 +23,8 @@ import numpy
 import matplotlib.pyplot as pyplot
 import matplotlib.animation as animation
 from scamp import *
-from scamp_extensions.supercollider import add_sc_extensions
+from scamp_extensions.playback.supercollider import add_sc_extensions
+import math
 
 add_sc_extensions()
 
