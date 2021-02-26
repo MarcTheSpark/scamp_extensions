@@ -24,6 +24,7 @@ from math import gcd
 import math
 from expenvelope import EnvelopeSegment
 from numbers import Real
+from .sequences import multi_option_function
 
 
 def lcm(a, b):
@@ -37,7 +38,7 @@ def remap(value_or_values, out_min, out_max, in_min=None, in_max=None,
     Rescales the given value or values so that they fall within the given output range. Not efficient or vectorized,
     but unless you're using large datasets, that shouldn't be an issue.
 
-    :param value_or_values: the vale or values to rescale
+    :param value_or_values: the value or values to rescale
     :param out_min: lower bound of output range
     :param out_max: upper bound of output range
     :param in_min: lower bound of input range (defaults to minimum input value)
@@ -53,7 +54,7 @@ def remap(value_or_values, out_min, out_max, in_min=None, in_max=None,
     if not hasattr(value_or_values, '__len__'):
         if in_min is None or in_max is None:
             raise ValueError("When rescaling a single value, must supply in_min and in_max parameters.")
-        return rescale([value_or_values], out_min, out_max, in_min, in_max, input_warp, output_warp)[0]
+        return remap([value_or_values], out_min, out_max, in_min, in_max, input_warp, output_warp)[0]
 
     if in_min is None:
         in_min = min(value_or_values)
@@ -82,3 +83,11 @@ def remap(value_or_values, out_min, out_max, in_min=None, in_max=None,
     else:
         out_range = out_max - out_min
         return [out_min + out_range * x for x in normalized_data]
+
+
+floor_x_to_pow_of_y = multi_option_function(floor_x_to_pow_of_y)
+ceil_x_to_pow_of_y = multi_option_function(ceil_x_to_pow_of_y)
+round_x_to_pow_of_y = multi_option_function(round_x_to_pow_of_y)
+floor_to_multiple = multi_option_function(floor_to_multiple)
+ceil_to_multiple = multi_option_function(ceil_to_multiple)
+round_to_multiple = multi_option_function(round_to_multiple)

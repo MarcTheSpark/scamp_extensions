@@ -1,7 +1,3 @@
-"""
-Subpackage containing utility functions that do not fit into any of the other extension categories.
-"""
-
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 #  This file is part of SCAMP (Suite for Computer-Assisted Music in Python)                      #
 #  Copyright © 2020 Marc Evanstein <marc@marcevanstein.com>.                                     #
@@ -18,7 +14,26 @@ Subpackage containing utility functions that do not fit into any of the other ex
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 
-from .sequences import make_flat_list, sum_nested_list, rotate_sequence, sequence_depth
-from .math import gcd, lcm, is_x_pow_of_y, floor_x_to_pow_of_y, ceil_x_to_pow_of_y, round_x_to_pow_of_y, \
-    floor_to_multiple, ceil_to_multiple, round_to_multiple, is_multiple, prime_factor, is_prime, remap
-from .time_varying_parameter import TimeVaryingParameter
+from scamp import *
+from scamp_extensions.utilities import TimeVaryingParameter
+
+
+s = Session()
+
+piano = s.new_part("piano")
+
+
+def play_gesture(center_pitch, width, length):
+    pitch_shape = TimeVaryingParameter.from_levels([0, width, -width, -width/2, -width, 0], length=length)
+    volume_shape = TimeVaryingParameter([1, 0.4, 1], [length * 0.1, length * 0.9])
+    while current_clock().beat() < length:
+        piano.play_note(int(center_pitch + pitch_shape()), volume_shape(), 0.25)
+
+
+width_param = TimeVaryingParameter([4, 20, 0], [30, 30])
+center_pitch_param = TimeVaryingParameter([60, 80, 40, 60], [20, 20, 20])
+length_param = TimeVaryingParameter([10, 1], [60])
+
+while s.beat() < 65:
+    fork(play_gesture, args=(center_pitch_param(), width_param(), length_param()), initial_tempo=180)
+    wait_for_children_to_finish()

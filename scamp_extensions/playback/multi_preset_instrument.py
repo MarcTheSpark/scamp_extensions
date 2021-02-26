@@ -250,7 +250,7 @@ class MultiPresetInstrument:
         :param cc_number: MIDI cc number
         :param value_from_0_to_1: value to send (scaled from 0 to 1)
         """
-        for _, preset_inst, _, _ in self.presets:
+        for _, preset_inst, *_ in self.presets:
             preset_inst.send_midi_cc(cc_number, value_from_0_to_1)
 
     def end_all_notes(self) -> None:

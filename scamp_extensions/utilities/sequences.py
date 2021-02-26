@@ -22,6 +22,8 @@ Subpackage containing utility functions for manipulating lists/sequences (some o
 from itertools import count, chain
 from typing import Sequence
 from scamp.utilities import make_flat_list, sum_nested_list
+from functools import wraps
+import re
 
 
 def rotate_sequence(s: Sequence, n: int) -> Sequence:
@@ -52,3 +54,67 @@ def sequence_depth(seq: Sequence):
             seq = chain.from_iterable(s for s in seq if isinstance(s, Sequence))
     except StopIteration:
         return level
+
+
+def multi_option_function(f):
+    """
+    Decorator that allows the first argument of the function to be a list, tuple, or iterator, and in that case
+    performs the function one each element individually, returning a list, tuple, or iterator.
+
+    :param f: the function, taking at least one argument
+    :return: a wrapped version that can take list, tuple, or iterator
+    """
+    # adds an extra note to the docstring saying it supports lists/etc.
+    insert_index = _get_docstring_insert_position(f.__doc__)
+    f.__doc__ = f.__doc__[:insert_index] + \
+                "\n    The first argument can optionally be a list, tuple, or iterator," \
+                " in which case this is performed on each element." + \
+                f.__doc__[insert_index:]
+
+    @wraps(f)
+    def wrapper(*args, **kwds):
+        if isinstance(args[0], list):
+            return [f(x, *args[1:], **kwds) for x in args[0]]
+        elif isinstance(args[0], tuple):
+            return tuple(f(x, *args[1:], **kwds) for x in args[0])
+        elif hasattr(args[0], '__next__'):
+            return (f(x, *args[1:], **kwds) for x in args[0])
+        return f(*args, **kwds)
+    return wrapper
+
+
+def multi_option_method(f):
+    """
+    Same as :func:`multi_option_function`, but used to decorate methods instead of functions.
+
+    :param f: the method, taking at least one argument
+    :return: a wrapped version that can take list, tuple, or iterator
+    """
+    # adds an extra note to the docstring saying it supports lists/etc.
+    insert_index = _get_docstring_insert_position(f.__doc__)
+    f.__doc__ = f.__doc__[:insert_index] + \
+                "\n        The first argument can optionally be a list, tuple, or iterator," \
+                " in which case this is performed on each element." + \
+                f.__doc__[insert_index:]
+
+    @wraps(f)
+    def wrapper(*args, **kwds):
+        if isinstance(args[1], list):
+            return [f(args[0], x, *args[2:], **kwds) for x in args[1]]
+        elif isinstance(args[1], tuple):
+            return tuple(f(args[0], x, *args[2:], **kwds) for x in args[1])
+        elif hasattr(args[1], '__next__'):
+            return (f(args[0], x, *args[2:], **kwds) for x in args[1])
+        return f(*args, **kwds)
+    return wrapper
+
+
+def _get_docstring_insert_position(docstring):
+    # first insert before ":param" and any spaces before that
+    end_of_description = re.search(r'[\s\n]*:param', docstring)
+    # if ":param" doesn't show up, insert before any spaces or returns at the end of the docstring
+    if end_of_description is None:
+        end_of_description = re.search(r'[\s\n]*$', docstring)
+    # as a last resort, just stick it at the end
+    insert_index = end_of_description.start() if end_of_description is not None else -1
+    return insert_index

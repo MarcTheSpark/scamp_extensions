@@ -20,12 +20,14 @@ Module containing pitch-related utility functions, such as those that convert be
 
 from typing import Sequence, Dict
 from numbers import Real
+from scamp_extensions.utilities.sequences import multi_option_function
 import math
 
 
 # ----------------------------------------------- Pitch Space Conversions ---------------------------------------------
 
 
+@multi_option_function
 def ratio_to_cents(ratio: Real) -> Real:
     """
     Given a frequency ratio, convert it to a corresponding number of cents.
@@ -35,6 +37,7 @@ def ratio_to_cents(ratio: Real) -> Real:
     return math.log2(ratio) * 1200
 
 
+@multi_option_function
 def cents_to_ratio(cents: Real) -> Real:
     """
     Given a number of cents, convert it to a corresponding frequency ratio.
@@ -44,6 +47,7 @@ def cents_to_ratio(cents: Real) -> Real:
     return math.pow(2, cents / 1200)
 
 
+@multi_option_function
 def midi_to_hertz(midi_value: Real, A: Real = 440) -> Real:
     """
     Given a MIDI pitch, returns the corresponding frequency in hertz.
@@ -54,6 +58,7 @@ def midi_to_hertz(midi_value: Real, A: Real = 440) -> Real:
     return A * math.pow(2, (midi_value - 69) / 12)
 
 
+@multi_option_function
 def hertz_to_midi(hertz_value: Real, A: Real = 440) -> Real:
     """
     Given a frequency in hertz, returns the corresponding (floating point) MIDI pitch.
@@ -64,6 +69,7 @@ def hertz_to_midi(hertz_value: Real, A: Real = 440) -> Real:
     return 12 * math.log2(hertz_value / A) + 69
 
 
+@multi_option_function
 def freq_to_bark(f: Real) -> Real:
     """
     Converts a frequency in hertz to a (floating point) Bark number according to the psychoacoustic Bark scale
@@ -77,6 +83,7 @@ def freq_to_bark(f: Real) -> Real:
 
 
 # the inverse formula
+@multi_option_function
 def bark_to_freq(b: Real) -> Real:
     """
     Converts a Bark number to its corresponding frequency in hertz. See :func:`freq_to_bark`.

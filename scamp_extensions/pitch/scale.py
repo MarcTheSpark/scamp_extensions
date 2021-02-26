@@ -25,6 +25,7 @@ from fractions import Fraction
 from typing import Sequence
 
 from expenvelope.envelope import Envelope, SavesToJSON
+from scamp_extensions.utilities.sequences import multi_option_method
 from .utilities import ratio_to_cents
 import math
 from numbers import Real
@@ -149,7 +150,9 @@ class ScaleType(SavesToJSON):
         "melodic minor": [200., 300., 500., 700., 900., 1100., 1200.],
         "harmonic minor": [200., 300., 500., 700., 800., 1100., 1200.],
         "whole tone": [200., 400., 600., 800., 1000., 1200.],
-        "octatonic": [200., 300., 500., 600., 800., 900., 1100., 1200.]
+        "octatonic": [200., 300., 500., 600., 800., 900., 1100., 1200.],
+        "pentatonic": [200., 400., 700., 900., 1200.],
+        "blues": [300., 500., 600., 700., 1000., 1200.]
     }
 
     def __init__(self, *intervals):
@@ -284,6 +287,26 @@ class ScaleType(SavesToJSON):
             return cls(*ScaleType._standard_equal_tempered_patterns["octatonic"])
         else:
             return cls(*ScaleType._standard_equal_tempered_patterns["octatonic"]).rotate(1)
+
+    @classmethod
+    def pentatonic(cls, modal_shift: int = 0) -> 'ScaleType':
+        """
+        Returns a pentatonic ScaleType with the specified modal shift.
+
+        :param modal_shift: how many steps up or down to shift the starting note of the scale. A shift of 3 creates
+            a minor pentatonic scale.
+        """
+        return cls(*ScaleType._standard_equal_tempered_patterns["pentatonic"]).rotate(modal_shift)
+
+    @classmethod
+    def pentatonic_minor(cls) -> 'ScaleType':
+        """Convenience method for creating a pentatonic minor ScaleType."""
+        return cls.pentatonic(4)
+
+    @classmethod
+    def blues(cls) -> 'ScaleType':
+        """Convenience method for creating a blues ScaleType."""
+        return cls(*ScaleType._standard_equal_tempered_patterns["blues"])
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
@@ -440,11 +463,12 @@ class Scale(SavesToJSON):
         """
         return cls(ScaleType(*intervals), start_pitch, cycle=cycle)
 
+    @multi_option_method
     def degree_to_pitch(self, degree: Real) -> float:
         """
         Given a degree of the scale, returns the pitch that it corresponds to. Degree 0 corresponds to the start
         pitch, and negative degrees correspond to notes below the start pitch (for cyclical scales). Fractional degrees
-        are possible and result in pitches interpolated between the scale degrees
+        are possible and result in pitches interpolated between the scale degrees.
         
         :param degree: a (potentially floating-point) scale degree
         """
@@ -455,6 +479,7 @@ class Scale(SavesToJSON):
         else:
             return self._envelope.value_at(degree)
 
+    @multi_option_method
     def pitch_to_degree(self, pitch: Real) -> float:
         """
         Given a pitch, returns the scale degree that it corresponds to. Pitches that lie in between the notes of the
@@ -469,14 +494,17 @@ class Scale(SavesToJSON):
         else:
             return self._inverse_envelope.value_at(pitch)
 
+    @multi_option_method
     def round(self, pitch: Real) -> float:
         """Rounds the given pitch to the nearest note of the scale."""
         return self.degree_to_pitch(round(self.pitch_to_degree(pitch)))
 
+    @multi_option_method
     def floor(self, pitch: Real) -> float:
         """Returns the nearest note of the scale below or equal to the given pitch."""
         return self.degree_to_pitch(math.floor(self.pitch_to_degree(pitch)))
 
+    @multi_option_method
     def ceil(self, pitch: Real) -> float:
         """Returns the nearest note of the scale above or equal to the given pitch."""
         return self.degree_to_pitch(math.ceil(self.pitch_to_degree(pitch)))
@@ -635,6 +663,38 @@ class Scale(SavesToJSON):
         :param whole_step_first: whether this is a whole-half or half-whole octatonic scale.
         """
         return cls(ScaleType.octatonic(whole_step_first=whole_step_first), start_pitch, cycle=cycle)
+
+    @classmethod
+    def pentatonic(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
+        """
+        Returns a pentatonic scale starting on the specified pitch, and with the specified modal shift.
+
+        :param start_pitch: the pitch this scale starts from
+        :param modal_shift: How many steps up or down to shift the scale's interval relationships. To get a regular
+            harmonic minor scale, simply use the default modal shift of 0.
+        :param cycle: whether or not this scale repeats after an octave or is constrained to a single octave.
+        """
+        return cls(ScaleType.pentatonic(modal_shift), start_pitch, cycle=cycle)
+
+    @classmethod
+    def pentatonic_minor(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+        """
+        Returns a pentatonic minor scale starting on the specified pitch.
+
+        :param start_pitch: the pitch this scale starts from
+        :param cycle: whether or not this scale repeats after an octave or is constrained to a single octave.
+        """
+        return cls(ScaleType.pentatonic_minor(), start_pitch, cycle=cycle)
+
+    @classmethod
+    def blues(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+        """
+        Returns a 6-note blues scale starting on the specified pitch.
+
+        :param start_pitch: the pitch this scale starts from
+        :param cycle: whether or not this scale repeats after an octave or is constrained to a single octave.
+        """
+        return cls(ScaleType.blues(), start_pitch, cycle=cycle)
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
