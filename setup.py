@@ -21,7 +21,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="scamp_extensions",
-    version="0.3",
+    version="0.3.2",
     author="Marc Evanstein",
     author_email="marc@marcevanstein.com",
     description="Extensions to SCAMP (Suite for Computer-Assisted Music in Python)",

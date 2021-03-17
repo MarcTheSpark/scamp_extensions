@@ -37,7 +37,46 @@ def rotate_sequence(s: Sequence, n: int) -> Sequence:
     return s[n:] + s[:n]
 
 
-def sequence_depth(seq: Sequence):
+def cyclic_slice(l: Sequence, start: int, end: int) -> Sequence:
+    """
+    Takes a slice that loops back to the beginning if end is before start
+
+    :param l: the list to slice
+    :param start: start index
+    :param end: end index
+    :return: list representing the cyclic slice
+    """
+
+    if end >= start:
+        # start by making both indices positive, since that's easier to handle
+        while start < 0 or end < 0:
+            start += len(l)
+            end += len(l)
+        if end >= start + len(l):
+            out = []
+            while end - start >= len(l):
+                out.extend(l[start:] + l[:start])
+                end -= len(l)
+            out += cyclic_slice(l, start, end)
+            return out
+        else:
+            end = end % len(l)
+            start = start % len(l)
+            if end >= start:
+                return l[start:end]
+            else:
+                return l[start:] + l[:end]
+    else:
+        # if the end is before the beginning, we do a backwards slice
+        # basically this means we reverse the list, and recalculate the start and end
+        new_start = len(l) - start - 1
+        new_end = len(l) - end - 1
+        new_list = list(l)
+        new_list.reverse()
+    return cyclic_slice(new_list, new_start, new_end)
+
+
+def sequence_depth(seq: Sequence) -> int:
     """
     Find the maximum _depth of any element in a nested sequence. Slightly adapted from pillmuncher's answer here:
     https://stackoverflow.com/questions/6039103/counting-depth-or-the-deepest-level-a-nested-list-goes-to
@@ -54,6 +93,9 @@ def sequence_depth(seq: Sequence):
             seq = chain.from_iterable(s for s in seq if isinstance(s, Sequence))
     except StopIteration:
         return level
+
+
+# ------------------------------------ Sequence-optional function decorators -----------------------------------------
 
 
 def multi_option_function(f):
