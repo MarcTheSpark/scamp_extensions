@@ -46,7 +46,7 @@ class LSystem:
         self.rules = evolution_rules
         self.meanings = meanings
 
-    @lru_cache
+    @lru_cache()
     def get_generation(self, n: int) -> str:
         """
         Get the state of the system at the nth generation of iteration, where n=0 is the initial state. The first time
