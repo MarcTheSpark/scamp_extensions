@@ -20,3 +20,4 @@ Subpackage containing tools for modeling a compositional process, such as Markov
 
 from .markov import MarkovModel, MarkovIterator
 from .l_systems import LSystem
+from .generators import random_walk, non_repeating_shuffle
