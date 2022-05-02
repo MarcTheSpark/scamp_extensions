@@ -38,11 +38,12 @@ class SCPlaybackImplementation(OSCPlaybackImplementation):
         (which is used to start and stop the note).
     """
 
+    sclang_instance = None
+
     def __init__(self, host_instrument, synth_def: str):
         self._host_instrument = host_instrument
-        if not self.has_shared_resource("sclang_instance"):
-            self.set_shared_resource("sclang_instance", SCLangInstance())
-        sclang = self.get_shared_resource("sclang_instance")
+        if SCPlaybackImplementation.sclang_instance is None:
+            SCPlaybackImplementation.sclang_instance = SCLangInstance()
 
         if synth_def.isalnum() or synth_def[0] == "\\" and synth_def[1:].isalnum():
             # just the name of the synth_def
@@ -52,10 +53,10 @@ class SCPlaybackImplementation(OSCPlaybackImplementation):
             def_name = synth_def.split("\\")[1].split(",")[0].strip()
             compile_synth_def = True
 
-        super().__init__(host_instrument, sclang.port, ip_address="127.0.0.1", message_prefix=def_name)
+        super().__init__(SCPlaybackImplementation.sclang_instance.port, ip_address="127.0.0.1", message_prefix=def_name)
 
         if compile_synth_def:
-            sclang.new_synth_def(synth_def)
+            SCPlaybackImplementation.sclang_instance.new_synth_def(synth_def)
 
 
 def add_sc_extensions():
