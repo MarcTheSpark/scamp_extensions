@@ -29,7 +29,7 @@ class LSystem:
     Optionally, these characters can be assigned meanings.
 
     :param seed_string: the initial string
-    :param evolution_rules: dictionary describing how each letter evolves in a subsequent generation. Any letter
+    :param production_rules: dictionary describing how each letter evolves in a subsequent generation. Any letter
         not found in the dictionary is assumed to be a constant
     :param meanings: (optional) dictionary specifying the meaning of each letter. Should contain an entry for every
         letter potentially encountered.
@@ -40,10 +40,10 @@ class LSystem:
         letter potentially encountered.
     """
 
-    def __init__(self, seed_string: str, evolution_rules: MutableMapping[str, str],
+    def __init__(self, seed_string: str, production_rules: MutableMapping[str, str],
                  meanings: MutableMapping[str, Any] = None):
         self.seed = seed_string
-        self.rules = evolution_rules
+        self.rules = production_rules
         self.meanings = meanings
 
     @lru_cache()
