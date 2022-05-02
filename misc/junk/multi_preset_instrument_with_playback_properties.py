@@ -1,4 +1,8 @@
 """
+NOTE: I don't understand why I added the playback_properties feature to this class. I can't think of any conceivable
+use for it. In case I later remember I'm keeping a copy in the junk drawer.
+"""
+"""
 This module defines the :class:`~scamp_extensions.playback.multi_preset_instrument.MultiPresetInstrument` class,
 a convenience class that combines multiple :class:`ScampInstrument` objects so that they can create a single part in
 the score. A typical use case would be to combine arco, pizzicato and harmonic presets from a soundfont into a single
@@ -29,7 +33,7 @@ from typing import Sequence, Optional, Union, Tuple
 
 
 _PresetInfo = namedtuple("_PresetInfo", "name, instrument, bundled_properties, bundled_properties_on_switch, "
-                                        "bundled_properties_on_switch_away")
+                                            "bundled_properties_on_switch_away, playback_properties")
 
 
 class MultiPresetInstrument:
@@ -63,6 +67,7 @@ class MultiPresetInstrument:
                    bundled_properties: Union[str, dict, Sequence, NoteProperty] = None,
                    bundled_properties_on_switch: Union[str, dict, Sequence, NoteProperty] = None,
                    bundled_properties_on_switch_away: Union[str, dict, Sequence, NoteProperty] = None,
+                   playback_properties: Union[str, dict, Sequence, NoteProperty] = None,
                    make_default=False):
         """
         Add a new preset with a given instrument and name.
@@ -75,6 +80,8 @@ class MultiPresetInstrument:
             it (the last note was a different preset). For example, "pizz."
         :param bundled_properties_on_switch_away: Any properties that we wish to bundle with this preset when we switch
             to it (the last note was a different preset). For example, "pizz."
+        :param playback_properties: properties that get added to the note being played back, but that don't affect
+            notation. For example, a transposition for a harmonic might be a playback_property.
         :param make_default: if True, moves this preset to the front of the list so that it becomes the default
             preset. If this is the first preset defined, it will become the default regardless of the setting of
             this parameter.
@@ -86,11 +93,13 @@ class MultiPresetInstrument:
             bundled_properties_on_switch = NoteProperties.interpret(bundled_properties_on_switch)
         if bundled_properties_on_switch_away is not None:
             bundled_properties_on_switch_away = NoteProperties.interpret(bundled_properties_on_switch_away)
+        if playback_properties is not None:
+            playback_properties = NoteProperties.interpret(playback_properties)
 
         inst = instrument_or_soundfont_preset if isinstance(instrument_or_soundfont_preset, ScampInstrument) else \
             self.host_session.new_part("{}-{}".format(self.notation_part.name, name), instrument_or_soundfont_preset)
         preset = _PresetInfo(name, inst, bundled_properties, bundled_properties_on_switch,
-                             bundled_properties_on_switch_away)
+                             bundled_properties_on_switch_away, playback_properties)
         if make_default:
             self.presets.insert(0, preset)
         else:
@@ -106,7 +115,7 @@ class MultiPresetInstrument:
 
     def _resolve_preset(self, preset_name: str) -> _PresetInfo:
         if len(self.presets) == 0:
-            return None, None, None, None, None
+            return None, None, None, None, None, None
         elif preset_name is None:  # use the default preset
             return self.presets[0]
         else:
@@ -154,11 +163,13 @@ class MultiPresetInstrument:
         preset_info = self._resolve_preset(preset)
 
         properties = self._resolve_properties(preset_info, properties)
+        playback_properties = properties if preset_info.playback_properties is None \
+            else preset_info.playback_properties + properties
 
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
             preset_info.instrument.play_note(
-                pitch, volume, length, properties=properties, blocking=False, clock=clock, transcribe=False)
+                pitch, volume, length, properties=playback_properties, blocking=False, clock=clock, transcribe=False)
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
                             format(self.name))
@@ -181,10 +192,12 @@ class MultiPresetInstrument:
         preset_info = self._resolve_preset(preset)
 
         properties = self._resolve_properties(preset_info, properties)
+        playback_properties = properties if preset_info.playback_properties is None \
+            else preset_info.playback_properties + properties
 
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
-            preset_info.instrument.play_chord(pitches, volume, length, properties=properties,
+            preset_info.instrument.play_chord(pitches, volume, length, properties=playback_properties,
                                               blocking=False, clock=clock, transcribe=False)
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
@@ -210,10 +223,12 @@ class MultiPresetInstrument:
         preset_info = self._resolve_preset(preset)
 
         properties = self._resolve_properties(preset_info, properties)
+        playback_properties = properties if preset_info.playback_properties is None \
+            else preset_info.playback_properties + properties
 
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
-            handles.append(preset_info.instrument.start_note(pitch, volume, properties,
+            handles.append(preset_info.instrument.start_note(pitch, volume, playback_properties,
                                                              clock=clock, max_volume=max_volume, flags="no_transcribe"))
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
@@ -240,10 +255,12 @@ class MultiPresetInstrument:
         preset_info = self._resolve_preset(preset)
 
         properties = self._resolve_properties(preset_info, properties)
+        playback_properties = properties if preset_info.playback_properties is None \
+            else preset_info.playback_properties + properties
 
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
-            handles.append(preset_info.instrument.start_chord(pitches, volume, properties,
+            handles.append(preset_info.instrument.start_chord(pitches, volume, playback_properties,
                                                               clock=clock, max_volume=max_volume, flags="no_transcribe"))
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
