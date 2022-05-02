@@ -57,6 +57,9 @@ class TimeVaryingParameter(Envelope):
         self.get_moment = self.clock.time if units == "time" else self.clock.beat
         self.instantiation_time = self.get_moment()
 
+    def finished(self):
+        return self.get_moment() - self.instantiation_time >= self.length()
+
     @classmethod
     def from_segments(cls, segments: Sequence[EnvelopeSegment], clock: Clock = None, units: str = "beats") -> T:
         """
