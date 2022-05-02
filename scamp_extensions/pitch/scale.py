@@ -20,7 +20,7 @@ starting reference pitch, and also allows for a choice between cyclical and non-
 #  You should have received a copy of the GNU General Public License along with this program.    #
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
-
+import itertools
 from fractions import Fraction
 from typing import Sequence
 
@@ -710,6 +710,25 @@ class Scale(SavesToJSON):
         return cls(**json_dict)
 
     # ------------------------------------- Special Methods ---------------------------------------
+
+    def __getitem__(self, item):
+        if isinstance(item, Real):
+            return self.degree_to_pitch(item)
+        elif isinstance(item, slice):
+            start = 0 if item.start is None else item.start
+            step = 1 if item.step is None else item.step
+            if item.stop is None:
+                return (self.degree_to_pitch(x) for x in itertools.count(start, step))
+            else:
+                return [self.degree_to_pitch(x)
+                        for x in itertools.islice(itertools.count(start, step), int((item.stop - start) / step))]
+        elif isinstance(item, tuple):
+            pieces = [[self.__getitem__(x)] if isinstance(x, Real) else self.__getitem__(x) for x in item]
+
+            if all(isinstance(x, list) for x in pieces):
+                return sum(pieces, start=[])
+            else:
+                return itertools.chain(*pieces)
 
     def __iter__(self):
         for step_num in range(self.num_steps + 1):

@@ -93,6 +93,43 @@ def bark_to_freq(b: Real) -> Real:
     return math.tan(b/13.3)*1000.0/0.75
 
 
+_pitch_class_displacements = {
+    'c': 0,
+    'd': 2,
+    'e': 4,
+    'f': 5,
+    'g': 7,
+    'a': 9,
+    'b': 11
+}
+
+_accidental_displacements = {
+    '#': 1,
+    's': 1,
+    'f': -1,
+    'b': -1,
+    'x': 2,
+    'bb': -2
+}
+
+
+@multi_option_function
+def note_name_to_number(note_name: str) -> int:
+    """
+    Converts a note name (e.g. "Bb5" or "C#2") to its corresponding MIDI number.
+
+    :param note_name: The note name, e.g. "Bb5". The accidental can be any of "#", "s", "f", "b", "x", or "bb".
+        Uses the convention of "C4" = 60.
+    """
+    note_name = note_name.lower().replace(' ', '')
+    pitch_class_name = note_name[0]
+    octave = note_name[-1]
+    accidental = note_name[1:-1]
+    return (int(octave) + 1) * 12 + \
+           _pitch_class_displacements[pitch_class_name] + \
+           (_accidental_displacements[accidental] if accidental in _accidental_displacements else 0)
+
+
 # ----------------------------------------------------- Other ---------------------------------------------------------
 
 
