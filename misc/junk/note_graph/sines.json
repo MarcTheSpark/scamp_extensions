@@ -1,0 +1,643 @@
+{
+    "_type": "Performance",
+    "parts": [
+        {
+            "_type": "PerformancePart",
+            "clef_preference": [
+                "treble",
+                "bass"
+            ],
+            "instrument_id": [
+                "vibrato",
+                0
+            ],
+            "name": "vibrato",
+            "voice_quantization_records": null,
+            "voices": {
+                "_unspecified_": [
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 2.57993899911763,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 2.57993899911763,
+                            "levels": [
+                                73,
+                                61,
+                                68
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 2.57993899911763,
+                                "levels": [
+                                    6.033127260789275,
+                                    7.765969541523559
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 2.57993899911763,
+                                "levels": [
+                                    2.0246706872520717,
+                                    3.918992945173863
+                                ]
+                            }
+                        },
+                        "start_beat": 0.0,
+                        "volume": {
+                            "_type": "Envelope",
+                            "curve_shapes": [
+                                -2,
+                                3
+                            ],
+                            "durations": [
+                                0.1,
+                                2.4799389991176297
+                            ],
+                            "levels": [
+                                1,
+                                0.2,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 2.751904790027405,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 2.751904790027405,
+                            "levels": [
+                                76,
+                                64,
+                                69
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 2.751904790027405,
+                                "levels": [
+                                    5.505063413624406,
+                                    12.097462559682402
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 2.751904790027405,
+                                "levels": [
+                                    3.7790210207861197,
+                                    3.0918449833766584
+                                ]
+                            }
+                        },
+                        "start_beat": 1.958455098637578,
+                        "volume": {
+                            "_type": "Envelope",
+                            "durations": [
+                                0.10000000000000009,
+                                2.651904790027405
+                            ],
+                            "levels": [
+                                0,
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 2.4875865371907917,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 2.4875865371907917,
+                            "levels": [
+                                64,
+                                69,
+                                63
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 2.4875865371907917,
+                                "levels": [
+                                    7.721427154527134,
+                                    4.007012080683658
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 2.4875865371907917,
+                                "levels": [
+                                    4.494191439839968,
+                                    3.4199196595772063
+                                ]
+                            }
+                        },
+                        "start_beat": 4.915418788731711,
+                        "volume": {
+                            "_type": "Envelope",
+                            "durations": [
+                                0.09999999999999964,
+                                2.387586537190792
+                            ],
+                            "levels": [
+                                0,
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.9493948282982636,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 1.9493948282982636,
+                            "levels": [
+                                66,
+                                77,
+                                75
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 1.9493948282982645,
+                                "levels": [
+                                    11.050278270130223,
+                                    8.486993038355893
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 1.9493948282982645,
+                                "levels": [
+                                    4.3265496388582,
+                                    1.302461551959797
+                                ]
+                            }
+                        },
+                        "start_beat": 6.50084837736617,
+                        "volume": {
+                            "_type": "Envelope",
+                            "curve_shapes": [
+                                -2,
+                                3
+                            ],
+                            "durations": [
+                                0.09999999999999964,
+                                1.849394828298264
+                            ],
+                            "levels": [
+                                1,
+                                0.2,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 2.243202653290677,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 2.243202653290677,
+                            "levels": [
+                                72,
+                                82,
+                                81
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 2.2432026532906764,
+                                "levels": [
+                                    6.331351372890984,
+                                    10.302785763532249
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 2.2432026532906764,
+                                "levels": [
+                                    3.059485424070725,
+                                    4.1403163920194945
+                                ]
+                            }
+                        },
+                        "start_beat": 7.035952627776217,
+                        "volume": {
+                            "_type": "Envelope",
+                            "durations": [
+                                0.09999999999999964,
+                                2.143202653290677
+                            ],
+                            "levels": [
+                                0,
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.4700575405052376,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 0.4700575405052376,
+                            "levels": [
+                                78,
+                                67,
+                                67
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 0.47005754050523885,
+                                "levels": [
+                                    3.804458185525354,
+                                    6.200546046725457
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 0.47005754050523885,
+                                "levels": [
+                                    4.01589734639935,
+                                    2.239847857177852
+                                ]
+                            }
+                        },
+                        "start_beat": 9.295058993190018,
+                        "volume": {
+                            "_type": "Envelope",
+                            "durations": [
+                                0.09999999999999964,
+                                0.370057540505238
+                            ],
+                            "levels": [
+                                0,
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 2.818651325412649,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 2.818651325412649,
+                            "levels": [
+                                63,
+                                69,
+                                77
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 2.8186513254126484,
+                                "levels": [
+                                    11.14466863291336,
+                                    8.40283606970324
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 2.8186513254126484,
+                                "levels": [
+                                    3.532807049334448,
+                                    2.737204556642119
+                                ]
+                            }
+                        },
+                        "start_beat": 11.064910599491453,
+                        "volume": {
+                            "_type": "Envelope",
+                            "curve_shapes": [
+                                -2,
+                                3
+                            ],
+                            "durations": [
+                                0.09999999999999964,
+                                2.718651325412649
+                            ],
+                            "levels": [
+                                1,
+                                0.2,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.9286011954957338,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 1.9286011954957338,
+                            "levels": [
+                                78,
+                                69,
+                                74
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 1.9286011954957343,
+                                "levels": [
+                                    8.756510141648885,
+                                    5.90329502402758
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 1.9286011954957343,
+                                "levels": [
+                                    2.9814343079155314,
+                                    1.9245057298633022
+                                ]
+                            }
+                        },
+                        "start_beat": 13.974506964425956,
+                        "volume": {
+                            "_type": "Envelope",
+                            "durations": [
+                                0.09999999999999964,
+                                1.8286011954957342
+                            ],
+                            "levels": [
+                                0,
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.8041697262899987,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 0.8041697262899987,
+                            "levels": [
+                                79,
+                                81,
+                                68
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 0.8041697262899987,
+                                "levels": [
+                                    4.30224450504559,
+                                    4.495503330482618
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 0.8041697262899987,
+                                "levels": [
+                                    0.34542624241949427,
+                                    3.393619796544459
+                                ]
+                            }
+                        },
+                        "start_beat": 14.947985285811846,
+                        "volume": {
+                            "_type": "Envelope",
+                            "curve_shapes": [
+                                -2,
+                                3
+                            ],
+                            "durations": [
+                                0.09999999999999964,
+                                0.7041697262899991
+                            ],
+                            "levels": [
+                                1,
+                                0.2,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.5166704582055459,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 0.5166704582055459,
+                            "levels": [
+                                82,
+                                77,
+                                81
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 0.5166704582055464,
+                                "levels": [
+                                    8.217901007207386,
+                                    5.355017352810947
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 0.5166704582055464,
+                                "levels": [
+                                    4.189326156127579,
+                                    2.6228696955604147
+                                ]
+                            }
+                        },
+                        "start_beat": 15.54458921287393,
+                        "volume": {
+                            "_type": "Envelope",
+                            "curve_shapes": [
+                                -2,
+                                3
+                            ],
+                            "durations": [
+                                0.09999999999999964,
+                                0.41667045820554627
+                            ],
+                            "levels": [
+                                1,
+                                0.2,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 2.134580767098541,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 2.134580767098541,
+                            "levels": [
+                                73,
+                                78,
+                                68
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 2.13458076709854,
+                                "levels": [
+                                    10.002255239854843,
+                                    12.824603855112574
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 2.13458076709854,
+                                "levels": [
+                                    2.463276932397685,
+                                    3.20598412291176
+                                ]
+                            }
+                        },
+                        "start_beat": 16.582592450699543,
+                        "volume": {
+                            "_type": "Envelope",
+                            "curve_shapes": [
+                                -2,
+                                3
+                            ],
+                            "durations": [
+                                0.10000000000000142,
+                                2.0345807670985394
+                            ],
+                            "levels": [
+                                1,
+                                0.2,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.1756770771333152,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 1.1756770771333152,
+                            "levels": [
+                                63,
+                                75,
+                                78
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 1.1756770771333158,
+                                "levels": [
+                                    10.314892207908478,
+                                    4.17134293208518
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 1.1756770771333158,
+                                "levels": [
+                                    4.2253878783575765,
+                                    1.2151781103092811
+                                ]
+                            }
+                        },
+                        "start_beat": 17.97601131564958,
+                        "volume": {
+                            "_type": "Envelope",
+                            "curve_shapes": [
+                                -2,
+                                3
+                            ],
+                            "durations": [
+                                0.10000000000000142,
+                                1.0756770771333137
+                            ],
+                            "levels": [
+                                1,
+                                0.2,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 2.4453740236185553,
+                        "pitch": {
+                            "_type": "Envelope",
+                            "length": 2.4453740236185553,
+                            "levels": [
+                                70,
+                                73,
+                                61
+                            ]
+                        },
+                        "properties": {
+                            "_type": "NoteProperties",
+                            "param_vibFreq": {
+                                "_type": "Envelope",
+                                "length": 2.445374023618555,
+                                "levels": [
+                                    5.187735590728675,
+                                    11.171203030188831
+                                ]
+                            },
+                            "param_vibWidth": {
+                                "_type": "Envelope",
+                                "length": 2.445374023618555,
+                                "levels": [
+                                    3.915592549233082,
+                                    4.276613097551117
+                                ]
+                            }
+                        },
+                        "start_beat": 19.02716265781915,
+                        "volume": {
+                            "_type": "Envelope",
+                            "durations": [
+                                0.10000000000000142,
+                                2.345374023618554
+                            ],
+                            "levels": [
+                                0,
+                                1,
+                                0
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "tempo_envelope": {
+        "_type": "TempoEnvelope",
+        "length": 0,
+        "levels": [
+            1.0,
+            1.0
+        ]
+    }
+}

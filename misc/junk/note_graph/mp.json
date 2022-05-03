@@ -1,0 +1,266 @@
+{
+    "_type": "Performance",
+    "parts": [
+        {
+            "_type": "PerformancePart",
+            "clef_preference": [
+                "treble"
+            ],
+            "instrument_id": [
+                "oboe",
+                0
+            ],
+            "name": "oboe",
+            "voice_quantization_records": null,
+            "voices": {
+                "_unspecified_": [
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.447483791929884,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.0,
+                        "volume": 0.6593336173483755
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.6207053509643741,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.447483791929884,
+                        "volume": 0.790984863066275
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.992328010182733,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.068189142894258,
+                        "volume": 0.6232899481467415
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.2562245139224095,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.060517153076991,
+                        "volume": 0.8115059672575973
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.3313029574444868,
+                        "pitch": 69,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.3167416669994005,
+                        "volume": 0.818541781548553
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.7583611578140843,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6480446244438873,
+                        "volume": 0.7219540515793428
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.9659522385900674,
+                        "pitch": 72,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.4064057822579716,
+                        "volume": 0.8410730307295101
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.7341074035089967,
+                        "pitch": 74,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 4.372358020848039,
+                        "volume": 0.9355662613453551
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.6571703996536415,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 5.106465424357036,
+                        "volume": 0.6359600355436912
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.7824631468968732,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 5.763635824010677,
+                        "volume": 0.601066598453726
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.31551622491972076,
+                        "pitch": 77,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 6.5460989709075506,
+                        "volume": 0.6946756945523445
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.6576839912553831,
+                        "pitch": 72,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 6.861615195827271,
+                        "volume": 0.6698912730756417
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.48070081291734557,
+                        "pitch": 80,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 7.519299187082654,
+                        "volume": 1.0
+                    }
+                ]
+            }
+        },
+        {
+            "_type": "PerformancePart",
+            "clef_preference": [
+                [
+                    "bass",
+                    59
+                ],
+                [
+                    "tenor",
+                    66
+                ],
+                [
+                    "treble",
+                    74
+                ]
+            ],
+            "instrument_id": [
+                "bassoon",
+                0
+            ],
+            "name": "bassoon",
+            "voice_quantization_records": null,
+            "voices": {
+                "_unspecified_": [
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 52,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 56,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 57,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 56,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 4.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 54,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 5.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 52,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 6.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.0,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 7.0,
+                        "volume": 1
+                    }
+                ]
+            }
+        }
+    ],
+    "tempo_envelope": {
+        "_type": "TempoEnvelope",
+        "length": 0,
+        "levels": [
+            0.6,
+            0.6
+        ]
+    }
+}

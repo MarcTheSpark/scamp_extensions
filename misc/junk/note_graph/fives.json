@@ -1,0 +1,3540 @@
+{
+    "_type": "Performance",
+    "parts": [
+        {
+            "_type": "PerformancePart",
+            "clef_preference": [
+                "treble",
+                "bass"
+            ],
+            "instrument_id": [
+                "Standard 7",
+                0
+            ],
+            "name": "Standard 7",
+            "voice_quantization_records": null,
+            "voices": {
+                "_unspecified_": [
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.32137138163894774,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.0,
+                        "volume": 0.3
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008203188619317126,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.008421287266936084,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.035340846570449,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.040009752381207575,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.007234041053749696,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.047422770986718654,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08160830937154256,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.11657634156710811,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.017294614465433678,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.13507830536131438,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.016212283491956497,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.15237291982674805,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06123864532577472,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.19818465093865067,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.14788529934619998,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.2127512932171468,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008899594181551784,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.22181878666516613,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008738844908736693,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.23071838084671792,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04019634168212771,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.2564799467549528,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012098164565979619,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.26887441659633005,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03738789887213623,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.2966762884370805,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.130159431846961,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.29671552873494095,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0075743797311256245,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.30435744620481664,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008669994634611988,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.3057224528778533,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0074726650593180954,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.31193182593594226,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008358544775964205,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.3143924475124653,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.22111441086607886,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.32137138163894774,
+                        "volume": 0.43999999999999995
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01667870863955756,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.33845708842663214,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.016290751393870595,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.3551357970661897,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04842790491259391,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.35708595397760484,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.12177447051749368,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.3606365925633468,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010024049547658842,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.3675275357396381,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010190228891619468,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.37097307881476016,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.07310554479710796,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.4029159307709437,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04793148979373507,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.4109864447763085,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009648621832783533,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.420719476634432,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.022023799817903977,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.42564350210953267,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.09177982440943194,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.42687496058190194,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.16891234504847197,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.43194968512183896,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009041441151693586,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.4412984370117915,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03760296096461524,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.4757813800548125,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06646431693697497,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.47602147556805163,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.027621040581660095,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.48049096547781284,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.11845096708947045,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.4824110630808405,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00773285190963291,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.48374904940475927,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04853945244679225,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.49394164522038597,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.006975398000664379,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5011974690215188,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01899238959559224,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5081120060594729,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.006719357092597855,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5081728670221832,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03260293284709759,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5139488474109435,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08220724517897704,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5186547849913339,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.21375679056955876,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5264751682286326,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.015376702012113053,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5271043956550652,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.02191015455964307,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5409255397254317,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1722507398006352,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5424857925050266,
+                        "volume": 0.58
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.021120636934731873,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5489078301578401,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.018428426387614882,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.56135007790525,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.021740116757953842,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5628356942850747,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05867830849660183,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.5964011176308688,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012092045347399827,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.6089048447177294,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011709253135713471,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.6209968900651293,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08199597717801166,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.6327405551276499,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05082949986031904,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.6550794261274706,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.16528765118741529,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.6551345166306684,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.021090985360310954,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.6791909741014448,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01871751464138227,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.7002819594617558,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.14843535487940962,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.7147365323056618,
+                        "volume": 0.72
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01948262526764344,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.7352118755401044,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.14225258369854044,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.7402319587981914,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01262752244969656,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.7532262846071813,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.018580134727960385,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.7546945008077478,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06906548618876296,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.7834755117328163,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.054953996607139954,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8018260625309512,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.007542534411831503,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8094785798348096,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0074383199417332735,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8170211142466411,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.10015173497879226,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8204221678180836,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009072104798952041,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.829812582465859,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.09950652423622253,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8476131446654804,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.027237241057802675,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.850534557566529,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008200251967581562,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8589695489934202,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.13682811281492857,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8631718871850714,
+                        "volume": 0.8599999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01396865953616544,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8772440821669683,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.025086071766244444,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8777717986243316,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08646136825211148,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.877798236852195,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1175154575032682,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8824845424967318,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03820662525751428,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8848203226440022,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.007548201702619495,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8854969126249734,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008487281317996143,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.8868003946937778,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.018064976916209563,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9019109729803039,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.023711740455178654,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9059046141218818,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0455399911005423,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9096889034514428,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.007153392595446895,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9134065956248487,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009141691029449506,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9188676765658506,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0794260972031241,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9205739027968759,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009106343783740978,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9280093675953001,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.020647056371646877,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9296163545770605,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.006223546143627412,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9360867221519411,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.031158229216116218,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9538591387970696,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04477110544801488,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9552288945519851,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.013439725670933433,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.9687327416825403,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.15677555642654972,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 0.988914931916267,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.12847709929903428,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0,
+                        "volume": 0.3
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.625978089476396,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01415132127274199,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0042284263149062,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00838159898793056,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.008357866350163,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008406496421163423,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0167394653380935,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04255309703056365,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0365763219058781,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04276055502398313,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0420385947291626,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008662831687626715,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0454066774321276,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008503145243553112,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0540695091197543,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01281387821395219,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0547829577890928,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.039079532330478894,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0791294189364418,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04367794954588855,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0847991497531457,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011761783802532566,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0911808809775634,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00869341461404538,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.0934542438229589,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008733615926718619,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.1021476584370042,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1393759200745628,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.1284770992990343,
+                        "volume": 0.43999999999999995
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008915144322322321,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.1373435497283442,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1219066177403283,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.1456904883428167,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008966228106686236,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.1462586940506665,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010430498236897678,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.1563114628684172,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.07157772630984205,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.196275293063755,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04771848420656166,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.1970181735872685,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0096588610511954,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.2068100116832756,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.014129898998118673,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.2102444130369936,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.10798974708652209,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.267597106083145,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1617377825599351,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.267853019373597,
+                        "volume": 0.58
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008915268771722662,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.276589942447381,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010074985859312324,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.2777837021588945,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.02895173630983483,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.297280818668381,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03555635033517146,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.3015332884527804,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008693512551763094,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.3060353744470463,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010630364643484436,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.3119839353448057,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.028375694274514363,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.326232554978216,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008518997463524025,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.3347995915187554,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03791107893698498,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.3370896387879518,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011326880189340471,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.3481903048763233,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1931395719789526,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.4053544021776354,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008571137662836792,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.4137744483307204,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008730317221587125,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.4223455859935572,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.20761916513246792,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.4295908019335322,
+                        "volume": 0.72
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01225595208073127,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.441641764583074,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012471002372502094,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.4538977166638052,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0795233585063102,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.4725779888741266,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.015276382588433668,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.487327981040154,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06864370403484288,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.4919986112640256,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.041392189226098,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.5266488504641758,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.07656765176713165,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.5606423152988684,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05708401868198787,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.5680410396902738,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.02281347293248337,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.5826928176760129,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.36976981530444464,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.598493974156588,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.044180173504468456,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.6339442749647826,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.3017571658581666,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.637209967066,
+                        "volume": 0.8599999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.025791707864101898,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.662032168694283,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08697907504417235,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.67007141336963,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0646335438629122,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.678124448469251,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.016633898674593972,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.6860508828785008,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01733946571606726,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.7026847815530948,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.12393768751529866,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.7427579923321632,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.10964519143365958,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.7570504884138023,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.16720134136338727,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.7717657915607794,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03235422843597435,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.7871338744499679,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.28360410289371885,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.9389671329241667,
+                        "volume": 0.3
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 1.8440130107114285,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.9389671329241667,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.6766880510386704,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.9682637894610326,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.030292828502647584,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.9739228989695157,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008468021629777667,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 1.9766743315014803,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.044158549930139124,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.0108996777814916,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008768145886229206,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.0196060609347235,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06630640003530841,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.0388588661425384,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03453546306136257,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.0761682353906683,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0476010609760773,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.105165266177847,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.035770838744393796,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.110703698452031,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010058560730545896,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.11587937772761,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009465267587486448,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.125937938458156,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08943538686100938,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.1807134418114775,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.19926318240131202,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.1902789806004157,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009164976275817693,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.190526397710762,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.28085512404897095,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.1978473760742983,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.016940219533704948,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.207522776599969,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01920686575779529,
+                        "pitch": 83,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2176911225898017,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.19512924209598514,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2225712358178855,
+                        "volume": 0.43999999999999995
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03254483102923622,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2239617656140203,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.13551307720636174,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2264182354124453,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.006817827824857847,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.231155406240705,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.014718641644518637,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.237649045550397,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05354272359022039,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.246616811953072,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.014376276789057396,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2523676871949156,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010800904168286607,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2575229142986557,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.029656986770233207,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2600458162774295,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010702145427239795,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2683238184669423,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05285286527235522,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.270148828672487,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08024491070778961,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.291010453846466,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06451424623749835,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.2945327421116675,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.051550479035663344,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.300159535543292,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1891015450830107,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.300212708355235,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011891990956573562,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.3124672860839994,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03892961867396494,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.323001693944842,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011557234087382184,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.324359277040573,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01056712892589129,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.334325853212203,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00993785469199393,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.344892982138094,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05124031421874786,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.3581271512917388,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05865348956470484,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.359046988349166,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04376330651933946,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.3681969676393524,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.015429037062280049,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.3740829011198854,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.017660034145073666,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.377195780820732,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.19163669744428846,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.3895421630017277,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.014988371369199616,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4045619194376546,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04679429406574753,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4093674655104866,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.16382754848740566,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.409416877759241,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009191582652606112,
+                        "pitch": 83,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4169174572140766,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.15200798616480604,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4177004779138707,
+                        "volume": 0.58
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010929139590334369,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4207598042301632,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009059106145574702,
+                        "pitch": 83,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4261090398666827,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01096730528608214,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4288428360783074,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010800442039041958,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4398101413643896,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03266927943355835,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4456904799616037,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00983342362051065,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4558121363291674,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.07663604591464468,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4645571736373952,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010090955812157354,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.474612584767131,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.030177061478557032,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.478359759395162,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010134185429187426,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4847035405792885,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009074552785359291,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4876324720744742,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1575629804635179,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4893142534382457,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0723598829176062,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.4973485811610705,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012791323341704519,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.502247790066387,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.028060971239610488,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.5230100985787454,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.10300451703312952,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.5300434904757085,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06241766605209342,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.552824958284138,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.02830839120576778,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.5580859703088237,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008311711906259678,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.5611485777237557,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008306245719196248,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.5694602896300154,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.13099136408350276,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.5697084640786767,
+                        "volume": 0.72
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.12412687039522918,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.5732444262466467,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009197481848013833,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.57895185973375,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.24026915499781953,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.581178860446016,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010388510489283131,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.583814203355727,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.030286811965635874,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.600351438019199,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.08399554466934722,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.600944051172507,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03312885425624046,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6078136662471847,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009087248479966448,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.609464793465934,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009947494353639286,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6178697136738203,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.041572941343504866,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.61891984795826,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.030156644073108918,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.630638249984835,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03416179209105241,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.631594339463331,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.12090838613430765,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.633048007508838,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009044555532900844,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6396883130960114,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.032354391375579716,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.640942520503425,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00861218255049856,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.641539833799327,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.17457078154207206,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6468772339017637,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009708022822573437,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.650704241246478,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.049217697153118856,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6769191437277158,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.11864812469447417,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6834712757226122,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009546015634916749,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.686228615577726,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.046509105501189474,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6898646744534647,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00914746954578316,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6925836753942027,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009853251977241406,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.692800969210402,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.00857562977766868,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.6931499162345895,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1240767188019598,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.697371296641876,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.12074818728165626,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7006998281621795,
+                        "volume": 0.8599999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009649905462705277,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7070034355039194,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008247857619573473,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.708989268443262,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008208220351193063,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7172371260628356,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.07685936847136698,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.728392341292703,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04773394435769163,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7294642813075085,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06102668646081044,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7301534042369364,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06181570274442283,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7342692986088912,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05751718164202657,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.736373779954654,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009448111098592005,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7388342167510538,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011282078198347811,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7407430701041076,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04018817187762913,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.741750206077716,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01548739452663872,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.744035321935614,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0117981315629212,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7456035714388136,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04984481091280024,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7458105692656654,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01547603898784411,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7517297408073045,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012065865060301828,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7538879748876006,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009885842863988081,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.75563068160323,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.015352960795231851,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7595227164622527,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012476679572351212,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.7658915496769323,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03950963748849068,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.781938377955345,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.007925327762417833,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.789889458646454,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.007900779652484147,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.797814786408872,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.1581732348151217,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.8021194004170864,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010511487934095065,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.8123459414193244,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.30900891050504287,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.8214480154438357,
+                        "volume": 0.3
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.6410214215759398,
+                        "pitch": 47,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.8214480154438357,
+                        "volume": 1
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04082971583954009,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.8383182788253145,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.024576870127856587,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.84672609370733,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012190094927568396,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.8502222045739702,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04460630298469059,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.8791479946648546,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.013307148579280614,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.892091508236842,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.10551207279751429,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.9411752003208074,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.2457682326286168,
+                        "pitch": 51,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.960292635232208,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.016038067696207303,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 2.9757776831844907,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.10200456082571208,
+                        "pitch": 55,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.043675742464372,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012721161419072313,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.0560532555594144,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.013081675968141582,
+                        "pitch": 59,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.0687744169784867,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.217112862242006,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.095271981511595,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.02326506442211773,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.119849544937485,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.2126086100932958,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.1304569259488786,
+                        "volume": 0.43999999999999995
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.022086490626317623,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.1431146093596025,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.02363488522663948,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.1549516921107923,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0702933305212956,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.2088646289986165,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.11781473946953769,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.252873281749237,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06390757652226231,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.279157959519912,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.047683554397331296,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.289127579503385,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.013001728661807821,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.292402053558372,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04522122761329905,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.296644011094679,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012770702048029658,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.30540378222018,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.20880321012928427,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.312384843753601,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010896315437482151,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.3232999867568824,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010884750058141712,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.3341963021943646,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.16562462148319268,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.3430655360421744,
+                        "volume": 0.58
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011949739171786433,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.355206009052679,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05473977936897212,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.3668454233857172,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.011767928578620968,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.3671557482244654,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03213189196296984,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.3950791433500296,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05603535967647977,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.4215852027546894,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.22641385840751482,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.421641211364336,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04186653429621412,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.4272110353129994,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.0788417669437651,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.429848390581602,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012802033375003408,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.43464352333683,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.016770324308843954,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.438210299310908,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01262300051430465,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.4474455567118336,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03057462872360084,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.4578086261996095,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.06008842445850737,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.484855641557848,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.14272536358961485,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.508690157525367,
+                        "volume": 0.72
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03474898287133943,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5162136766988903,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.010021377745405236,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5187615619641517,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.2617920864491139,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5211880538828852,
+                        "volume": 0.825
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012069851086756955,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5331087284936586,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03299985674635675,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5420780806737984,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05885312855821834,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5449440660163556,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012231121890710295,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5451785795804156,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04401046592200508,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5509626595702297,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009901269846350758,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5520077961077665,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01764557709230985,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5626549854338436,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.03285802861960807,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.575077937420155,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009854752532516997,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.5849386908911116,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.10715460464247517,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.6147958734200323,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.12927643631109742,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.63264366215875,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.009966885420130467,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.6425723362007463,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.041893161178181426,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.6498904531402188,
+                        "volume": 0.475
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.13156461921701723,
+                        "pitch": 63,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.651415521114982,
+                        "volume": 0.8599999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012045181292802187,
+                        "pitch": 83,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.6599843699150174,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008986687678422811,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.660447516364055,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008943499766144392,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.669434204042478,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.05200987570199711,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.682756648542332,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.041941893982920586,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.6882965156203658,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.01029445796840589,
+                        "pitch": 75,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.6929659280039817,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04378816484100545,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.6961431270489973,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.012545186193127833,
+                        "pitch": 83,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.7006724769997605,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.013146706195507729,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.709368178018413,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04430611928613182,
+                        "pitch": 79,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.7302384096032863,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.04304884844199641,
+                        "pitch": 67,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.7399312918900027,
+                        "volume": 0.7666666666666666
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.013242092325459254,
+                        "pitch": 83,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.7432486380751664,
+                        "volume": 0.6499999999999999
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008635266106068684,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.74859461783144,
+                        "volume": 0.5333333333333333
+                    },
+                    {
+                        "_type": "PerformanceNote",
+                        "length": 0.008608519015218086,
+                        "pitch": 71,
+                        "properties": {
+                            "_type": "NoteProperties"
+                        },
+                        "start_beat": 3.7572298839375087,
+                        "volume": 0.7666666666666666
+                    }
+                ]
+            }
+        }
+    ],
+    "tempo_envelope": {
+        "_type": "TempoEnvelope",
+        "length": 0,
+        "levels": [
+            5.0,
+            5.0
+        ]
+    }
+}
