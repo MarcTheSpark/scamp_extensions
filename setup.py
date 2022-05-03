@@ -33,7 +33,7 @@ setuptools.setup(
         'scamp_extensions': ['playback/supercollider/*.scd', 'playback/supercollider/*.yaml',
                              'playback/supercollider/scampExtensions/*']
     },
-    install_requires=['scamp >= 0.8.5'],
+    install_requires=['scamp >= 0.8.9.5'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

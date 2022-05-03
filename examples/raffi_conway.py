@@ -37,7 +37,7 @@ scamp1 = s.new_supercollider_part("scamp1", r"""
         var sine = SinOsc.ar(freq, mul: volume.linexp(0, 1, 0.01, 1));
         var envelope = EnvGen.kr(Env.asr(attackTime:0.05, releaseTime:0.1), gate, doneAction:2);
         Out.ar(0, Pan2.ar(sine * envelope * volume, pan*2-1));
-    }).add;
+    });
 """)
 
 
@@ -97,7 +97,7 @@ def grid_play(a, x, y):
     note_state = note_grid[x, y]
 
     if cell_state == 1 and note_state == 0:
-        note_grid[x, y] = scamp1.start_note(pitch, 0.125, "pan_param:{}".format(pan))
+        note_grid[x, y] = scamp1.start_note(pitch, 0.125, "param_pan:{}".format(pan))
 
     if cell_state == 0 and note_state != 0:
         note_grid[x, y].end()
