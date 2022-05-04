@@ -21,6 +21,7 @@ Module containing the :class:`LSystem` class, a simple implementation of a Linde
 
 from typing import MutableMapping, Any, Tuple
 from functools import lru_cache
+import random
 
 
 class LSystem:
@@ -30,7 +31,9 @@ class LSystem:
 
     :param seed_string: the initial string
     :param production_rules: dictionary describing how each letter evolves in a subsequent generation. Any letter
-        not found in the dictionary is assumed to be a constant
+        not found in the dictionary is assumed to be a constant. Also, stochastic rules are possible by providing
+        a list or tuple of outcomes for a given letter, or a list/tuple consisting of a list of outcomes and a
+        list of weightings.
     :param meanings: (optional) dictionary specifying the meaning of each letter. Should contain an entry for every
         letter potentially encountered.
     :ivar seed: the initial string
@@ -46,6 +49,21 @@ class LSystem:
         self.rules = production_rules
         self.meanings = meanings
 
+    def _process_letter(self, letter):
+        if letter in self.rules:
+            rule_outcome = self.rules[letter]
+            if isinstance(rule_outcome, (list, tuple)):
+                if len(rule_outcome) == 2 and isinstance(rule_outcome[0], (list, tuple)) \
+                        and isinstance(rule_outcome[1], (list, tuple)):
+                    outcomes, weights = rule_outcome
+                    return random.choices(outcomes, weights=weights, k=1)[0]
+                else:
+                    return random.choice(rule_outcome)
+            else:
+                return rule_outcome
+        else:
+            return letter
+
     @lru_cache()
     def get_generation(self, n: int) -> str:
         """
@@ -58,7 +76,7 @@ class LSystem:
             raise ValueError("Invalid LSystem generation; must be integer >= 0.")
         if n == 0:
             return self.seed
-        return "".join(self.rules.get(letter, letter) for letter in self.get_generation(n - 1))
+        return "".join(self._process_letter(letter) for letter in self.get_generation(n - 1))
 
     def get_generation_meanings(self, n: int) -> Tuple:
         """
