@@ -722,7 +722,7 @@ class Scale(SavesToJSON):
             else:
                 return [self.degree_to_pitch(x)
                         for x in itertools.islice(itertools.count(start, step), int((item.stop - start) / step))]
-        elif isinstance(item, tuple):
+        elif isinstance(item, (list, tuple)):
             pieces = [[self.__getitem__(x)] if isinstance(x, Real) else self.__getitem__(x) for x in item]
 
             if all(isinstance(x, list) for x in pieces):
