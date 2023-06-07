@@ -735,6 +735,12 @@ class Scale(SavesToJSON):
         for step_num in range(self.num_steps + 1):
             yield self.degree_to_pitch(step_num)
 
+    def __contains__(self, item):
+        if not self._cycle:
+            return item in self._seed_pitches
+        else:
+            return (item - self.start_pitch) % self.width + self.start_pitch in self._seed_pitches
+
     def __repr__(self):
         return "Scale({}, {}{})".format(
             repr(self.scale_type),

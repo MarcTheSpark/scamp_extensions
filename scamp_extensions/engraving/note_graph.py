@@ -22,7 +22,7 @@ can save a whole Performance to an SVG file or even to a PDF.
 from numbers import Real
 from typing import Tuple, Callable, Sequence
 from scamp import EnvelopeSegment, Performance, PerformancePart
-import drawSvg
+import drawsvg
 
 
 from scamp import Envelope
@@ -60,7 +60,7 @@ def make_intensity_gradient(envelope, start_x, end_x, color_map=default_color_ma
                 envelope.insert_interpolated((segment.start_time + segment.end_time) / 2)
                 gaps_too_big = True
 
-    grad = drawSvg.LinearGradient(start_x, 0, end_x, 0)
+    grad = drawsvg.LinearGradient(start_x, 0, end_x, 0)
     for segment in envelope.segments:
         grad.addStop(segment.start_time, rgb_to_hex(color_map(segment.start_level)))
     grad.addStop(1, rgb_to_hex(color_map(envelope.end_level())))
@@ -121,22 +121,22 @@ def _get_segment_raw(height_segment: EnvelopeSegment, width_segment: EnvelopeSeg
             p4[1] - end_unit_normal_vector[1] * width_segment.end_level
 
     return [
-        drawSvg.Path(fill=fill, close=True, stroke='none').
+        drawsvg.Path(fill=fill, close=True, stroke='none').
             M(*start_a).C(*control_1a, *control_2a, *end_a).L(*end_b).
             C(*control_2b, *control_1b, *start_b).L(*start_a),
-        drawSvg.Path(stroke=outline_color, stroke_width=outline_width, fill='none').
+        drawsvg.Path(stroke=outline_color, stroke_width=outline_width, fill='none').
             M(*start_a).C(*control_1a, *control_2a, *end_a),
-        drawSvg.Path(stroke=outline_color, stroke_width=outline_width, fill='none').
+        drawsvg.Path(stroke=outline_color, stroke_width=outline_width, fill='none').
             M(*start_b).C(*control_1b, *control_2b, *end_b),
     ]
 
 
-def _draw_note_raw(draw: drawSvg.Drawing, height_envelope: Envelope, width_envelope: Envelope, fill,
+def _draw_note_raw(draw: drawsvg.Drawing, height_envelope: Envelope, width_envelope: Envelope, fill,
                    outline_width, outline_color):
     """
     Draws a note shape, based on envelopes in drawing coordinates.
 
-    :param draw: the drawSvg.Drawing used
+    :param draw: the drawsvg.Drawing used
     :param height_envelope: an envelope representing the curve itself, normalized to drawing coordinates
     :param width_envelope:  an envelope representing the curve width, normalized to drawing coordinates
     :param fill: the color or gradient to use
@@ -151,15 +151,15 @@ def _draw_note_raw(draw: drawSvg.Drawing, height_envelope: Envelope, width_envel
     outlines = []
     fill_chunks = []
 
-    fill_chunks.append(drawSvg.Circle(height_envelope.end_time(), height_envelope.end_level(),
+    fill_chunks.append(drawsvg.Circle(height_envelope.end_time(), height_envelope.end_level(),
                                       width_envelope.end_level(), fill=fill, stroke="none"))
-    outlines.append(drawSvg.Circle(height_envelope.end_time(), height_envelope.end_level(),
+    outlines.append(drawsvg.Circle(height_envelope.end_time(), height_envelope.end_level(),
                                    width_envelope.end_level(), fill="none", stroke=outline_color,
                                    stroke_width=outline_width))
     for height_segment, width_segment in zip(height_envelope.segments, width_envelope.segments):
-        fill_chunks.append(drawSvg.Circle(height_segment.start_time, height_segment.start_level,
+        fill_chunks.append(drawsvg.Circle(height_segment.start_time, height_segment.start_level,
                                           width_segment.start_level, fill=fill, stroke="none"))
-        outlines.append(drawSvg.Circle(height_segment.start_time, height_segment.start_level, width_segment.start_level,
+        outlines.append(drawsvg.Circle(height_segment.start_time, height_segment.start_level, width_segment.start_level,
                                        fill='none', stroke=outline_color, stroke_width=outline_width))
         fill_chunk, *segment_outlines = _get_segment_raw(height_segment, width_segment, fill,
                                                          outline_width, outline_color)
@@ -169,12 +169,12 @@ def _draw_note_raw(draw: drawSvg.Drawing, height_envelope: Envelope, width_envel
     draw.extend(fill_chunks)
 
 
-def _draw_note_attack_only(draw: drawSvg.Drawing, height_envelope: Envelope, width_envelope: Envelope, fill,
+def _draw_note_attack_only(draw: drawsvg.Drawing, height_envelope: Envelope, width_envelope: Envelope, fill,
                            outline_width, outline_color):
     """
     Draws just the attack of a note shape, based on envelopes in drawing coordinates.
 
-    :param draw: the drawSvg.Drawing used
+    :param draw: the drawsvg.Drawing used
     :param height_envelope: an envelope representing the curve itself, normalized to drawing coordinates
     :param width_envelope:  an envelope representing the curve width, normalized to drawing coordinates
     :param fill: the color or gradient to use
@@ -182,7 +182,7 @@ def _draw_note_attack_only(draw: drawSvg.Drawing, height_envelope: Envelope, wid
     :param outline_color: color of the outline of the note
     """
     draw.append(
-        drawSvg.Circle(height_envelope.start_time(), height_envelope.start_level(),
+        drawsvg.Circle(height_envelope.start_time(), height_envelope.start_level(),
                        width_envelope.start_level(), fill=fill, stroke=outline_color, stroke_width=outline_width)
     )
 
@@ -252,7 +252,7 @@ class PartNoteGraph:
                max(note.pitch.max_level() if isinstance(note.pitch, Envelope) else note.pitch
                    for note in self.performance_part.get_note_iterator())
 
-    def render(self, drawing: drawSvg.Drawing, bottom_left: Tuple[Real, Real], dimensions: Tuple[Real, Real]):
+    def render(self, drawing: drawsvg.Drawing, bottom_left: Tuple[Real, Real], dimensions: Tuple[Real, Real]):
         for note in self.performance_part.get_note_iterator():
             height = note.pitch if self.height_parameter == "pitch" \
                 else note.volume if self.height_parameter == "volume" \
@@ -298,13 +298,13 @@ class PartNoteGraph:
                                self.outline_color)
         self._render_guide_lines(drawing, bottom_left, dimensions)
 
-    def _render_guide_lines(self, drawing: drawSvg.Drawing, bottom_left: Tuple[Real, Real],
+    def _render_guide_lines(self, drawing: drawsvg.Drawing, bottom_left: Tuple[Real, Real],
                             dimensions: Tuple[Real, Real]):
         for value in self.guide_lines:
             line_height = bottom_left[1] + (value - self.height_parameter_range[0]) / \
                           (self.height_parameter_range[1] - self.height_parameter_range[0]) * dimensions[1]
             drawing.append(
-                drawSvg.Line(
+                drawsvg.Line(
                     bottom_left[0], line_height, bottom_left[0] + dimensions[0], line_height,
                     stroke_width=self.guide_line_width, stroke=self.guide_line_color
                 )
@@ -312,9 +312,9 @@ class PartNoteGraph:
 
     def render_to_file(self, file_path, dimensions, bg_color=None, h_padding=100, v_padding=100, pixel_scale=2):
         unpadded_dimensions = dimensions[0] - 2 * h_padding, dimensions[1] - 2 * v_padding
-        d = drawSvg.Drawing(*dimensions, displayInline=False)
+        d = drawsvg.Drawing(*dimensions, displayInline=False)
         if bg_color is not None:
-            d.append(drawSvg.Rectangle(0, 0, *dimensions, fill=bg_color))
+            d.append(drawsvg.Rectangle(0, 0, *dimensions, fill=bg_color))
         self.render(d, (h_padding, v_padding), unpadded_dimensions)
         d.setPixelScale(pixel_scale)
         d.saveSvg(file_path)
