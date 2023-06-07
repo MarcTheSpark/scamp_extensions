@@ -22,3 +22,4 @@ more flexible implementation of Clarence Barlow's concept of indispensability.
 from .indispensability import indispensability_array_from_strata, indispensability_array_from_expression, \
     barlow_style_indispensability_array
 from .metric_structure import MetricStructure, MeterArithmeticGroup
+from .boolean_streamer import boolean_streamer, SieveStreamer, RandStreamer, FreqStreamer

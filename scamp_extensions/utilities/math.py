@@ -85,9 +85,38 @@ def remap(value_or_values, out_min, out_max, in_min=None, in_max=None,
         return [out_min + out_range * x for x in normalized_data]
 
 
+def wrap_to_range(x, range_min, range_max, mirror=False):
+    width = (range_max - range_min)
+    if mirror:
+        mod_double_range = (x - range_min) % (2 * width)
+        if mod_double_range > width:
+            return 2 * width - mod_double_range + range_min
+        else:
+            return mod_double_range + range_min
+    else:
+        return (x - range_min) % width + range_min
+
+
 floor_x_to_pow_of_y = multi_option_function(floor_x_to_pow_of_y)
 ceil_x_to_pow_of_y = multi_option_function(ceil_x_to_pow_of_y)
 round_x_to_pow_of_y = multi_option_function(round_x_to_pow_of_y)
 floor_to_multiple = multi_option_function(floor_to_multiple)
 ceil_to_multiple = multi_option_function(ceil_to_multiple)
 round_to_multiple = multi_option_function(round_to_multiple)
+
+
+class AtanWarp:
+
+    def __init__(self, in_lo, in_hi, out_min, out_max):
+        self.in_center = (in_hi + in_lo) / 2
+        self.out_center = (out_max + out_min) / 2
+        self.out_width = (out_max - out_min) / 2
+        self.slope = (out_max - out_min) / (in_hi - in_lo)
+
+    def __call__(self, val):
+        return math.atan((val - self.in_center) * (math.pi / 2) / self.out_width * self.slope) * self.out_width / (
+                    math.pi / 2) + self.out_center
+
+
+def atan_warp(value, in_lo, in_hi, out_min, out_max):
+    return AtanWarp(in_lo, in_hi, out_min, out_max)(value)
