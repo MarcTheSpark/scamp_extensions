@@ -119,10 +119,10 @@ class Vector(OrderedDict):
 
         if data:
             self.update([item for item in six.iteritems(data)
-                         if abs(item[1]) > numpy.finfo(numpy.float).eps])
+                         if abs(item[1]) > numpy.finfo(float).eps])
         if len(kwargs):
             self.update([item for item in six.iteritems(kwargs)
-                         if abs(item[1]) > numpy.finfo(numpy.float).eps])
+                         if abs(item[1]) > numpy.finfo(float).eps])
 
     def __getitem__(self, key):
         """
@@ -147,7 +147,7 @@ class Vector(OrderedDict):
         >>> q
         {'C': 0.4, 'B': 0.6}
         """
-        if abs(value) > numpy.finfo(numpy.float).eps:
+        if abs(value) > numpy.finfo(float).eps:
             OrderedDict.__setitem__(self, key, value)
         elif key in self:
             del (self[key])
@@ -410,7 +410,7 @@ class Matrix(OrderedDict):
 
         if data:
             self.update([item for item in six.iteritems(data)
-                         if abs(item[1]) > numpy.finfo(numpy.float).eps])
+                         if abs(item[1]) > numpy.finfo(float).eps])
 
     def __getitem__(self, *args):
         """
@@ -454,7 +454,7 @@ class Matrix(OrderedDict):
         >>> T.states()
         {'A', 'B'}
         """
-        if abs(value) > numpy.finfo(numpy.float).eps:
+        if abs(value) > numpy.finfo(float).eps:
             OrderedDict.__setitem__(self, key, value)
         elif key in self:
             del (self[key])
@@ -1544,7 +1544,7 @@ def _remove_dead_branch(transitions_list):
 
 def _machineEpsilon(func=float):
     """
-    should be the same result of: numpy.finfo(numpy.float).eps
+    should be the same result of: numpy.finfo(float).eps
     """
     machine_epsilon = func(1)
     while func(1) + func(machine_epsilon) != func(1):

@@ -39,26 +39,19 @@ class MarkovModel:
     :param cyclic: Whether or not to treat the data as cyclic. (If not, resynthesis can reach a dead end.)
     """
 
-    def __init__(self, data: Sequence, max_order: int = 1, cyclic: bool = True):
-        self.data = data
+    def __init__(self, data: Sequence = None, max_order: int = 1, cyclic: bool = True):
         self.state_quantities = {}
-
-        # for generating zeroth-order
-        for datum in data:
-            if datum in self.state_quantities:
-                self.state_quantities[datum] += 1.0
-            else:
-                self.state_quantities[datum] = 1.0
+        self.num_states = 0
 
         self.max_order = max_order
-        self.cyclic = cyclic
 
         # we import this inside of MarkovModel so that a lack of dependencies does not break unrelated imports
         # in the scamp_extensions.process subpackage.
         from ._pykov import Chain
         self.chain = Chain()
-
-        self._train_the_chain()
+        
+        if data:
+            self.train(data, cyclic)
 
     def move_zeroth_order(self):
         """
@@ -66,71 +59,71 @@ class MarkovModel:
         """
         r = random.random()
         for key, value in self.state_quantities.items():
-            this_key_probability = value/len(self.data)
+            this_key_probability = value/self.num_states
             if r < this_key_probability:
                 return key
             else:
                 r -= this_key_probability
 
-    def generate(self, num_values: int, order: float, start_values: Sequence = None) -> Sequence:
+    def generate(self, num_values: int, order: float, initial_history: Sequence = None,
+                 keep_looping: bool = False) -> Sequence:
         """
         Generates a sequence of states following the Markov analysis performed on the input data.
 
         :param num_values: How many states to generate.
         :param order: The Markov order used in generating new states. Can be floating point, in which case the order for
             any given move is a weighted random choice between the adjacent integer orders.
-        :param start_values: Values with which to seed the state history. If none, simply starts at random state
+        :param initial_history: Values with which to seed the state history. If none, simply starts at random state
             from within the data set.
-        :return:
+        :param keep_looping: if True, then when we hit a dead end, keep reducing the order by one until we find a next
+            move (once it gets to order zero, it just chooses randomly)
         """
         if order > self.max_order:
             raise ValueError("Cannot generate values using order {}, as max order was set to {}.".
                              format(order, self.max_order))
 
-        if start_values is None:
-            start_values = (self.move_zeroth_order(), )
-        elif not hasattr(start_values, '__len__'):
-            start_values = (start_values, )
+        if initial_history is None:
+            initial_history = (self.move_zeroth_order(),)
+        elif not hasattr(initial_history, '__len__'):
+            initial_history = (initial_history,)
 
-        history = list(start_values)
+        history = list(initial_history)
         out = []
 
         try:
-            if order <= 0:
-                for i in range(num_values):
-                    out.append(self.move_zeroth_order())
-            elif order == int(order):
-                for i in range(num_values):
-                    if len(history) > order:
-                        this_key = tuple(history[len(history)-int(order):])
-                    else:
-                        this_key = tuple(history)
-
-                    next_state = self.move(this_key)
-                    history.append(next_state)
-                    out.append(next_state)
-            else:
-                # fractional order, so choose the higher or lower order with appropriate probability
-                lower_order = int(order)
-                higher_order = lower_order+1
-                fractional_part = order - lower_order
-
-                for i in range(num_values):
-                    this_step_order = higher_order if random.random() < fractional_part else lower_order
-                    if this_step_order <= 0:
-                        next_state = self.move_zeroth_order()
-                    else:
-                        if len(history) > this_step_order:
-                            this_key = tuple(history[len(history)-this_step_order:])
-                        else:
-                            this_key = tuple(history)
-                        next_state = self.move(this_key)
-                    history.append(next_state)
-                    out.append(next_state)
-        except KeyError:
-            pass
+            while len(out) < num_values:
+                if keep_looping:
+                    o = order
+                    while True:
+                        try:
+                            next_move = self._get_next(history, o)
+                            break
+                        except KeyError:
+                            # no data for this order; try reducing order
+                            o -= 1
+                else:
+                    next_move = self._get_next(history, order)
+                out.append(next_move)
+                history.append(next_move)
         finally:
             return out
+
+    def _get_next(self, history, order: float):
+        if order <= 0:
+            return self.move_zeroth_order()
+
+        if order != int(order):
+            # fractional order, so choose the higher or lower order with appropriate probability
+            lower_order = int(order)
+            higher_order = lower_order + 1
+            fractional_part = order - lower_order
+            order = higher_order if random.random() < fractional_part else lower_order
+
+        if len(history) > order:
+            this_key = tuple(history[len(history) - int(order):])
+        else:
+            this_key = tuple(history)
+        return self.move(this_key)
 
     def move(self, state, random_func=None):
         """
@@ -139,26 +132,39 @@ class MarkovModel:
         """
         return self.chain.move(state, random_func)
 
-    def _train_the_chain(self):
+    def _count_states(self, data):
+        # for generating zeroth-order
+        for datum in data:
+            if datum in self.state_quantities:
+                self.state_quantities[datum] += 1.0
+            else:
+                self.state_quantities[datum] = 1.0
+            self.num_states += 1
+
+    def train(self, data, cyclic=True):
+        self._count_states(data)
+
         order = int(math.ceil(self.max_order)) if not isinstance(self.max_order, int) else self.max_order
 
-        if order >= len(self.data):
-            order = len(self.data)
+        if order >= len(data):
+            order = len(data)
 
         for o in range(1, order+1):
-            if self.cyclic:
-                start_indices = range(len(self.data))
+            if cyclic:
+                start_indices = range(len(data))
             else:
-                start_indices = range(len(self.data) - o)
+                start_indices = range(len(data) - o)
 
             for i in start_indices:
-                this_key = (tuple(cyclic_slice(self.data, i, i+o)), self.data[(i+o) % len(self.data)])
+                this_key = (tuple(cyclic_slice(data, i, i+o)), data[(i+o) % len(data)])
                 if this_key in self.chain.keys():
                     self.chain[this_key] += 1
                 else:
                     self.chain[this_key] = 1
 
-        # this part is necessary to normalize the probabilities
+        self._normalize_probabilities()
+
+    def _normalize_probabilities(self):
         antecedent_total_prob_values = {}
         for (antecedent, consequent) in self.chain:
             if antecedent in antecedent_total_prob_values:
@@ -170,7 +176,7 @@ class MarkovModel:
             self.chain[(antecedent, consequent)] = \
                 self.chain[(antecedent, consequent)] / antecedent_total_prob_values[antecedent]
 
-    def get_iterator(self, order: float, start_values: Sequence = None) -> MarkovIterator:
+    def get_iterator(self, order: float, start_values: Sequence = None, keep_looping: bool = False) -> MarkovIterator:
         """
         Returns a :class:`MarkovIterator` based on this model.
 
@@ -178,8 +184,10 @@ class MarkovModel:
             :class:`MarkovIterator`), and can be altered during iteration.
         :param start_values: Values with which to seed the iterator's history. If none, simply starts at random state
             from within the data set.
+        :param keep_looping: if True, then when we hit a dead end, keep reducing the order by one until we find a next
+            move (once it gets to order zero, it just chooses randomly)
         """
-        return MarkovIterator(self, order, start_values)
+        return MarkovIterator(self, order, start_values, keep_looping)
 
 
 class MarkovIterator:
@@ -193,9 +201,12 @@ class MarkovIterator:
         any given move is a weighted random choice between the adjacent integer orders.
     :param start_values: Values with which to seed this iterator's history. If none, simply starts at random state
         from within the data set.
+    :param keep_looping: if True, then when we hit a dead end, keep reducing the order by one until we find a next
+            move (once it gets to order zero, it just chooses randomly)
     """
 
-    def __init__(self, markov_model: MarkovModel, order: float, start_values: Sequence = None):
+    def __init__(self, markov_model: MarkovModel, order: float, start_values: Sequence = None,
+                 keep_looping: bool = False):
         if start_values is None:
             self.history = [markov_model.move_zeroth_order()]
         else:
@@ -203,12 +214,13 @@ class MarkovIterator:
 
         self.model = markov_model
         self.order = order
+        self.keep_looping = keep_looping
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        self.history.extend(self.model.generate(1, self.order, self.history))
+        self.history.extend(self.model.generate(1, self.order, self.history, self.keep_looping))
         if len(self.history) > self.model.max_order:
             self.history.pop(0)
         return self.history[-1]
