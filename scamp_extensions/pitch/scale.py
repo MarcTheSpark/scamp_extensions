@@ -20,10 +20,11 @@ starting reference pitch, and also allows for a choice between cyclical and non-
 #  You should have received a copy of the GNU General Public License along with this program.    #
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
+
+from __future__ import annotations
 import itertools
 from fractions import Fraction
 from typing import Sequence
-
 from expenvelope.envelope import Envelope, SavesToJSON
 from scamp_extensions.utilities.sequences import multi_option_method
 from .utilities import ratio_to_cents
@@ -164,7 +165,7 @@ class ScaleType(SavesToJSON):
         """
         return [interval.to_half_steps() for interval in self.intervals]
 
-    def rotate(self, steps: int, in_place: bool = True) -> 'ScaleType':
+    def rotate(self, steps: int, in_place: bool = True) -> ScaleType:
         """
         Rotates the step sizes of this scale type in the manner of a modal shift. E.g. going from ionian to lydian
         would be a rotation of 3.
@@ -196,7 +197,7 @@ class ScaleType(SavesToJSON):
         return cls(*ScaleType._standard_equal_tempered_patterns["chromatic"])
 
     @classmethod
-    def diatonic(cls, modal_shift: int = 0) -> 'ScaleType':
+    def diatonic(cls, modal_shift: int = 0) -> ScaleType:
         """
         Returns a diatonic ScaleType with the specified modal shift.
 
@@ -207,52 +208,52 @@ class ScaleType(SavesToJSON):
         return cls(*ScaleType._standard_equal_tempered_patterns["diatonic"]).rotate(modal_shift)
 
     @classmethod
-    def major(cls, modal_shift: int = 0) -> 'ScaleType':
+    def major(cls, modal_shift: int = 0) -> ScaleType:
         """Alias of :func:`ScaleType.diatonic`."""
         return cls.diatonic(modal_shift)
 
     @classmethod
-    def ionian(cls, modal_shift: int = 0) -> 'ScaleType':
+    def ionian(cls, modal_shift: int = 0) -> ScaleType:
         """Alias of :func:`ScaleType.diatonic`."""
         return cls.diatonic(modal_shift)
 
     @classmethod
-    def dorian(cls) -> 'ScaleType':
+    def dorian(cls) -> ScaleType:
         """Convenience method for creating a dorian ScaleType."""
         return cls.diatonic(1)
 
     @classmethod
-    def phrygian(cls) -> 'ScaleType':
+    def phrygian(cls) -> ScaleType:
         """Convenience method for creating a phrygian ScaleType."""
         return cls.diatonic(2)
 
     @classmethod
-    def lydian(cls) -> 'ScaleType':
+    def lydian(cls) -> ScaleType:
         """Convenience method for creating a lydian ScaleType."""
         return cls.diatonic(3)
 
     @classmethod
-    def mixolydian(cls) -> 'ScaleType':
+    def mixolydian(cls) -> ScaleType:
         """Convenience method for creating a myxolydian ScaleType."""
         return cls.diatonic(4)
 
     @classmethod
-    def aeolian(cls) -> 'ScaleType':
+    def aeolian(cls) -> ScaleType:
         """Convenience method for creating an aeolian ScaleType."""
         return cls.diatonic(5)
 
     @classmethod
-    def natural_minor(cls) -> 'ScaleType':
+    def natural_minor(cls) -> ScaleType:
         """Alias of :func:`ScaleType.aeolian`."""
         return cls.aeolian()
 
     @classmethod
-    def locrian(cls) -> 'ScaleType':
+    def locrian(cls) -> ScaleType:
         """Convenience method for creating an locrian ScaleType."""
         return cls.diatonic(6)
 
     @classmethod
-    def harmonic_minor(cls, modal_shift: int = 0) -> 'ScaleType':
+    def harmonic_minor(cls, modal_shift: int = 0) -> ScaleType:
         """
         Returns a harmonic minor ScaleType with the specified modal shift.
 
@@ -262,7 +263,7 @@ class ScaleType(SavesToJSON):
         return cls(*ScaleType._standard_equal_tempered_patterns["harmonic minor"]).rotate(modal_shift)
 
     @classmethod
-    def melodic_minor(cls, modal_shift: int = 0) -> 'ScaleType':
+    def melodic_minor(cls, modal_shift: int = 0) -> ScaleType:
         """
         Returns a melodic minor ScaleType with the specified modal shift.
 
@@ -272,12 +273,12 @@ class ScaleType(SavesToJSON):
         return cls(*ScaleType._standard_equal_tempered_patterns["melodic minor"]).rotate(modal_shift)
 
     @classmethod
-    def whole_tone(cls) -> 'ScaleType':
+    def whole_tone(cls) -> ScaleType:
         """Convenience method for creating a whole tone ScaleType."""
         return cls(*ScaleType._standard_equal_tempered_patterns["whole tone"])
 
     @classmethod
-    def octatonic(cls, whole_step_first: bool = True) -> 'ScaleType':
+    def octatonic(cls, whole_step_first: bool = True) -> ScaleType:
         """
         Convenience method for creating an octatonic (alternating whole and half steps) ScaleType
 
@@ -289,7 +290,7 @@ class ScaleType(SavesToJSON):
             return cls(*ScaleType._standard_equal_tempered_patterns["octatonic"]).rotate(1)
 
     @classmethod
-    def pentatonic(cls, modal_shift: int = 0) -> 'ScaleType':
+    def pentatonic(cls, modal_shift: int = 0) -> ScaleType:
         """
         Returns a pentatonic ScaleType with the specified modal shift.
 
@@ -299,12 +300,12 @@ class ScaleType(SavesToJSON):
         return cls(*ScaleType._standard_equal_tempered_patterns["pentatonic"]).rotate(modal_shift)
 
     @classmethod
-    def pentatonic_minor(cls) -> 'ScaleType':
+    def pentatonic_minor(cls) -> ScaleType:
         """Convenience method for creating a pentatonic minor ScaleType."""
         return cls.pentatonic(4)
 
     @classmethod
-    def blues(cls) -> 'ScaleType':
+    def blues(cls) -> ScaleType:
         """Convenience method for creating a blues ScaleType."""
         return cls(*ScaleType._standard_equal_tempered_patterns["blues"])
 
@@ -329,7 +330,7 @@ class ScaleType(SavesToJSON):
             scala_file.write("\n".join(lines))
 
     @classmethod
-    def load_from_scala(cls, file_path: str) -> 'ScaleType':
+    def load_from_scala(cls, file_path: str) -> ScaleType:
         """
         Loads a ScaleType from a scala file.
 
@@ -424,7 +425,7 @@ class Scale(SavesToJSON):
         self.width = self._seed_pitches[-1] - self._seed_pitches[0] if self._cycle else None
 
     @classmethod
-    def from_pitches(cls, seed_pitches: Sequence[Real], cycle: bool = True) -> 'Scale':
+    def from_pitches(cls, seed_pitches: Sequence[Real], cycle: bool = True) -> Scale:
         """
         Constructs a Scale from a list of seed pitches, given as floating-point MIDI pitch values. For instance, a
         C major scale could be constructed by calling Scale.from_pitches([60, 62, 64, 65, 67, 69, 71, 72]). Note that
@@ -440,7 +441,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType(*(100. * (x - seed_pitches[0]) for x in seed_pitches[1:])), seed_pitches[0], cycle=cycle)
 
     @classmethod
-    def from_scala_file(cls, file_path: str, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def from_scala_file(cls, file_path: str, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Constructs a Scale from a scala file located at the given file path, and a start pitch.
 
@@ -451,7 +452,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.load_from_scala(file_path), start_pitch, cycle=cycle)
 
     @classmethod
-    def from_start_pitch_and_cent_or_ratio_intervals(cls, start_pitch: Real, intervals, cycle: bool = True) -> 'Scale':
+    def from_start_pitch_and_cent_or_ratio_intervals(cls, start_pitch: Real, intervals, cycle: bool = True) -> Scale:
         """
         Creates a scale from a start pitch and a sequence of intervals (either cents or frequency ratios).
 
@@ -511,7 +512,7 @@ class Scale(SavesToJSON):
 
     # ------------------------------------- Transformations ---------------------------------------
 
-    def transpose(self, half_steps: float) -> 'Scale':
+    def transpose(self, half_steps: float) -> Scale:
         """
         Transposes this scale (in place) by the given number of half steps.
 
@@ -522,7 +523,7 @@ class Scale(SavesToJSON):
         self._initialize_instance_vars()
         return self
         
-    def transposed(self, half_steps: float) -> 'Scale':
+    def transposed(self, half_steps: float) -> Scale:
         """
         Same as :func:`Scale.transpose`, except that it returns a transposed copy, leaving this scale unaltered.
         """
@@ -533,7 +534,7 @@ class Scale(SavesToJSON):
     # ------------------------------------- Class Methods ---------------------------------------
 
     @classmethod
-    def chromatic(cls, start_pitch: Real = 60, cycle: bool = True) -> 'Scale':
+    def chromatic(cls, start_pitch: Real = 60, cycle: bool = True) -> Scale:
         """
         Returns a 12-tone equal tempered chromatic scale starting on the specified pitch.
 
@@ -544,7 +545,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.chromatic(), start_pitch, cycle=cycle)
 
     @classmethod
-    def diatonic(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
+    def diatonic(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> Scale:
         """
         Returns a diatonic scale starting on the specified pitch, and with the specified modal shift.
 
@@ -556,17 +557,17 @@ class Scale(SavesToJSON):
         return cls(ScaleType.diatonic(modal_shift), start_pitch, cycle=cycle)
 
     @classmethod
-    def major(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
+    def major(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> Scale:
         """Alias of :func:`Scale.diatonic`."""
         return cls.diatonic(start_pitch, modal_shift, cycle)
 
     @classmethod
-    def ionian(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
+    def ionian(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> Scale:
         """Alias of :func:`Scale.diatonic`."""
         return cls.diatonic(start_pitch, modal_shift, cycle)
 
     @classmethod
-    def dorian(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def dorian(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Convenience method for creating a dorian scale with the given start pitch. (Same as :func:`Scale.diatonic` with
         a modal shift of 1.)
@@ -574,7 +575,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.dorian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def phrygian(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def phrygian(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Convenience method for creating a phrygian scale with the given start pitch. (Same as :func:`Scale.diatonic`
         with a modal shift of 2.)
@@ -582,7 +583,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.phrygian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def lydian(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def lydian(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Convenience method for creating a lydian scale with the given start pitch. (Same as :func:`Scale.diatonic`
         with a modal shift of 3.)
@@ -590,7 +591,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.lydian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def mixolydian(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def mixolydian(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Convenience method for creating a mixolydian scale with the given start pitch. (Same as :func:`Scale.diatonic`
         with a modal shift of 4.)
@@ -598,7 +599,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType. mixolydian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def aeolian(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def aeolian(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Convenience method for creating a aeolian scale with the given start pitch. (Same as :func:`Scale.diatonic`
         with a modal shift of 5.)
@@ -606,12 +607,12 @@ class Scale(SavesToJSON):
         return cls(ScaleType.aeolian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def natural_minor(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def natural_minor(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """Alias of :func:`Scale.aeolian`."""
         return cls.aeolian(start_pitch, cycle)
 
     @classmethod
-    def locrian(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def locrian(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Convenience method for creating a locrian scale with the given start pitch. (Same as :func:`Scale.diatonic`
         with a modal shift of 6.)
@@ -619,7 +620,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.locrian(), start_pitch, cycle=cycle)
 
     @classmethod
-    def harmonic_minor(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
+    def harmonic_minor(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> Scale:
         """
         Returns a harmonic minor scale starting on the specified pitch, and with the specified modal shift.
 
@@ -631,7 +632,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.harmonic_minor(modal_shift), start_pitch, cycle=cycle)
 
     @classmethod
-    def melodic_minor(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
+    def melodic_minor(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> Scale:
         """
         Returns a melodic minor scale starting on the specified pitch, and with the specified modal shift.
 
@@ -644,7 +645,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.melodic_minor(modal_shift), start_pitch, cycle=cycle)
 
     @classmethod
-    def whole_tone(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def whole_tone(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Returns a whole tone scale with the given start pitch.
 
@@ -654,7 +655,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.whole_tone(), start_pitch, cycle=cycle)
 
     @classmethod
-    def octatonic(cls, start_pitch: Real, cycle: bool = True, whole_step_first: bool = True) -> 'Scale':
+    def octatonic(cls, start_pitch: Real, cycle: bool = True, whole_step_first: bool = True) -> Scale:
         """
         Returns an octatonic scale with the given start pitch.
 
@@ -665,7 +666,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.octatonic(whole_step_first=whole_step_first), start_pitch, cycle=cycle)
 
     @classmethod
-    def pentatonic(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> 'Scale':
+    def pentatonic(cls, start_pitch: Real, modal_shift: int = 0, cycle: bool = True) -> Scale:
         """
         Returns a pentatonic scale starting on the specified pitch, and with the specified modal shift.
 
@@ -677,7 +678,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.pentatonic(modal_shift), start_pitch, cycle=cycle)
 
     @classmethod
-    def pentatonic_minor(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def pentatonic_minor(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Returns a pentatonic minor scale starting on the specified pitch.
 
@@ -687,7 +688,7 @@ class Scale(SavesToJSON):
         return cls(ScaleType.pentatonic_minor(), start_pitch, cycle=cycle)
 
     @classmethod
-    def blues(cls, start_pitch: Real, cycle: bool = True) -> 'Scale':
+    def blues(cls, start_pitch: Real, cycle: bool = True) -> Scale:
         """
         Returns a 6-note blues scale starting on the specified pitch.
 

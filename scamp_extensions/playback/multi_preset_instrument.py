@@ -20,6 +20,7 @@ string instrument part.
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 
+from __future__ import annotations
 import logging
 from collections import namedtuple
 from clockblocks import Clock
@@ -193,7 +194,7 @@ class MultiPresetInstrument:
         self.notation_part.play_chord(pitches, volume, length, properties=properties, blocking=blocking, clock=clock)
 
     def start_note(self, pitch: float, volume: float, properties: Union[str, dict, Sequence, NoteProperty] = None,
-                   preset: str = None, clock: Clock = None, max_volume: float = 1) -> 'MultiNoteHandle':
+                   preset: str = None, clock: Clock = None, max_volume: float = 1) -> MultiNoteHandle:
         """
         Start a note using this MultiPresetInstrument.
 
@@ -223,7 +224,7 @@ class MultiPresetInstrument:
 
     def start_chord(self, pitches: Sequence[float], volume: float,
                     properties: Union[str, dict, Sequence, NoteProperty] = None, preset: str = None,
-                    clock: Clock = None, max_volume: float = 1) -> 'MultiNoteHandle':
+                    clock: Clock = None, max_volume: float = 1) -> MultiNoteHandle:
         """
         Start a note using this MultiPresetInstrument.
 

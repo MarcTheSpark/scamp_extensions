@@ -21,9 +21,10 @@ upon the `numpy`, `scipy`, and `six` libraries.
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 
+from __future__ import annotations
 import random
 import math
-from typing import Sequence, Iterator
+from typing import Sequence
 from ..utilities.sequences import cyclic_slice
 
 
@@ -169,7 +170,7 @@ class MarkovModel:
             self.chain[(antecedent, consequent)] = \
                 self.chain[(antecedent, consequent)] / antecedent_total_prob_values[antecedent]
 
-    def get_iterator(self, order: float, start_values: Sequence = None) -> 'MarkovIterator':
+    def get_iterator(self, order: float, start_values: Sequence = None) -> MarkovIterator:
         """
         Returns a :class:`MarkovIterator` based on this model.
 
