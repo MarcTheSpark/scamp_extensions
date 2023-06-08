@@ -14,29 +14,6 @@
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 
-import setuptools
+from setuptools import setup
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
-
-setuptools.setup(
-    name="scamp_extensions",
-    version="0.3.3",
-    author="Marc Evanstein",
-    author_email="marc@marcevanstein.com",
-    description="Extensions to SCAMP (Suite for Computer-Assisted Music in Python)",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://git.sr.ht/~marcevanstein/scamp_extensions",
-    packages=setuptools.find_packages(),
-    package_data={
-        'scamp_extensions': ['playback/supercollider/*.scd', 'playback/supercollider/*.yaml',
-                             'playback/supercollider/scampExtensions/*']
-    },
-    install_requires=['scamp >= 0.8.9.5'],
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-        "Operating System :: OS Independent",
-    ],
-)
+setup()

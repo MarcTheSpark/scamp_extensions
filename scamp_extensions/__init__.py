@@ -26,3 +26,8 @@ interacting with rhythms and meters; the interaction subpackage contains utiliti
 other live interactions; the supercollider subpackage contains utilities for embedding supercollider code within
 SCAMP scripts; and the composers subpackage contains composer-specific tools and theoretical devices.
 """
+
+import importlib.metadata
+
+__version__ = importlib.metadata.version('scamp_extensions')
+__author__ = importlib.metadata.metadata('scamp_extensions')['Author']
