@@ -34,7 +34,7 @@ class MarkovModel:
     A Markov analysis-synthesis tool that analyzes the given data, and can generate new data based on the
     same statistical patterns.
 
-    :param data: A sequence of states whose transition probabilities to analyze
+    :param data: A sequence of states whose transition probabilities to analyze (can train after instantiating too)
     :param max_order: The maximum order of Markov analysis to perform
     :param cyclic: Whether or not to treat the data as cyclic. (If not, resynthesis can reach a dead end.)
     """

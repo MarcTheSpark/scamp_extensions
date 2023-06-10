@@ -1,3 +1,12 @@
+"""
+Module containing the :func:`boolean_streamer` decorator, which converts a boolean-yielding generator into a
+:class:`BooleanStreamer` object. :class:`BooleanStreamer` objects are iterable and can be combined using the `&`,
+`|` and `~` operators to compose more complex streams of booleans. A few useful decorated boolean_streamer functions
+are given, including the :func:`SieveStreamer`, which implements Xenakis-style sieves the :func:`RandStreamer`, which
+generates weighted random `True`/`False` values, and the :func:`FreqStreamer` which generates regularly spaced `True`'s
+at the frequency defined by the function.
+"""
+
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 #  This file is part of SCAMP (Suite for Computer-Assisted Music in Python)                      #
 #  Copyright © 2020 Marc Evanstein <marc@marcevanstein.com>.                                     #
@@ -20,6 +29,12 @@ from functools import wraps
 
 
 class BooleanStreamer:
+    """
+    Wrapper for a generator function that returns only boolean values. By wrapping it as a BooleanStreamer, it can
+    be combined with other BooleanStreamers using the `&`, `|` and `~` operators.
+
+    :param generator_function: a boolean-yielding generator function
+    """
 
     def __init__(self, generator_function, *args, **kwargs):
         if isinstance(generator_function, BooleanStreamer):
@@ -73,7 +88,7 @@ class BooleanStreamer:
         return f"BooleanStreamer({self.generator_function})"
 
 
-def boolean_streamer(func, *args, **kwargs):
+def boolean_streamer(func):
     
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -84,6 +99,13 @@ def boolean_streamer(func, *args, **kwargs):
 
 @boolean_streamer
 def SieveStreamer(modulo, shift=0):
+    """
+    A Xenakis-sieve-style :class:`BooleanStreamer` that yields patterns of True/False based on a modulo, which defines
+    the cycle length; and a shift, which defines which remainder (or remainders) yielding True values.
+
+    :param modulo: cycle length
+    :param shift: which remainders yield True
+    """
     i = 0
     shift = (shift,) if not hasattr(shift, '__len__') else tuple(shift)
     while True:
@@ -93,12 +115,24 @@ def SieveStreamer(modulo, shift=0):
 
 @boolean_streamer
 def RandStreamer(true_prob):
+    """
+    A :class:`BooleanStreamer` that yields True values with the given probability.
+
+    :param true_prob: probability of a True value
+    """
     while True:
         yield random.random() < true_prob
 
 
 @boolean_streamer
 def FreqStreamer(freq_func):
+    """
+    A phase-accumulation based :class:`BooleanStreamer` that yields True values with a frequency given by the
+    frequency function.
+
+    :param freq_func: a callable that takes an index as an input and return the phase accumulation for that index.
+        Super transparent, I know.
+    """
     i = phase = 0
     while True:
         phase += freq_func(i)
