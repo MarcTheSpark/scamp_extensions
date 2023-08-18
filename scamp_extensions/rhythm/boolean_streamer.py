@@ -89,6 +89,9 @@ class BooleanStreamer:
 
 
 def boolean_streamer(func):
+    """
+    Decorator that converts a boolean-yielding generator function into a :class:`BooleanStreamer` object
+    """
     
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -104,7 +107,7 @@ def SieveStreamer(modulo, shift=0):
     the cycle length; and a shift, which defines which remainder (or remainders) yielding True values.
 
     :param modulo: cycle length
-    :param shift: which remainders yield True
+    :param shift: which remainders yield `True`
     """
     i = 0
     shift = (shift,) if not hasattr(shift, '__len__') else tuple(shift)

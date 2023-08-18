@@ -730,6 +730,8 @@ class Scale(SavesToJSON):
                 return sum(pieces, start=[])
             else:
                 return itertools.chain(*pieces)
+        elif isinstance(item, Iterable):
+            return (self[x] for x in item)
 
     def __iter__(self):
         for step_num in range(self.num_steps + 1):
