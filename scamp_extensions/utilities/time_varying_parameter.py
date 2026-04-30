@@ -112,6 +112,7 @@ class TimeVaryingParameter(Envelope):
         instance = super().from_points(*points)
         instance._initialize(clock, units)
         return instance
+
     @classmethod
     def release(cls, duration: float, start_level=1, curve_shape: Union[float, str] = None,
                 clock: Clock = None, units: str = "beats") -> T:

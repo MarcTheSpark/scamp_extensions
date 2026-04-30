@@ -54,7 +54,7 @@ def remap(value_or_values, out_min, out_max, in_min=None, in_max=None,
     if not hasattr(value_or_values, '__len__'):
         if in_min is None or in_max is None:
             raise ValueError("When rescaling a single value, must supply in_min and in_max parameters.")
-        return remap([value_or_values], out_min, out_max, in_min, in_max, input_warp, output_warp)[0]
+        return remap([value_or_values], out_min, out_max, in_min, in_max, input_warp, output_warp, clip=clip)[0]
 
     if in_min is None:
         in_min = min(value_or_values)
@@ -153,7 +153,7 @@ def atan_warp(value, in_lo, in_hi, out_min, out_max) -> float:
     :param value: the value to warp
     :param in_lo: soft input minimum
     :param in_hi: soft input maximum
-    :param out_min: hard input minimum
-    :param out_max: hard input maximum
+    :param out_min: hard output minimum
+    :param out_max: hard output maximum
     """
     return AtanWarp(in_lo, in_hi, out_min, out_max)(value)

@@ -28,7 +28,7 @@ import math
 
 
 @multi_option_function
-def ratio_to_cents(ratio: Real) -> Real:
+def ratio_to_cents(ratio: Real | Sequence[Real]) -> Real | Sequence[Real]:
     """
     Given a frequency ratio, convert it to a corresponding number of cents.
 
@@ -38,7 +38,7 @@ def ratio_to_cents(ratio: Real) -> Real:
 
 
 @multi_option_function
-def cents_to_ratio(cents: Real) -> Real:
+def cents_to_ratio(cents: Real | Sequence[Real]) -> Real | Sequence[Real]:
     """
     Given a number of cents, convert it to a corresponding frequency ratio.
 
@@ -48,7 +48,7 @@ def cents_to_ratio(cents: Real) -> Real:
 
 
 @multi_option_function
-def midi_to_hertz(midi_value: Real, A: Real = 440) -> Real:
+def midi_to_hertz(midi_value: Real | Sequence[Real], A: Real = 440) -> Real | Sequence[Real]:
     """
     Given a MIDI pitch, returns the corresponding frequency in hertz.
 
@@ -59,7 +59,7 @@ def midi_to_hertz(midi_value: Real, A: Real = 440) -> Real:
 
 
 @multi_option_function
-def hertz_to_midi(hertz_value: Real, A: Real = 440) -> Real:
+def hertz_to_midi(hertz_value: Real | Sequence[Real], A: Real = 440) -> Real | Sequence[Real]:
     """
     Given a frequency in hertz, returns the corresponding (floating point) MIDI pitch.
 
@@ -70,7 +70,7 @@ def hertz_to_midi(hertz_value: Real, A: Real = 440) -> Real:
 
 
 @multi_option_function
-def freq_to_bark(f: Real) -> Real:
+def freq_to_bark(f: Real | Sequence[Real]) -> Real | Sequence[Real]:
     """
     Converts a frequency in hertz to a (floating point) Bark number according to the psychoacoustic Bark scale
     (https://en.wikipedia.org/wiki/Bark_scale). This is a scale that compensates for the unevenness in human pitch
@@ -84,7 +84,7 @@ def freq_to_bark(f: Real) -> Real:
 
 # the inverse formula
 @multi_option_function
-def bark_to_freq(b: Real) -> Real:
+def bark_to_freq(b: Real | Sequence[Real]) -> Real | Sequence[Real]:
     """
     Converts a Bark number to its corresponding frequency in hertz. See :func:`freq_to_bark`.
 
