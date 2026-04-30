@@ -24,7 +24,7 @@ starting reference pitch, and also allows for a choice between cyclical and non-
 from __future__ import annotations
 import itertools
 from fractions import Fraction
-from typing import Sequence
+from typing import Sequence, Iterable
 from expenvelope.envelope import Envelope, SavesToJSON
 from scamp_extensions.utilities.sequences import multi_option_method
 from .utilities import ratio_to_cents
@@ -308,6 +308,11 @@ class ScaleType(SavesToJSON):
     def blues(cls) -> ScaleType:
         """Convenience method for creating a blues ScaleType."""
         return cls(*ScaleType._standard_equal_tempered_patterns["blues"])
+    
+    @classmethod
+    def equal_divisions(cls, interval_to_divide, num_divisions) -> ScaleType:
+        """Convenience method for creating a blues ScaleType."""
+        return cls(*(i * 1200.0 * math.log2(interval_to_divide) / num_divisions for i in range(1, num_divisions + 1)))
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
@@ -696,6 +701,12 @@ class Scale(SavesToJSON):
         :param cycle: whether or not this scale repeats after an octave or is constrained to a single octave.
         """
         return cls(ScaleType.blues(), start_pitch, cycle=cycle)
+    
+    @classmethod
+    def equal_divisions(cls, start_pitch: Real, interval_to_divide: int, num_divisions: int, cycle: bool = True) -> ScaleType:
+        """Convenience method for creating a EDO or equal division of a different interval."""
+        return cls(ScaleType.equal_divisions(interval_to_divide, num_divisions), start_pitch, cycle=cycle)
+
 
     # ------------------------------------- Loading / Saving ---------------------------------------
 
@@ -734,7 +745,7 @@ class Scale(SavesToJSON):
             return (self[x] for x in item)
 
     def __iter__(self):
-        for step_num in range(self.num_steps + 1):
+        for step_num in itertools.count():
             yield self.degree_to_pitch(step_num)
 
     def __contains__(self, item):
