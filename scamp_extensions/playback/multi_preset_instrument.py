@@ -140,7 +140,8 @@ class MultiPresetInstrument:
             incorporate(NoteProperties.interpret(note_properties))
 
     def play_note(self, pitch, volume, length, properties: Union[str, dict, Sequence, NoteProperty] = None,
-                  preset: str = None, blocking: bool = True, clock: Clock = None) -> None:
+                  preset: str = None, blocking: bool = True, clock: Clock = None,
+                  silent: bool = False, transcribe: bool = True) -> None:
         """
         Play a note using this MultiPresetInstrument
 
@@ -159,12 +160,15 @@ class MultiPresetInstrument:
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
             preset_info.instrument.play_note(
-                pitch, volume, length, properties=properties, blocking=False, clock=clock, transcribe=False)
+                pitch, volume, length, properties=properties, blocking=False, clock=clock, transcribe=False,
+                silent=silent
+            )
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
                             format(self.name))
 
-        self.notation_part.play_note(pitch, volume, length, properties=properties, blocking=blocking, clock=clock)
+        self.notation_part.play_note(pitch, volume, length, properties=properties, blocking=blocking, clock=clock,
+                                     transcribe=transcribe)
 
     def play_chord(self, pitches: Sequence, volume, length, properties: Union[str, dict, Sequence, NoteProperty] = None,
                    preset: str = None, blocking: bool = True, clock: Clock = None) -> None:
@@ -215,7 +219,8 @@ class MultiPresetInstrument:
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
             handles.append(preset_info.instrument.start_note(pitch, volume, properties,
-                                                             clock=clock, max_volume=max_volume, flags="no_transcribe"))
+                                                             clock=clock, max_volume=max_volume,
+                                                             flags=["no_transcribe"]))
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
                             format(self.name))
@@ -245,7 +250,8 @@ class MultiPresetInstrument:
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
             handles.append(preset_info.instrument.start_chord(pitches, volume, properties,
-                                                              clock=clock, max_volume=max_volume, flags="no_transcribe"))
+                                                              clock=clock, max_volume=max_volume,
+                                                              flags=["no_transcribe"]))
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
                             format(self.name))
