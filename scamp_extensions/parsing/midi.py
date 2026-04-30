@@ -25,11 +25,12 @@ from collections import namedtuple
 Note = namedtuple("Note", "track channel pitch volume start_time length")
 
 
-def scrape_midi_file_to_note_list(midi_file_path) -> List[Note]:
+def scrape_midi_file_to_note_list(midi_file_path, filter_func=None) -> List[Note]:
     """
     Scrapes a list of :class:`Note` objects from all of the tracks of the given MIDI file.
 
     :param midi_file_path: path to midi file
+    :param filter_func: function that takes a Note object and returns whether to include it
     """
     mid = MidiFile(midi_file_path, clip=True)
 
@@ -43,7 +44,9 @@ def scrape_midi_file_to_note_list(midi_file_path) -> List[Note]:
             if message.type == "note_off" or (message.type == "note_on" and message.velocity == 0):
                 try:
                     volume, start_time = notes_started[(message.note, message.channel)]
-                    notes.append(Note(which_track, message.channel, message.note, volume, start_time, t - start_time))
+                    note = Note(which_track, message.channel, message.note, volume, start_time, t - start_time)
+                    if filter_func is None or filter_func(note):
+                        notes.append(note)
                 except KeyError:
                     print("KEY ERROR")
                     pass
@@ -54,19 +57,21 @@ def scrape_midi_file_to_note_list(midi_file_path) -> List[Note]:
     return notes
 
 
-def scrape_midi_file_to_dict(midi_file_path) -> dict:
+def scrape_midi_file_to_dict(midi_file_path, filter_func=None) -> dict:
     """
     Scrapes a dictionary of note info from a MIDI file.
 
     :param midi_file_path: the MIDI file path
+    :param filter_func: function that takes a Note object and returns whether to include it
     :return: a dict with the following keys, each of which is presented in chronological order of the notes from which
         they derive: "pitches", "start_times", "volumes", "lengths", "inter_onset_times" (how long since the last note
         started), "tracks"
     """
-    notes = scrape_midi_file_to_note_list(midi_file_path)
+    notes = scrape_midi_file_to_note_list(midi_file_path, filter_func=filter_func)
 
     tracks, channels, pitches, volumes, start_times, lengths = zip(*notes)
     tracks = list(tracks)
+    channels = list(channels)
     pitches = list(pitches)
     start_times = list(start_times)
     volumes = list(volumes)
@@ -79,5 +84,6 @@ def scrape_midi_file_to_dict(midi_file_path) -> dict:
         "volumes": volumes,
         "lengths": lengths,
         "inter_onset_times": inter_onset_times,
-        "tracks": tracks
+        "tracks": tracks,
+        "channels": channels
     }
