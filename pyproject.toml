@@ -23,7 +23,7 @@ dependencies = [
 ]
 
 [project.urls]
-"Source Code" = "https://git.sr.ht/~marcevanstein/scamp_extensions"
+"Source Code" = "https://github.com/MarcTheSpark/scamp_extensions"
 
 [tool.setuptools]
 zip-safe = false
