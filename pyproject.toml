@@ -22,6 +22,9 @@ dependencies = [
     "mido"
 ]
 
+[project.optional-dependencies]
+engraving = ["drawsvg"]
+
 [project.urls]
 "Source Code" = "https://github.com/MarcTheSpark/scamp_extensions"
 

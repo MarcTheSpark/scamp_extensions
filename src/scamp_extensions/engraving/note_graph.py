@@ -19,10 +19,23 @@ can save a whole Performance to an SVG file or even to a PDF.
 #  You should have received a copy of the GNU General Public License along with this program.    #
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
+from __future__ import annotations
 from numbers import Real
 from typing import Tuple, Callable, Sequence
 from scamp import EnvelopeSegment, Performance, PerformancePart
-import drawsvg
+
+# drawsvg is an optional dependency (install with scamp_extensions[engraving]); importing this module
+# without it is fine, but the rendering functions below raise a clear error when it is actually needed.
+try:
+    import drawsvg
+except ImportError:
+    drawsvg = None
+
+
+def _require_drawsvg():
+    if drawsvg is None:
+        raise ImportError("The engraving extension requires the 'drawsvg' package. "
+                          "Install it with: pip install scamp_extensions[engraving]")
 
 
 from scamp import Envelope
@@ -45,6 +58,7 @@ def rgb_to_hex(rgb):
 
 
 def make_intensity_gradient(envelope, start_x, end_x, color_map=default_color_map, value_range=None):
+    _require_drawsvg()
     envelope = envelope.duplicate()
     envelope.normalize_to_duration(1)
     if value_range is not None:
@@ -253,6 +267,7 @@ class PartNoteGraph:
                    for note in self.performance_part.get_note_iterator())
 
     def render(self, drawing: drawsvg.Drawing, bottom_left: Tuple[Real, Real], dimensions: Tuple[Real, Real]):
+        _require_drawsvg()
         for note in self.performance_part.get_note_iterator():
             height = note.pitch if self.height_parameter == "pitch" \
                 else note.volume if self.height_parameter == "volume" \
@@ -311,6 +326,7 @@ class PartNoteGraph:
             )
 
     def render_to_file(self, file_path, dimensions, bg_color=None, h_padding=100, v_padding=100, pixel_scale=2):
+        _require_drawsvg()
         unpadded_dimensions = dimensions[0] - 2 * h_padding, dimensions[1] - 2 * v_padding
         d = drawsvg.Drawing(*dimensions, displayInline=False)
         if bg_color is not None:
