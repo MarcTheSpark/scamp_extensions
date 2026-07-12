@@ -1,3 +1,8 @@
+"""
+Module containing generators for the fibonacci sequence and its relatives, including the cycles that arise
+from taking such a sequence modulo some number (the Pisano periods).
+"""
+
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 #  This file is part of SCAMP (Suite for Computer-Assisted Music in Python)                      #
 #  Copyright © 2020 Marc Evanstein <marc@marcevanstein.com>.                                     #
