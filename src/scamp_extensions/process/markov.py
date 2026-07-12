@@ -142,6 +142,14 @@ class MarkovModel:
             self.num_states += 1
 
     def train(self, data, cyclic=True):
+        """
+        Train this model on a sequence, tallying which states follow which, for every order up to this
+        model's max order.
+
+        :param data: the sequence of states to learn from
+        :param cyclic: whether to treat the sequence as looping around, so that the states at the end are
+            counted as leading back into those at the start
+        """
         self._count_states(data)
 
         order = int(math.ceil(self.max_order)) if not isinstance(self.max_order, int) else self.max_order

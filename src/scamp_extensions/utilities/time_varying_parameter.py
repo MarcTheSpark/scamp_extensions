@@ -58,6 +58,10 @@ class TimeVaryingParameter(Envelope):
         self.instantiation_time = self.get_moment()
 
     def finished(self):
+        """
+        Whether this parameter has run its course, i.e. whether enough time has passed on its clock, since it
+        was created, to reach the end of the underlying envelope.
+        """
         return self.get_moment() - self.instantiation_time >= self.length()
 
     @classmethod

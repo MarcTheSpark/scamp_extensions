@@ -48,16 +48,39 @@ _default_cm_envelope_blue = Envelope.from_levels((0, 81, 122, 118, 64, 0, 0, 97,
 
 
 def default_color_map(intensity):
+    """
+    The color map used by a :class:`PartNoteGraph` unless another is given: a blue-to-red gradient.
+
+    :param intensity: a value from 0 to 1
+    :return: the corresponding (red, green, blue) tuple, each component from 0 to 255
+    """
     return _default_cm_envelope_red.value_at(intensity), \
            _default_cm_envelope_green.value_at(intensity), \
            _default_cm_envelope_blue.value_at(intensity)
 
 
 def rgb_to_hex(rgb):
+    """
+    Convert an (red, green, blue) tuple, each component from 0 to 255, to a hex color string like "#ff7a00".
+
+    :param rgb: the (red, green, blue) tuple to convert
+    """
     return '#%02x%02x%02x' % tuple(int(x) for x in rgb)
 
 
 def make_intensity_gradient(envelope, start_x, end_x, color_map=default_color_map, value_range=None):
+    """
+    Create an SVG linear gradient that spans horizontally from `start_x` to `end_x`, taking its color at each
+    point from the value of the given envelope there. Used to color a note whose color parameter changes over
+    the course of that note.
+
+    :param envelope: the envelope whose value determines the color along the gradient
+    :param start_x: x coordinate at which the gradient starts
+    :param end_x: x coordinate at which the gradient ends
+    :param color_map: function from the interval [0, 1] to an (red, green, blue) tuple
+    :param value_range: the (min, max) range of envelope values to map onto that interval; if None, the
+        envelope's values are taken to already run from 0 to 1
+    """
     _require_drawsvg()
     envelope = envelope.duplicate()
     envelope.normalize_to_duration(1)
@@ -82,6 +105,18 @@ def make_intensity_gradient(envelope, start_x, end_x, color_map=default_color_ma
 
 
 def get_fill(parameter, start_x, end_x, color_map=default_color_map, value_range=None):
+    """
+    The SVG fill to use for a note whose color is governed by the given parameter value: a gradient if that
+    value is an envelope, and a plain hex color if it is a constant.
+
+    :param parameter: the value of the note's color parameter, either a number or an
+        :class:`~expenvelope.envelope.Envelope`
+    :param start_x: x coordinate at which the note starts
+    :param end_x: x coordinate at which the note ends
+    :param color_map: function from the interval [0, 1] to an (red, green, blue) tuple
+    :param value_range: the (min, max) range of parameter values to map onto that interval; if None, the
+        values are taken to already run from 0 to 1
+    """
     if isinstance(parameter, Envelope):
         return make_intensity_gradient(parameter, start_x, end_x, color_map, value_range)
     else:
@@ -267,6 +302,14 @@ class PartNoteGraph:
                    for note in self.performance_part.get_note_iterator())
 
     def render(self, drawing: drawsvg.Drawing, bottom_left: Tuple[Real, Real], dimensions: Tuple[Real, Real]):
+        """
+        Draw this note graph into an existing drawing, within the rectangle described by `bottom_left` and
+        `dimensions`.
+
+        :param drawing: the :class:`drawsvg.Drawing` to draw into
+        :param bottom_left: the (x, y) coordinate of the bottom left corner of the graph
+        :param dimensions: the (width, height) of the graph
+        """
         _require_drawsvg()
         for note in self.performance_part.get_note_iterator():
             height = note.pitch if self.height_parameter == "pitch" \
@@ -326,6 +369,16 @@ class PartNoteGraph:
             )
 
     def render_to_file(self, file_path, dimensions, bg_color=None, h_padding=100, v_padding=100, pixel_scale=2):
+        """
+        Render this note graph to an SVG file of its own.
+
+        :param file_path: path of the SVG file to write
+        :param dimensions: the (width, height) of the image, padding included
+        :param bg_color: background color of the image; left transparent if None
+        :param h_padding: horizontal padding between the graph and the edge of the image
+        :param v_padding: vertical padding between the graph and the edge of the image
+        :param pixel_scale: factor by which to scale the image's pixel dimensions, for higher resolution
+        """
         _require_drawsvg()
         unpadded_dimensions = dimensions[0] - 2 * h_padding, dimensions[1] - 2 * v_padding
         d = drawsvg.Drawing(*dimensions, displayInline=False)
