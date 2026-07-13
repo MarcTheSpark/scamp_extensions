@@ -43,7 +43,7 @@ measurement_functions = {
 def chords_from_pitch_classes(pcs, min_pitch, max_pitch, num_notes, prefer_unique_pcs=True,
                               spacing_and_range_prefs=("compact", "mid", "even"), how_many=1):
     """
-    Find the voicings of the given pitch classes that best fit the given preferences. [AI WRITTEN DOC]
+    Find the voicings of the given pitch classes that best fit the given preferences.
 
     :param pcs: the pitch classes (integers from 0 to 11) to voice
     :param min_pitch: lowest MIDI pitch the voicing may use
@@ -69,7 +69,7 @@ def chord_from_pitch_classes(pcs, min_pitch, max_pitch, num_notes, prefer_unique
                              spacing_and_range_prefs=("compact", "mid", "even")):
     """
     Find the single voicing of the given pitch classes that best fits the given preferences. See
-    :func:`chords_from_pitch_classes`, of which this is the single-result version. [AI WRITTEN DOC]
+    :func:`chords_from_pitch_classes`, of which this is the single-result version.
 
     :param pcs: the pitch classes (integers from 0 to 11) to voice
     :param min_pitch: lowest MIDI pitch the voicing may use
