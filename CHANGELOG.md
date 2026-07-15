@@ -25,6 +25,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `engraving.note_graph`, install it with `pip install scamp_extensions[engraving]`.
 - Docstrings added across the public API.
 
+### Fixed
+
+- Silenced `SyntaxWarning: invalid escape sequence` emitted on import of the bundled
+  `process._pykov` module under Python 3.12+ — its LaTeX-in-docstrings are now raw strings.
+
 ## Earlier versions
 
 For changes prior to 0.3.7, see the commit history.

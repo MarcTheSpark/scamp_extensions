@@ -315,7 +315,7 @@ class Vector(OrderedDict):
         return state
 
     def entropy(self):
-        """
+        r"""
         Return the entropy.
 
         .. math::
@@ -335,7 +335,7 @@ class Vector(OrderedDict):
         return -sum([v * math.log(v) for v in self.values()])
 
     def relative_entropy(self, p):
-        """
+        r"""
         Return the Kullback-Leibler distance.
 
         .. math::
@@ -379,7 +379,7 @@ class Vector(OrderedDict):
         return float(sum(self.values()))
 
     def dist(self, v):
-        """
+        r"""
         Return the distance between the two probability vectors.
 
         .. math::
@@ -881,7 +881,7 @@ class Matrix(OrderedDict):
                                    six.iteritems(self)]))
 
     def _UMPFPACKSolve(self, b, x=None, method='UMFPACK_A'):
-        """
+        r"""
         UMFPACK ( U nsymmetric M ulti F Rontal PACK age)
 
         Parameters
@@ -943,7 +943,7 @@ class Chain(Matrix):
         return p * self ** n
 
     def steady(self):
-        """
+        r"""
         With the assumption of ergodicity, return the steady state.
 
         .. note::
@@ -990,7 +990,7 @@ class Chain(Matrix):
             return res
 
     def entropy(self, p=None, norm=False):
-        """
+        r"""
         Return the ``Chain`` entropy, calculated with the indicated probability
         Vector (the steady state by default).
 
@@ -1125,7 +1125,7 @@ class Chain(Matrix):
         return res
 
     def mixing_time(self, cutoff=.25, jump=1, p=None):
-        """
+        r"""
         Return the mixing time.
 
         If the initial distribution (p) is not indicated,
