@@ -48,7 +48,7 @@ s.start_transcribing()
 s.start_recording_sc_output("sc_output.wav")
 
 # any property entries starting or ending with "param" will be treated as extra playback parameters
-while s.beat() < 20:
+while s.beat < 20:
     # glissando between three random values
     pitch_env = [random.randint(60, 82) for _ in range(3)]
     volume_env = random.choice([
