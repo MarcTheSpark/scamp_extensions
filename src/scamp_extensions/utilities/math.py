@@ -52,8 +52,11 @@ def remap(value_or_values, out_min, out_max, in_min=None, in_max=None,
     :return: a suitable warped output value or list of output values
     """
     if not hasattr(value_or_values, '__len__'):
-        if in_min is None or in_max is None:
-            raise ValueError("When rescaling a single value, must supply in_min and in_max parameters.")
+        if in_min is in_max is None:
+            in_min, in_max = 0, 1
+        elif in_min is None or in_max is None:
+            raise ValueError("When rescaling a single value, must supply either both of in_min/in_max, or neither, "
+                             "which defaults to [0, 1].")
         return remap([value_or_values], out_min, out_max, in_min, in_max, input_warp, output_warp, clip=clip)[0]
 
     if in_min is None:

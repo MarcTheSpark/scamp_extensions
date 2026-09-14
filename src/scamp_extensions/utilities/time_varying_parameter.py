@@ -54,7 +54,7 @@ class TimeVaryingParameter(Envelope):
         if self.clock is None:
             raise ValueError("No clock was specified, and there was no clock available on the current thread. (Did"
                              "you create this TimeVaryingParameter before creating a Session or master clock?)")
-        self.get_moment = self.clock.time if units == "time" else self.clock.beat
+        self.get_moment = (lambda: self.clock.time) if units == "time" else (lambda: self.clock.beat)
         self.instantiation_time = self.get_moment()
 
     def finished(self):

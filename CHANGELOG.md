@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **`TimeVaryingParameter` works again.** It read the clock's position once at construction and
+  then couldn't call it, so it broke once the clock's position accessors became properties; it now
+  samples the clock's current time/beat on each read.
+- **`remap()` of a single value accepts an omitted input range**, defaulting to `[0, 1]` when
+  neither `in_min` nor `in_max` is given (previously it required both).
+
 ## [0.3.7] - 2026-07-12
 
 ### Changed
