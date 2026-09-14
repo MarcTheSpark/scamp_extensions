@@ -69,5 +69,5 @@ while s.beat < 20:
 
 s.stop_recording_sc_output()
 performance = s.stop_transcribing()
-engraving_settings.max_voices_per_part = 1
+engraving_settings.max_voices_per_staff = 1
 performance.to_score().show()

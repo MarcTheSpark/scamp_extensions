@@ -3533,8 +3533,8 @@
         "_type": "TempoEnvelope",
         "length": 0,
         "levels": [
-            5.0,
-            5.0
+            12.0,
+            12.0
         ]
     }
 }
