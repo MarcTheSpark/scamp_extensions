@@ -124,7 +124,8 @@ class MultiStaffInstrument:
         )
 
     def start_note(self, pitch: float, volume: float, properties: Union[str, dict, Sequence, NoteProperty] = None,
-                   force_staff: int = None, clock: Clock = None, max_volume: float = 1) -> MultiNoteHandle:
+                   force_staff: int = None, clock: Clock = None, fixed: Union[bool, str] = "auto",
+                   velocity: float = None) -> MultiNoteHandle:
         """
         Start a note using this MultiPresetInstrument.
 
@@ -133,7 +134,8 @@ class MultiStaffInstrument:
         :param properties: see :func:`~scamp.instruments.ScampInstrument.start_note`
         :param force_staff: force this note to play on the given staff index
         :param clock: see :func:`~scamp.instruments.ScampInstrument.start_note`
-        :param max_volume: see :func:`~scamp.instruments.ScampInstrument.start_note`
+        :param fixed: see :func:`~scamp.instruments.ScampInstrument.start_note`
+        :param velocity: see :func:`~scamp.instruments.ScampInstrument.start_note`
         :return: a :class:`MultiNoteHandle` with which to later manipulate the note
         """
 
@@ -147,12 +149,12 @@ class MultiStaffInstrument:
 
         return self.staff_parts[staff_index].start_note(
             pitch, volume, properties,
-            clock=clock, max_volume=max_volume
+            clock=clock, fixed=fixed, velocity=velocity
         )
 
     def start_chord(self, pitches: Sequence[float], volume: float,
                     properties: Union[str, dict, Sequence, NoteProperty] = None, force_staff: int = None,
-                    clock: Clock = None, max_volume: float = 1) -> MultiNoteHandle:
+                    clock: Clock = None, fixed: Union[bool, str] = "auto", velocity: float = None) -> MultiNoteHandle:
         """
         Start a note using this MultiPresetInstrument.
 
@@ -161,7 +163,8 @@ class MultiStaffInstrument:
         :param properties: see :func:`~scamp.instruments.ScampInstrument.start_chord`
         :param force_staff: force this chord to play on the given staff index
         :param clock: see :func:`~scamp.instruments.ScampInstrument.start_chord`
-        :param max_volume: see :func:`~scamp.instruments.ScampInstrument.start_chord`
+        :param fixed: see :func:`~scamp.instruments.ScampInstrument.start_chord`
+        :param velocity: see :func:`~scamp.instruments.ScampInstrument.start_chord`
         :return: a :class:`MultiNoteHandle` with which to later manipulate the chord
         """
         if pitches is None:
@@ -178,7 +181,7 @@ class MultiStaffInstrument:
 
         return self.staff_parts[staff_index].start_chord(
             pitches, volume, properties,
-            clock=clock, max_volume=max_volume
+            clock=clock, fixed=fixed, velocity=velocity
         )
 
     def send_midi_cc(self, cc_number: int, value_from_0_to_1: float) -> None:

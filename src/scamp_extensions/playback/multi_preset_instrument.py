@@ -198,7 +198,8 @@ class MultiPresetInstrument:
         self.notation_part.play_chord(pitches, volume, length, properties=properties, blocking=blocking, clock=clock)
 
     def start_note(self, pitch: float, volume: float, properties: Union[str, dict, Sequence, NoteProperty] = None,
-                   preset: str = None, clock: Clock = None, max_volume: float = 1) -> MultiNoteHandle:
+                   preset: str = None, clock: Clock = None, fixed: Union[bool, str] = "auto",
+                   velocity: float = None) -> MultiNoteHandle:
         """
         Start a note using this MultiPresetInstrument.
 
@@ -207,7 +208,8 @@ class MultiPresetInstrument:
         :param properties: see :func:`~scamp.instruments.ScampInstrument.start_note`
         :param preset: name of the preset to use for this note.
         :param clock: see :func:`~scamp.instruments.ScampInstrument.start_note`
-        :param max_volume: see :func:`~scamp.instruments.ScampInstrument.start_note`
+        :param fixed: see :func:`~scamp.instruments.ScampInstrument.start_note`
+        :param velocity: see :func:`~scamp.instruments.ScampInstrument.start_note`
         :return: a :class:`MultiNoteHandle` with which to later manipulate the note
         """
         handles = []
@@ -219,17 +221,18 @@ class MultiPresetInstrument:
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
             handles.append(preset_info.instrument.start_note(pitch, volume, properties,
-                                                             clock=clock, max_volume=max_volume,
+                                                             clock=clock, fixed=fixed, velocity=velocity,
                                                              flags=["no_transcribe"]))
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
                             format(self.name))
-        handles.append(self.notation_part.start_note(pitch, volume, properties, clock=clock, max_volume=max_volume))
+        handles.append(self.notation_part.start_note(pitch, volume, properties, clock=clock, fixed=fixed,
+                                                     velocity=velocity))
         return MultiNoteHandle(handles)
 
     def start_chord(self, pitches: Sequence[float], volume: float,
                     properties: Union[str, dict, Sequence, NoteProperty] = None, preset: str = None,
-                    clock: Clock = None, max_volume: float = 1) -> MultiNoteHandle:
+                    clock: Clock = None, fixed: Union[bool, str] = "auto", velocity: float = None) -> MultiNoteHandle:
         """
         Start a note using this MultiPresetInstrument.
 
@@ -238,7 +241,8 @@ class MultiPresetInstrument:
         :param properties: see :func:`~scamp.instruments.ScampInstrument.start_chord`
         :param preset: name of the preset to use for this note.
         :param clock: see :func:`~scamp.instruments.ScampInstrument.start_chord`
-        :param max_volume: see :func:`~scamp.instruments.ScampInstrument.start_chord`
+        :param fixed: see :func:`~scamp.instruments.ScampInstrument.start_chord`
+        :param velocity: see :func:`~scamp.instruments.ScampInstrument.start_chord`
         :return: a :class:`MultiNoteHandle` with which to later manipulate the chord
         """
         handles = []
@@ -250,12 +254,13 @@ class MultiPresetInstrument:
         if preset_info.instrument is not None:
             # this will happen so long as there's a preset to resolve to
             handles.append(preset_info.instrument.start_chord(pitches, volume, properties,
-                                                              clock=clock, max_volume=max_volume,
+                                                              clock=clock, fixed=fixed, velocity=velocity,
                                                               flags=["no_transcribe"]))
         else:
             logging.warning("MultiPresetInstrument {} does not have any presets. (Probably a mistake?)".
                             format(self.name))
-        handles.append(self.notation_part.start_chord(pitches, volume, properties, clock=clock, max_volume=max_volume))
+        handles.append(self.notation_part.start_chord(pitches, volume, properties, clock=clock, fixed=fixed,
+                                                      velocity=velocity))
         return MultiNoteHandle(handles)
 
     def send_midi_cc(self, cc_number: int, value_from_0_to_1: float) -> None:

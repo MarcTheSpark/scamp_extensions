@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`MultiPresetInstrument` and `MultiStaffInstrument` pass `fixed` and `velocity` through
+  `start_note`/`start_chord`**, matching scamp's new per-note fixedness control and independent note-on velocity.
+
+### Changed
+
+- **`MultiPresetInstrument`/`MultiStaffInstrument`'s `start_note`/`start_chord` `max_volume` argument is replaced
+  by `velocity`**, following the same change in scamp. If you passed `max_volume=x`, pass `velocity=x`.
+
 ### Fixed
 
 - **`TimeVaryingParameter` works again.** It read the clock's position once at construction and
