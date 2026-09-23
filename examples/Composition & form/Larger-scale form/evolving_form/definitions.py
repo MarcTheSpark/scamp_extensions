@@ -1,3 +1,9 @@
+"""
+SCAMP Example: Evolving Form Definitions
+
+Shared dynamics envelopes and bar-line helpers for evolving_form.py.
+"""
+
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 #  This file is part of SCAMP (Suite for Computer-Assisted Music in Python)                      #
 #  Copyright © 2020 Marc Evanstein <marc@marcevanstein.com>.                                     #
@@ -15,75 +21,38 @@
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 
 from scamp import *
-from scamp_extensions.process import LSystem
 
-s = Session()
-s.tempo = 100
+# playback_settings.adjustments.set("staccato", "length * 0.3")
 
-
-perc1 = s.new_part("Perc. 1", preset="power")
-perc2 = s.new_part("Perc. 2", preset="power")
-perc3 = s.new_part("Perc. 3", preset="power")
-
-
-l_syst1 = LSystem(
-    "a",
-    {
-        "a": "c b",
-        "b": "bac",
-        "c": " aa"
-    },
-    {
-        " ": None,
-        "a": 56,
-        "b": 60,
-        "c": 81,
-    }
+forte_piano = Envelope(
+    [0.8, 0.4, 1.0], [0.2, 0.8], curve_shapes=[0, 3]
 )
 
-l_syst2 = LSystem(
-    "b",
-    {
-        "a": "c b",
-        "b": "bac",
-        "c": " aa"
-    },
-    {
-        " ": None,
-        "a": 50,
-        "b": 67,
-        "c": 63,
-    }
-)
-
-l_syst3 = LSystem(
-    "c",
-    {
-        "a": "c b",
-        "b": "bac",
-        "c": " aa"
-    },
-    {
-        " ": None,
-        "a": 70,
-        "b": 75,
-        "c": 82,
-    }
-)
+diminuendo = Envelope.from_levels([0.8, 0.3])
 
 
-def play_notes(instrument, pitches, volume, duration):
-    for pitch in pitches:
-        instrument.play_note(pitch, volume, duration)
+def wrap_in_range(value, low, high):
+    return (value - low) % (high - low) + low
 
 
-for generation in range(6):
-    print(f"Generation {generation}:")
-    print(f"  Part 1: {l_syst1.get_generation(generation)}")
-    print(f"  Part 2: {l_syst2.get_generation(generation)}")
-    print(f"  Part 3: {l_syst3.get_generation(generation)}")
-    fork(play_notes, args=(perc1, l_syst1.get_generation_meanings(generation), 0.8, 0.25))
-    fork(play_notes, args=(perc2, l_syst2.get_generation_meanings(generation), 0.8, 0.25))
-    fork(play_notes, args=(perc3, l_syst3.get_generation_meanings(generation), 0.8, 0.25))
-    wait_for_children_to_finish()
-    wait(2)
+bar_lines = []
+
+
+def do_bar_line(beat):
+    beats_since_last_bar_line = beat - bar_lines[-1] if len(bar_lines) > 0 else beat
+    if beats_since_last_bar_line % 1 == 0 and beats_since_last_bar_line < 5:
+        bar_lengths = [beats_since_last_bar_line]
+    else:
+        num_bars_to_add = 2
+        while beats_since_last_bar_line / num_bars_to_add > 4:
+            num_bars_to_add += 1
+        last_bar_length = round(beats_since_last_bar_line / num_bars_to_add)
+        remaining_bars_length = beats_since_last_bar_line - last_bar_length
+        if remaining_bars_length <= 5:
+            bar_lengths = [remaining_bars_length, last_bar_length]
+        else:
+            first_bar_length = remaining_bars_length % 3 + 3 if remaining_bars_length % 3 < 2 else remaining_bars_length % 3
+            bar_lengths = [first_bar_length] + [3] * int((remaining_bars_length - first_bar_length) / 3) + [last_bar_length]
+    for bar_length in bar_lengths:
+        bar_lines.append(bar_lines[-1] + bar_length if len(bar_lines) > 0 else bar_length)
+

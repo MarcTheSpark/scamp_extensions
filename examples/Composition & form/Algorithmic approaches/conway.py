@@ -1,8 +1,3 @@
-"""
-Example written by Raphael Radna
-Adapted for SuperCollider by Marc Evanstein
-"""
-
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 #  This file is part of SCAMP (Suite for Computer-Assisted Music in Python)                      #
 #  Copyright © 2020 Marc Evanstein <marc@marcevanstein.com>.                                     #
@@ -19,26 +14,34 @@ Adapted for SuperCollider by Marc Evanstein
 #  If not, see <http://www.gnu.org/licenses/>.                                                   #
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 
+"""
+SCAMP Example: Conway's Game of Life (pygame version)
+
+Conway's Game of Life sonified, with a pygame window used for visualization
+instead of matplotlib. Original by Raphael Radna; visualization ported to
+pygame.
+"""
+
 import numpy
-import matplotlib.pyplot as pyplot
-import matplotlib.animation as animation
+import pygame
 from scamp import *
-from scamp_extensions.playback.supercollider import add_sc_extensions
+from scamp_extensions.pitch import Scale
 import math
 
-add_sc_extensions()
 
+scale = Scale.melodic_minor(59)
 
 WIDTH = 24
 HEIGHT = 24
+CELL_SIZE = 24  # pixels per cell in the pygame window
+FPS = 20
+
+ALIVE_COLOR = (255, 255, 255)
+DEAD_COLOR = (0, 0, 0)
+BG_COLOR = (0, 0, 0)
+
 s = Session()
-scamp1 = s.new_supercollider_part("scamp1", r"""
-    SynthDef(\sine, { |freq=440, volume=0, gate=1, pan=0|
-        var sine = SinOsc.ar(freq, mul: volume.linexp(0, 1, 0.01, 1));
-        var envelope = EnvGen.kr(Env.asr(attackTime:0.05, releaseTime:0.1), gate, doneAction:2);
-        Out.ar(0, Pan2.ar(sine * envelope * volume, pan*2-1));
-    });
-""")
+scamp1 = s.new_part("piano")
 
 
 def bark_to_hz(bark):  # Traunmüller formula
@@ -46,7 +49,7 @@ def bark_to_hz(bark):  # Traunmüller formula
 
 
 def ftom(hz, base=440):
-    return 12 * math.log(hz/base)/math.log(2) + 69
+    return 12 * math.log(hz / base) / math.log(2) + 69
 
 
 def init_grid(x, y):
@@ -91,20 +94,19 @@ note_grid = numpy.zeros((WIDTH, HEIGHT), dtype=object)
 
 def grid_play(a, x, y):
     pan = y / HEIGHT
-    # pitch = 72 * (x / WIDTH) + 24 + pan
-    pitch = ftom(bark_to_hz((x / WIDTH) * 24 + pan))
+    pitch = ftom(bark_to_hz((x / WIDTH) * 20 + pan))
     cell_state = a[x, y]
     note_state = note_grid[x, y]
 
     if cell_state == 1 and note_state == 0:
-        note_grid[x, y] = scamp1.start_note(pitch, 0.125, "param_pan:{}".format(pan))
+        note_grid[x, y] = scamp1.start_note(scale.round(pitch), 0.125, "param_10:{}".format(pan))
 
     if cell_state == 0 and note_state != 0:
         note_grid[x, y].end()
         note_grid[x, y] = 0
 
 
-def update_grid(*args):
+def update_grid():
     global current_grid
     global next_grid
     for x in range(WIDTH):
@@ -112,12 +114,59 @@ def update_grid(*args):
             grid_play(current_grid, x, y)
             apply_rules(current_grid, next_grid, x, y)
     current_grid[:, :] = next_grid[:, :]
-    im.set_array(next_grid)
-    return im,
 
 
-fig, ax = pyplot.subplots(figsize=(4, 4))
-ax.set(xlim=(0, WIDTH-1), ylim=(0, HEIGHT-1))
-im = ax.imshow(current_grid, interpolation='nearest', cmap=pyplot.cm.gray)
-ani = animation.FuncAnimation(fig, update_grid, interval=50, blit=True)
-pyplot.show()
+def randomize_grid():
+    global current_grid
+    global next_grid
+    # stop any currently sounding notes before scrambling the grid
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            if note_grid[x, y] != 0:
+                note_grid[x, y].end()
+                note_grid[x, y] = 0
+    current_grid = init_grid(WIDTH, HEIGHT)
+    next_grid = numpy.array(current_grid)
+
+
+def draw_grid(screen):
+    screen.fill(BG_COLOR)
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            color = ALIVE_COLOR if current_grid[x, y] == 1 else DEAD_COLOR
+            rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+            pygame.draw.rect(screen, color, rect)
+
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE))
+    pygame.display.set_caption("Conway's Game of Life (SCAMP)")
+    clock = pygame.time.Clock()
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                running = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                randomize_grid()
+
+        update_grid()
+        draw_grid(screen)
+        pygame.display.flip()
+        clock.tick(FPS)
+
+    # Clean up any still-sounding notes on exit
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            if note_grid[x, y] != 0:
+                note_grid[x, y].end()
+
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    main()
