@@ -1,5 +1,0 @@
-includePaths:
-    -   scampExtensions
-excludePaths:
-    []
-postInlineWarnings: false

@@ -21,6 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`MultiPresetInstrument`/`MultiStaffInstrument`'s `start_note`/`start_chord` `max_volume` argument is replaced
   by `velocity`**, following the same change in scamp. If you passed `max_volume=x`, pass `velocity=x`.
 
+### Removed
+
+- **The `scamp_extensions.playback.supercollider` subpackage is removed** (`SCPlaybackImplementation`,
+  `SCLangInstance`, `add_sc_extensions`), which embedded and drove an `sclang` instance from Python. Talk to
+  SuperCollider over OSC instead, using the [SCScampUtils](https://github.com/MarcTheSpark/SCScampUtils) quark
+  on the SuperCollider side.
+
 ### Fixed
 
 - **`TimeVaryingParameter` works again.** It read the clock's position once at construction and

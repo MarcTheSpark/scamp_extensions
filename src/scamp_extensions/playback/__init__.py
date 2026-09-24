@@ -1,6 +1,5 @@
 """
-Subpackage containing playback-related extensions, such as support for multi-preset instruments, and direct
-integration with SuperCollider.
+Subpackage containing playback-related extensions, such as support for multi-preset instruments.
 """
 
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
@@ -20,4 +19,3 @@ integration with SuperCollider.
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 
 from .multi_preset_instrument import MultiPresetInstrument, MultiNoteHandle
-from .supercollider import SCPlaybackImplementation, SCLangInstance, add_sc_extensions
