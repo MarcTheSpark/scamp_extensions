@@ -99,8 +99,8 @@ def make_intensity_gradient(envelope, start_x, end_x, color_map=default_color_ma
 
     grad = drawsvg.LinearGradient(start_x, 0, end_x, 0)
     for segment in envelope.segments:
-        grad.addStop(segment.start_time, rgb_to_hex(color_map(segment.start_level)))
-    grad.addStop(1, rgb_to_hex(color_map(envelope.end_level())))
+        grad.add_stop(segment.start_time, rgb_to_hex(color_map(segment.start_level)))
+    grad.add_stop(1, rgb_to_hex(color_map(envelope.end_level())))
     return grad
 
 
@@ -385,5 +385,5 @@ class PartNoteGraph:
         if bg_color is not None:
             d.append(drawsvg.Rectangle(0, 0, *dimensions, fill=bg_color))
         self.render(d, (h_padding, v_padding), unpadded_dimensions)
-        d.setPixelScale(pixel_scale)
-        d.saveSvg(file_path)
+        d.set_pixel_scale(pixel_scale)
+        d.save_svg(file_path)

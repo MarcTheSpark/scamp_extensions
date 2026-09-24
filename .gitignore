@@ -4,3 +4,6 @@ build
 dist
 *.egg-info
 *__pycache__
+
+# Graphic-notation / score SVGs an example writes when run (generated output).
+examples/**/*.svg
