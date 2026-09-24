@@ -319,7 +319,8 @@ class PartNoteGraph:
             height_envelope = height.duplicate() if isinstance(height, Envelope) else Envelope((height, height), (note.length_sum(),))
             height_envelope.remove_segments_after(note.length_sum())
             height_envelope.shift_vertical(-self.height_parameter_range[0])
-            height_envelope.scale_vertical(dimensions[1] / (self.height_parameter_range[1] - self.height_parameter_range[0]))
+            # negative scale: drawsvg's y-axis points down, so higher pitch grows upward from bottom_left
+            height_envelope.scale_vertical(-dimensions[1] / (self.height_parameter_range[1] - self.height_parameter_range[0]))
             height_envelope.shift_vertical(bottom_left[1])
             height_envelope.scale_horizontal(dimensions[0] / (self.time_range[1] - self.time_range[0]))
             height_envelope.shift_horizontal(bottom_left[0] + dimensions[0] * (note.start_beat - self.time_range[0]) /
@@ -359,7 +360,7 @@ class PartNoteGraph:
     def _render_guide_lines(self, drawing: drawsvg.Drawing, bottom_left: Tuple[Real, Real],
                             dimensions: Tuple[Real, Real]):
         for value in self.guide_lines:
-            line_height = bottom_left[1] + (value - self.height_parameter_range[0]) / \
+            line_height = bottom_left[1] - (value - self.height_parameter_range[0]) / \
                           (self.height_parameter_range[1] - self.height_parameter_range[0]) * dimensions[1]
             drawing.append(
                 drawsvg.Line(
@@ -381,9 +382,9 @@ class PartNoteGraph:
         """
         _require_drawsvg()
         unpadded_dimensions = dimensions[0] - 2 * h_padding, dimensions[1] - 2 * v_padding
-        d = drawsvg.Drawing(*dimensions, displayInline=False)
+        d = drawsvg.Drawing(*dimensions)
         if bg_color is not None:
             d.append(drawsvg.Rectangle(0, 0, *dimensions, fill=bg_color))
-        self.render(d, (h_padding, v_padding), unpadded_dimensions)
+        self.render(d, (h_padding, dimensions[1] - v_padding), unpadded_dimensions)
         d.set_pixel_scale(pixel_scale)
         d.save_svg(file_path)

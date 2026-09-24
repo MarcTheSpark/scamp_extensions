@@ -1,3 +1,10 @@
+"""
+SCAMP Example: Note Graph
+
+Renders a saved Performance two ways: as graphic notation via PartNoteGraph (note height =
+pitch, width = volume, color = vibrato frequency), and as a traditional quantized score.
+"""
+
 #  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  #
 #  This file is part of SCAMP (Suite for Computer-Assisted Music in Python)                      #
 #  Copyright © 2020 Marc Evanstein <marc@marcevanstein.com>.                                     #
@@ -19,12 +26,12 @@ from scamp_extensions.engraving import PartNoteGraph
 
 performance = Performance.load_from_json("sinesPerformance.json")
 
-# Traditional score
-engraving_settings.max_voices_per_staff = 1
-performance.to_score(max_divisor=6, simplicity_preference=3, title="Traditional Score").show()
-
 # Graphic notation
 PartNoteGraph(performance.parts[0], width_range=(0.5, 9),
               color_parameter="vibFreq",
               color_parameter_range=(0, 15)).render_to_file("note_graph_example.svg",
                                                             (7000, 800))
+
+# Traditional score
+engraving_settings.max_voices_per_staff = 1
+performance.to_score(max_divisor=6, simplicity_preference=3, title="Traditional Score").show()
