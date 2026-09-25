@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scamp_extensions"
-version = "0.3.7"
+version = "0.4.0"
 description = "Extensions to SCAMP (Suite for Computer-Assisted Music in Python)"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -15,7 +15,7 @@ authors = [
 ]
 
 dependencies = [
-    "scamp>=0.10.0",
+    "scamp>=0.13.0",
     "expenvelope>=0.8.0",
     "clockblocks>=1.0.0",
     "numpy",
